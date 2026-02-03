@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Local;
 
 class User extends Authenticatable
 {
@@ -18,10 +19,17 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'nombre',
+        'apellido',
         'email',
+        'telefono',
         'password',
     ];
+
+    public function local()
+    {
+        return $this->hasOne(Local::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
