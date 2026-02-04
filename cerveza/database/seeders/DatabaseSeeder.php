@@ -18,7 +18,5 @@ class DatabaseSeeder extends Seeder
     {
         Local::factory(10)->create();
 
-
-
     }
 }
