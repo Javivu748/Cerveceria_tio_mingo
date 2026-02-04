@@ -451,7 +451,7 @@
 <body>
     <div class="container">
         <header>
-            <div class="logo">TÍO MINGO</div>
+            <div class="logo">CERVECERÍA TÍO MINGO</div>
             <nav>
                 <a href="#cervezas">Cervezas</a>
                 <a href="#nosotros">Nosotros</a>
