@@ -57,7 +57,7 @@
 
         /* Header */
         header {
-            padding: 2rem 5%;
+            padding: 1.5rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -83,35 +83,45 @@
 
         .logo {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 2.5rem;
+            font-size: 2rem;
             letter-spacing: 3px;
             color: var(--primary-gold);
             text-shadow: 3px 3px 0 var(--deep-amber);
             position: relative;
+            white-space: nowrap;
         }
 
         .logo::after {
             content: '🍺';
             position: absolute;
-            right: -50px;
+            right: -40px;
             top: -5px;
-            font-size: 2rem;
+            font-size: 1.8rem;
+        }
+
+        /* Contenedor de navegación */
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
         }
 
         nav {
             display: flex;
-            gap: 2.5rem;
+            gap: 2rem;
+            align-items: center;
         }
 
         nav a {
             color: var(--warm-cream);
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             letter-spacing: 1px;
             text-transform: uppercase;
             position: relative;
             transition: color 0.3s ease;
+            white-space: nowrap;
         }
 
         nav a::after {
@@ -131,6 +141,95 @@
 
         nav a:hover::after {
             width: 100%;
+        }
+
+        /* Botones de autenticación */
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn-login,
+        .btn-register,
+        .btn-dashboard {
+            padding: 0.7rem 1.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: 2px solid var(--primary-gold);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            display: inline-block;
+        }
+
+        .btn-login {
+            background: transparent;
+            color: var(--primary-gold);
+        }
+
+        .btn-login:hover {
+            background: var(--primary-gold);
+            color: var(--dark-brown);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 165, 116, 0.3);
+        }
+
+        .btn-register {
+            background: linear-gradient(135deg, var(--primary-gold), var(--deep-amber));
+            color: var(--dark-brown);
+            border: 2px solid var(--primary-gold);
+        }
+
+        .btn-register:hover {
+            background: linear-gradient(135deg, var(--deep-amber), var(--copper));
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 165, 116, 0.4);
+        }
+
+        .btn-dashboard {
+            background: linear-gradient(135deg, var(--forest-green), #0f4c28);
+            color: var(--warm-cream);
+            border: 2px solid var(--forest-green);
+        }
+
+        .btn-dashboard:hover {
+            background: linear-gradient(135deg, #0f4c28, var(--forest-green));
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(27, 67, 50, 0.4);
+        }
+
+        /* Menú hamburguesa */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 101;
+        }
+
+        .menu-toggle span {
+            width: 30px;
+            height: 3px;
+            background: var(--primary-gold);
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
         }
 
         /* Hero Section */
@@ -255,7 +354,6 @@
             max-width: 450px;
             height: 650px;
             margin: 0 auto;
-            /* Necesario para que la espuma no se salga por abajo al empezar */
             overflow: hidden; 
             border-radius: 0 0 50% 50% / 0 0 30% 30%;
         }
@@ -276,7 +374,6 @@
             box-shadow: 
                 inset 0 -50px 100px rgba(255, 193, 7, 0.3),
                 0 20px 60px rgba(0, 0, 0, 0.5);
-            /* La animación del líquido dura 2.5s y empieza al 1s */
             animation: fillGlass 2.5s ease-out 1s both;
         }
 
@@ -304,14 +401,11 @@
             filter: blur(20px);
         }
 
-        /* --- CAMBIOS EN LA ESPUMA --- */
         .espuma {
             position: absolute;
-            /* Cambio: Ya no usamos 'top'. Empezamos desde abajo. */
-            bottom: -50px; /* Empieza justo debajo del vaso visible */
+            bottom: -50px;
             left: 0; 
             width: 100%;
-            /* height: 60%; Eliminado */
             height: 140px;
             background: radial-gradient(ellipse at center, 
                 rgba(255, 255, 255, 0.95) 0%,
@@ -319,36 +413,27 @@
                 rgba(255, 248, 220, 0.7) 60%,
                 rgba(255, 248, 220, 0.5) 100%
             );
-            /* Cambio de animación: Usamos 'foamRise'.
-               Tiempos sincronizados con fillGlass: Duración 2.5s, Delay 1s.
-               La animación de flotar empieza cuando termina la de subir (1s + 2.5s = 3.5s)
-            */
             animation: foamRise 2.5s ease-out 1s both, foamFloat 3s ease-in-out 3.5s infinite;
             filter: blur(2px);
             z-index: 10;
         }
 
-        /* Nueva animación para que la espuma suba con el líquido */
         @keyframes foamRise {
             0% {
                 transform: translateY(0);
                 opacity: 0;
             }
             10% {
-                opacity: 1; /* Aparece rápido al empezar a subir */
+                opacity: 1;
             }
             100% {
-                /* Sube aproximadamente la altura del líquido (550px) */
                 transform: translateY(-540px); 
                 opacity: 1;
             }
         }
 
-        /* Se elimina la antigua @keyframes foamAppear */
-
         @keyframes foamFloat {
             0%, 100% { 
-                /* Mantenemos la posición final de subida como base */
                 transform: translateY(-540px) scale(1); 
             }
             50% { 
@@ -356,21 +441,19 @@
             }
         }
 
-        /* Burbujas de espuma */
         .espuma::before,
         .espuma::after {
             content: '';
             position: absolute;
             background: radial-gradient(circle, rgba(255, 255, 255, 0.9), rgba(255, 248, 220, 0.6));
             border-radius: 50%;
-            /* Ajustado el delay para que empiece cuando la espuma está arriba */
             animation: bubble 4s ease-in-out 3s infinite; 
         }
 
         .espuma::before {
             width: 60px;
             height: 60px;
-            top: 20px; /* Ajustado para que estén dentro de la espuma */
+            top: 20px;
             left: 20%;
             animation-delay: 3s;
         }
@@ -378,7 +461,7 @@
         .espuma::after {
             width: 50px;
             height: 50px;
-            top: 35px; /* Ajustado para que estén dentro de la espuma */
+            top: 35px;
             right: 25%;
             animation-delay: 3.5s;
         }
@@ -394,7 +477,6 @@
             }
         }
 
-        /* Burbujas adicionales */
         .bubble {
             position: absolute;
             background: radial-gradient(circle at 30% 30%, 
@@ -405,7 +487,6 @@
             animation: bubbleRise 3s ease-in-out infinite;
         }
         
-        /* Ajustados los delays para que coincidan con el llenado */
         .bubble:nth-child(1) {
             width: 40px; height: 40px; top: -10px; left: 15%; animation-delay: 1.5s;
         }
@@ -429,7 +510,6 @@
                 opacity: 1;
             }
         }
-        /* --- FIN CAMBIOS ESPUMA --- */
 
         /* Features Section */
         .features {
@@ -509,11 +589,107 @@
             font-weight: 300;
         }
 
-        /* Responsive */
+        /* Responsive - Tablet */
+        @media (max-width: 1024px) {
+            .logo {
+                font-size: 1.8rem;
+            }
+
+            .logo::after {
+                right: -35px;
+                font-size: 1.6rem;
+            }
+
+            nav {
+                gap: 1.5rem;
+            }
+
+            nav a {
+                font-size: 0.85rem;
+            }
+
+            .auth-buttons {
+                gap: 0.8rem;
+            }
+
+            .btn-login,
+            .btn-register,
+            .btn-dashboard {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.8rem;
+            }
+
+            .hero-text h1 {
+                font-size: 4rem;
+            }
+
+            .hero-text h1 span {
+                font-size: 3rem;
+            }
+        }
+
+        /* Responsive - Tablet pequeña */
         @media (max-width: 968px) {
+            header {
+                padding: 1.5rem 4%;
+            }
+
+            .nav-container {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 300px;
+                background: rgba(44, 24, 16, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 5rem 2rem 2rem;
+                gap: 2rem;
+                transition: right 0.4s ease;
+                border-left: 2px solid var(--primary-gold);
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
+            }
+
+            .nav-container.active {
+                right: 0;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 1.5rem;
+                width: 100%;
+            }
+
+            nav a {
+                font-size: 1rem;
+                padding: 0.5rem 0;
+                width: 100%;
+                text-align: center;
+            }
+
+            .auth-buttons {
+                flex-direction: column;
+                width: 100%;
+                gap: 1rem;
+            }
+
+            .btn-login,
+            .btn-register,
+            .btn-dashboard {
+                width: 100%;
+                text-align: center;
+                padding: 1rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
             .hero-content {
                 grid-template-columns: 1fr;
                 text-align: center;
+                gap: 3rem;
             }
 
             .hero-text h1 {
@@ -522,14 +698,6 @@
 
             .hero-text h1 span {
                 font-size: 2.5rem;
-            }
-
-            nav {
-                gap: 1.5rem;
-            }
-
-            .logo {
-                font-size: 2rem;
             }
 
             .beer-container {
@@ -541,44 +709,76 @@
                 height: 450px;
             }
 
-            /* Ajuste responsive de la espuma */
             .espuma {
-                /* height: 120px; Eliminado, usamos el fijo */
                 animation: foamRiseResponsiveMedium 2.5s ease-out 1s both, foamFloatResponsiveMedium 3s ease-in-out 3.5s infinite;
             }
 
-             @keyframes foamRiseResponsiveMedium {
+            @keyframes foamRiseResponsiveMedium {
                 0% { transform: translateY(0); opacity: 0; }
                 10% { opacity: 1; }
                 100% { transform: translateY(-440px); opacity: 1; }
             }
-             @keyframes foamFloatResponsiveMedium {
+
+            @keyframes foamFloatResponsiveMedium {
                 0%, 100% { transform: translateY(-440px) scale(1); }
                 50% { transform: translateY(-448px) scale(1.03); }
             }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
         }
 
+        /* Responsive - Móvil */
         @media (max-width: 640px) {
             header {
-                flex-direction: column;
-                gap: 1.5rem;
+                padding: 1rem 4%;
             }
 
-            nav {
-                flex-wrap: wrap;
-                justify-content: center;
+            .logo {
+                font-size: 1.5rem;
+                letter-spacing: 2px;
+            }
+
+            .logo::after {
+                right: -30px;
+                font-size: 1.4rem;
+                top: -3px;
+            }
+
+            .nav-container {
+                width: 280px;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 3rem 4% 4rem;
+            }
+
+            .hero-content {
+                gap: 2rem;
             }
 
             .hero-text h1 {
                 font-size: 2.5rem;
+                margin-bottom: 1rem;
             }
 
             .hero-text h1 span {
                 font-size: 1.8rem;
             }
 
-            .features-title {
-                font-size: 2.5rem;
+            .hero-text p {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .cta-button {
+                padding: 1rem 2rem;
+                font-size: 0.9rem;
+                width: 100%;
+                text-align: center;
             }
 
             .beer-container {
@@ -590,19 +790,87 @@
                 height: 380px;
             }
 
-            /* Ajuste responsive pequeño de la espuma */
-             .espuma {
-                /* height: 100px; Eliminado */
+            .espuma {
                 animation: foamRiseResponsiveSmall 2.5s ease-out 1s both, foamFloatResponsiveSmall 3s ease-in-out 3.5s infinite;
             }
-             @keyframes foamRiseResponsiveSmall {
+
+            @keyframes foamRiseResponsiveSmall {
                 0% { transform: translateY(0); opacity: 0; }
                 10% { opacity: 1; }
                 100% { transform: translateY(-370px); opacity: 1; }
             }
-             @keyframes foamFloatResponsiveSmall {
+
+            @keyframes foamFloatResponsiveSmall {
                 0%, 100% { transform: translateY(-370px) scale(1); }
                 50% { transform: translateY(-378px) scale(1.03); }
+            }
+
+            .features {
+                padding: 4rem 4%;
+            }
+
+            .features-title {
+                font-size: 2.5rem;
+                margin-bottom: 2.5rem;
+            }
+
+            .feature-card {
+                padding: 2rem;
+            }
+
+            .feature-icon {
+                font-size: 3rem;
+            }
+
+            .feature-card h3 {
+                font-size: 1.5rem;
+            }
+
+            .feature-card p {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Responsive - Móvil pequeño */
+        @media (max-width: 400px) {
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .hero-text h1 span {
+                font-size: 1.5rem;
+            }
+
+            .beer-container {
+                max-width: 240px;
+                height: 420px;
+            }
+
+            .beer-glass {
+                height: 330px;
+            }
+
+            .espuma {
+                height: 120px;
+            }
+
+            @keyframes foamRiseResponsiveSmall {
+                0% { transform: translateY(0); opacity: 0; }
+                10% { opacity: 1; }
+                100% { transform: translateY(-320px); opacity: 1; }
+            }
+
+            @keyframes foamFloatResponsiveSmall {
+                0%, 100% { transform: translateY(-320px) scale(1); }
+                50% { transform: translateY(-328px) scale(1.03); }
+            }
+
+            .features-title {
+                font-size: 2rem;
             }
         }
     </style>
@@ -611,12 +879,40 @@
     <div class="container">
         <header>
             <div class="logo">CERVECERÍA TÍO MINGO</div>
-            <nav>
-                <a href="#cervezas">Cervezas</a>
-                <a href="#nosotros">Nosotros</a>
-                <a href="#tienda">Tienda</a>
-                <a href="#contacto">Contacto</a>
-            </nav>
+            
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="nav-container" id="navContainer">
+                <nav>
+                    <a href="#cervezas">Cervezas</a>
+                    <a href="#nosotros">Nosotros</a>
+                    <a href="#tienda">Tienda</a>
+                </nav>
+                
+                <div class="auth-buttons">
+                    @if (Route::has('login'))
+                        @auth
+                            <a href="{{ url('/dashboard') }}" class="btn-dashboard">
+                                Ir al Dashboard
+                            </a>
+                        @else
+                            <a href="{{ route('login') }}" class="btn-login">
+                                Iniciar Sesión
+                            </a>
+
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}" class="btn-register">
+                                    Registrarse
+                                </a>
+                            @endif
+                        @endauth
+                    @endif
+                </div>
+            </div>
         </header>
 
         <section class="hero">
@@ -635,9 +931,7 @@
                 </div>
                 <div class="hero-image">
                     <div class="beer-container">
-                        <div class="espuma">
-
-                        </div>
+                        <div class="espuma"></div>
                         <div class="beer-glass"></div>
                     </div>
                 </div>
@@ -674,5 +968,37 @@
             </div>
         </section>
     </div>
+
+    <script>
+        function toggleMenu() {
+            const navContainer = document.getElementById('navContainer');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            navContainer.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        }
+
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll('.nav-container a').forEach(link => {
+            link.addEventListener('click', () => {
+                const navContainer = document.getElementById('navContainer');
+                const menuToggle = document.querySelector('.menu-toggle');
+                
+                navContainer.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
+        });
+
+        // Cerrar menú al hacer clic fuera de él
+        document.addEventListener('click', (e) => {
+            const navContainer = document.getElementById('navContainer');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (!navContainer.contains(e.target) && !menuToggle.contains(e.target)) {
+                navContainer.classList.remove('active');
+                menuToggle.classList.remove('active');
+            }
+        });
+    </script>
 </body> 
 </html>
