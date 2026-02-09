@@ -1,4 +1,3 @@
-// app/Models/Cerveza.php
 <?php
 
 namespace App\Models;
