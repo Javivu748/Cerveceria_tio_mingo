@@ -888,7 +888,10 @@
 
             <div class="nav-container" id="navContainer">
                 <nav>
-                    <a href="#cervezas">Cervezas</a>
+
+                    <a href="{{ url('/cervezas') }}">Cervezas</a>
+
+
                     <a href="#nosotros">Nosotros</a>
                     <a href="#tienda">Tienda</a>
                 </nav>
