@@ -13,7 +13,7 @@ class Local extends Model
     protected $table = "local";
     protected $fillable = [
         'nombre',
-        'userId',
+        'user_id',
         'telefono',
         'email',
     ];

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('local', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->foreignId('userId')->constrained('users')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('email')->unique();
             $table->string('telefono');
             $table->timestamps();
