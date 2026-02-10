@@ -143,6 +143,20 @@
             width: 100%;
         }
 
+        /* Icono de candado junto a los links de nav protegidos */
+        nav a.protected::before {
+            content: '🔒';
+            font-size: 0.7rem;
+            margin-right: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            vertical-align: middle;
+        }
+
+        nav a.protected:hover::before {
+            opacity: 1;
+        }
+
         /* Botones de autenticación */
         .auth-buttons {
             display: flex;
@@ -888,9 +902,19 @@
 
             <div class="nav-container" id="navContainer">
                 <nav>
-                    <a href="#cervezas">Cervezas</a>
-                    <a href="#nosotros">Nosotros</a>
-                    <a href="#tienda">Tienda</a>
+                    {{-- 
+                        Si el usuario está autenticado, los enlaces van a sus secciones normales.
+                        Si NO está autenticado, redirigen al login para indicar que necesita sesión.
+                    --}}
+                    @auth
+                        <a href="#cervezas">Cervezas</a>
+                        <a href="#nosotros">Nosotros</a>
+                        <a href="#tienda">Tienda</a>
+                    @else
+                        <a href="{{ route('login') }}" class="protected">Cervezas</a>
+                        <a href="{{ route('login') }}" class="protected">Nosotros</a>
+                        <a href="{{ route('login') }}" class="protected">Tienda</a>
+                    @endauth
                 </nav>
                 
                 <div class="auth-buttons">
@@ -927,7 +951,7 @@
                         Elaboramos cerveza artesanal de calidad premium usando recetas 
                         tradicionales y los mejores ingredientes naturales.
                     </p>
-                    <a href="#tienda" class="cta-button">Descubre Nuestras Cervezas</a>
+                    <a href="{{ route('login') }}" class="cta-button">Descubre Nuestras Cervezas</a>
                 </div>
                 <div class="hero-image">
                     <div class="beer-container">
