@@ -7,59 +7,50 @@ use Illuminate\Http\Request;
 
 class PedidoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // Mostrar todos los pedidos
     public function index()
     {
-        //
+        return Pedido::with('cervezas', 'user')->get();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
+    // Mostrar un pedido
     public function show(Pedido $pedido)
     {
-        //
+        return $pedido->load('cervezas', 'user');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Pedido $pedido)
+    // Crear un pedido nuevo
+    public function store(Request $request)
     {
-        //
+        $pedido = Pedido::create($request->only(['fecha', 'user_id', 'estado', 'total', 'metodoPago']));
+
+        if ($request->has('cervezas')) {
+            foreach ($request->cervezas as $c) {
+                $pedido->cervezas()->attach($c['id'], ['cantidad' => $c['cantidad'] ?? 1]);
+            }
+        }
+
+        return $pedido->load('cervezas', 'user');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    // Actualizar pedido
     public function update(Request $request, Pedido $pedido)
     {
-        //
+        $pedido->update($request->only(['fecha', 'estado', 'total', 'metodoPago']));
+
+        if ($request->has('cervezas')) {
+            $pedido->cervezas()->sync(collect($request->cervezas)->mapWithKeys(function($c){
+                return [$c['id'] => ['cantidad' => $c['cantidad'] ?? 1]];
+            })->toArray());
+        }
+
+        return $pedido->load('cervezas', 'user');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    // Eliminar pedido
     public function destroy(Pedido $pedido)
     {
-        //
+        $pedido->delete();
+        return response()->json(['message' => 'Pedido eliminado correctamente']);
     }
 }
