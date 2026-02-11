@@ -902,7 +902,6 @@
 
             <div class="nav-container" id="navContainer">
                 <nav>
-<<<<<<< HEAD
                     {{-- 
                         Si el usuario está autenticado, los enlaces van a sus secciones normales.
                         Si NO está autenticado,  redirigen al login para indicar que necesita sesión.
@@ -916,11 +915,6 @@
                         <a href="{{ route('login') }}" class="protected">Nosotros</a>
                         <a href="{{ route('login') }}" class="protected">Tienda</a>
                     @endauth
-=======
-                    <a href="{{ url('/cerveza') }}">Cervezas</a>
-                    <a href="#nosotros">Nosotros</a>
-                    <a href="#tienda">Tienda</a>
->>>>>>> 50954484a8fca17c988b1943c111808b85fc981d
                 </nav>
                 
                 <div class="auth-buttons">
