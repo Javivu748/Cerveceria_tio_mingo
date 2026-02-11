@@ -6,15 +6,15 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
-class EstiloSeeder extends Seeder
+class CerveceriaSeeder extends Seeder
 {
     public function run()
     {
         // Leer el archivo CSV
-        $csvFile = database_path('data/estilos.csv');
+        $csvFile = database_path('data/cervecerias.csv');
         
         if (!File::exists($csvFile)) {
-            $this->command->error('El archivo estilos.csv no existe!');
+            $this->command->error('El archivo cervecerias.csv no existe!');
             return;
         }
 
@@ -27,18 +27,20 @@ class EstiloSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         
         // Limpiar tabla antes de insertar (opcional)
-        DB::table('estilos')->truncate();
+        DB::table('cervecerias')->truncate();
         
         // Habilitar restricciones de clave foránea
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         
         // Leer cada línea del CSV
         while (($row = fgetcsv($file)) !== false) {
-            DB::table('estilos')->insert([
+            DB::table('cervecerias')->insert([
                 'id' => $row[0],
                 'nombre' => $row[1],
-                'tipo_fermentacion' => $row[2],
-                'descripcion' => $row[3],
+                'pais_ciudad' => $row[2],
+                'anio_fundacion' => $row[3],
+                'descripcion' => $row[4],
+                'sitio_web' => $row[5],
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
@@ -46,6 +48,6 @@ class EstiloSeeder extends Seeder
         
         fclose($file);
         
-        $this->command->info('Estilos importados correctamente!');
+        $this->command->info('Cervecerías importadas correctamente!');
     }
 }

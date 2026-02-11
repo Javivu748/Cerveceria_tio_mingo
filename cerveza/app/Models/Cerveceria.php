@@ -1,4 +1,3 @@
-
 <?php
 
 namespace App\Models;
@@ -7,20 +6,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Cerveza;
 
-class Proveedor extends Model
+class Cerveceria extends Model
 {
     use HasFactory;
 
-    protected $table = 'proveedores';
+    // Usar nombre de tabla sin acento para evitar problemas
+    protected $table = 'cervecerias';
 
     /**
      * Campos asignables masivamente
      */
     protected $fillable = [
-        'nombre_distribuidora',
-        'contacto',
-        'telefono',
-        'plazo_entrega_estimado'
+        'nombre',
+        'pais_ciudad',
+        'anio_fundacion',
+        'descripcion',
+        'sitio_web',
     ];
 
     /**
@@ -29,15 +30,9 @@ class Proveedor extends Model
      * =========================
      */
 
-    // N:M → Un proveedor puede distribuir muchas cervezas
+    // 1:N → Una cervecería puede producir muchas cervezas
     public function cervezas()
     {
-        return $this->belongsToMany(
-            Cerveza::class,
-            'cerveza_proveedor',
-            'proveedor_id',
-            'cerveza_id'
-        );
-       
+        return $this->hasMany(Cerveza::class, 'cerveceria_id');
     }
 }
