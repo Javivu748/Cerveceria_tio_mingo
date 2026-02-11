@@ -905,7 +905,7 @@
 <<<<<<< HEAD
                     {{-- 
                         Si el usuario está autenticado, los enlaces van a sus secciones normales.
-                        Si NO está autenticado, redirigen al login para indicar que necesita sesión.
+                        Si NO está autenticado,  redirigen al login para indicar que necesita sesión.
                     --}}
                     @auth
                         <a href="#cervezas">Cervezas</a>
