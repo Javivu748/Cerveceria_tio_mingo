@@ -22,11 +22,13 @@ class Cerveza extends Model
      * Campos asignables masivamente
      */
     protected $fillable = [
-        'nombre',
+        'name',
         'estilo_id',
         'cerveceria_id', // si representa Local
         'formato',
         'capacidad',
+        'imagen_url',
+        'precio_eur',
     ];
 
     /**
@@ -34,6 +36,7 @@ class Cerveza extends Model
      */
     protected $casts = [
         'capacidad' => 'integer',
+        'precio_eur' => 'float',
     ];
 
     /**
