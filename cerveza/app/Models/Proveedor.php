@@ -1,4 +1,4 @@
-// app/Models/Proveedor.php
+
 <?php
 
 namespace App\Models;

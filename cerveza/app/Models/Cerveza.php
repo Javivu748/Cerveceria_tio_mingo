@@ -29,4 +29,5 @@ class Cerveza extends Model
     {
         return $this->belongsToMany(Proveedor::class, 'cerveza_proveedor');
     }
+    
 }
