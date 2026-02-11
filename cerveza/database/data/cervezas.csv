@@ -1,81 +1,81 @@
-id,nombre,estilo_id,cerveceria_id,cerveceria_nombre,formato,capacidad_cl
-1,Mahou Clásica,1,1,Mahou San Miguel,Lata,33
-2,Mahou Cinco Estrellas,1,1,Mahou San Miguel,Botella,33
-3,San Miguel Especial,1,1,Mahou San Miguel,Lata,33
-4,Alhambra Especial,1,2,Cervezas Alhambra,Botella,33
-5,Alhambra Reserva Roja,15,2,Cervezas Alhambra,Botella,33
-6,Estrella Damm,2,3,Damm,Lata,33
-7,Damm Lemon,1,3,Damm,Lata,33
-8,Voll-Damm,15,3,Damm,Botella,33
-9,Estrella Galicia,2,4,Estrella Galicia,Botella,33
-10,Estrella Galicia 1906,15,4,Estrella Galicia,Botella,33
-11,Cruzcampo,1,5,Heineken España,Lata,33
-12,Heineken,1,5,Heineken España,Lata,33
-13,Heineken Original,1,5,Heineken España,Botella,33
-14,Basqueland Aupa,3,6,Basqueland Brewing,Lata,44
-15,Basqueland Imparable,3,6,Basqueland Brewing,Lata,44
-16,La Virgen IPA,3,7,Cervezas La Virgen,Botella,33
-17,La Virgen Jamonera,1,7,Cervezas La Virgen,Botella,33
-18,La Virgen 360,6,7,Cervezas La Virgen,Lata,33
-19,Yakka Blonde Ale,10,8,Yakka,Botella,33
-20,Yakka IPA,3,8,Yakka,Botella,33
-21,Yakka Tripel,14,8,Yakka,Botella,33
-22,Dougall's IPA 942,13,9,Dougall's,Lata,33
-23,Dougall's Leyenda,6,9,Dougall's,Botella,33
-24,Dougall's Tres Mares,4,9,Dougall's,Botella,33
-25,Arriaca Imperial Red IPA,3,10,Cerveza Arriaca,Botella,33
-26,Arriaca Pale Ale,6,10,Cerveza Arriaca,Lata,33
-27,Cierzo IPA,3,11,Cierzo Brewing,Lata,44
-28,Cierzo Malandar,9,11,Cierzo Brewing,Lata,44
-29,Garage Beer Soup,8,12,Garage Beer Co,Lata,44
-30,Garage Beer IPA,3,12,Garage Beer Co,Lata,44
-31,Laugar Aupa Tovarisch,3,13,Laugar Brewery,Lata,44
-32,Lauger Basurde,5,13,Laugar Brewery,Botella,33
-33,Laugar Kiskale,13,13,Laugar Brewery,Lata,44
-34,Montseny Lupulus,3,14,Montseny,Botella,33
-35,Montseny Mala Vida,11,14,Montseny,Botella,33
-36,Tyris Paquita Brown,9,15,Tyris,Lata,44
-37,Tyris Socarrat IPA,3,15,Tyris,Botella,33
-38,Nómada American Pale Ale,6,16,Nómada Brewing,Lata,44
-39,Saltus Kloratipa,3,17,Saltus Brewing,Lata,44
-40,Saltus Ttipia,2,17,Saltus Brewing,Lata,33
-41,Antiga Cream Ale,10,18,Antiga Artesana,Botella,33
-42,Antiga Belgian Tripel,14,18,Antiga Artesana,Botella,33
-43,Zeta Hop,3,19,Zeta,Lata,33
-44,Zeta Hell,1,19,Zeta,Lata,33
-45,Barcelona Beer IPA,3,20,Barcelona Beer Company,Lata,44
-46,Rec Brew Session IPA,13,21,Rec Brew,Lata,44
-47,Freddo Fox Triple IPA,3,22,Freddo Fox,Lata,33
-48,Guinness Draught,5,23,Guinness,Lata,44
-49,Guinness Draught,5,23,Guinness,Botella,33
-50,Guinness Extra Stout,5,23,Guinness,Botella,33
-51,Guinness Special Export,11,23,Guinness,Botella,33
-52,Corona Extra,1,24,Grupo Modelo,Botella,33
-53,Corona Extra,1,24,Grupo Modelo,Lata,35.5
-54,Stella Artois,2,25,AB InBev,Botella,33
-55,Stella Artois,2,25,AB InBev,Lata,33
-56,Budweiser,1,26,Anheuser-Busch,Lata,33
-57,Budweiser,1,26,Anheuser-Busch,Botella,33
-58,Paulaner Weissbier,7,27,Paulaner Brauerei,Botella,50
-59,Paulaner Hefe-Weizen,7,27,Paulaner Brauerei,Lata,50
-60,Franziskaner Weissbier,7,28,Spaten-Franziskaner,Botella,50
-61,Hoegaarden,7,29,AB InBev,Botella,33
-62,Hoegaarden,7,29,AB InBev,Lata,33
-63,Leffe Blonde,14,30,AB InBev,Botella,33
-64,Leffe Brune,9,30,AB InBev,Botella,33
-65,Chimay Blue,14,31,Chimay Brewery,Botella,33
-66,Chimay Red,9,31,Chimay Brewery,Botella,33
-67,Duvel,10,32,Duvel Moortgat,Botella,33
-68,Brewdog Punk IPA,3,33,BrewDog,Lata,33
-69,Brewdog Elvis Juice,3,33,BrewDog,Lata,33
-70,Sierra Nevada Pale Ale,6,34,Sierra Nevada Brewing,Botella,35.5
-71,Sierra Nevada Torpedo,3,34,Sierra Nevada Brewing,Lata,35.5
-72,Lagunitas IPA,3,35,Lagunitas Brewing,Lata,35.5
-73,Stone IPA,3,36,Stone Brewing,Botella,33
-74,Goose Island IPA,3,37,Goose Island Beer Co,Lata,35.5
-75,Brooklyn Lager,15,38,Brooklyn Brewery,Botella,33
-76,Blue Moon Belgian White,7,39,MillerCoors,Botella,33
-77,Samuel Adams Boston Lager,15,40,Boston Beer Company,Botella,33
-78,Carlsberg,2,41,Carlsberg Group,Lata,33
-79,Carlsberg,2,41,Carlsberg Group,Botella,33
-80,Tuborg,2,41,Carlsberg Group,Lata,33
+id,nombre,estilo_id,cerveceria_id,cerveceria_nombre,formato,capacidad_cl,imagen_url,precio_eur
+1,Mahou Clásica,1,1,Mahou San Miguel,Lata,33.0,https://www.mahou-sanmiguel.com/sites/default/files/styles/pim_img_small_zoom/public/product-images/7501006726527_1.jpg,0.7
+2,Mahou Cinco Estrellas,1,1,Mahou San Miguel,Botella,33.0,https://www.mahou-sanmiguel.com/sites/default/files/styles/pim_img_small_zoom/public/product-images/8410013210044_1.jpg,0.85
+3,San Miguel Especial,1,1,Mahou San Miguel,Lata,33.0,https://www.mahou-sanmiguel.com/sites/default/files/styles/pim_img_small_zoom/public/product-images/8410013200014_1.jpg,0.85
+4,Alhambra Especial,1,2,Cervezas Alhambra,Botella,33.0,https://www.cervezasalhambra.es/sites/g/files/ogq431/f/styles/product_teaser_desktop/public/2022-12/Alhambra-Especial-Botella.png,1.1
+5,Alhambra Reserva Roja,15,2,Cervezas Alhambra,Botella,33.0,https://www.cervezasalhambra.es/sites/g/files/ogq431/f/styles/product_teaser_desktop/public/2022-12/Alhambra-Reserva-Roja-Botella.png,1.35
+6,Estrella Damm,2,3,Damm,Lata,33.0,https://www.damm.com/media/zjsjutvh/lata-estrella-damm.png,1.1
+7,Damm Lemon,1,3,Damm,Lata,33.0,https://www.damm.com/media/pzilbv5w/lata-damm-lemon.png,1.1
+8,Voll-Damm,15,3,Damm,Botella,33.0,https://www.damm.com/media/ueqfy2qy/botella-voll-damm.png,1.1
+9,Estrella Galicia,2,4,Estrella Galicia,Botella,33.0,https://www.estrellagalicia.es/sites/default/files/styles/max_650x650/public/2023-08/especial-25cl-b_0.png,0.7
+10,Estrella Galicia 1906,15,4,Estrella Galicia,Botella,33.0,https://www.estrellagalicia.es/sites/default/files/styles/max_650x650/public/2023-08/1906-reserva-especial-25cl-b.png,0.7
+11,Cruzcampo,1,5,Heineken España,Lata,33.0,https://cruzcampo.es/sites/g/files/seuoyk311/files/styles/width_350/public/2023-02/Cruzcampo_Lata_33_Frontal.png,1.1
+12,Heineken,1,5,Heineken España,Lata,33.0,https://www.heineken.com/media-eu/lkqb2awe/heineken-original-can.png,1.1
+13,Heineken Original,1,5,Heineken España,Botella,33.0,https://www.heineken.com/media-eu/ezvbx0uv/heineken-original-bottle.png,1.1
+14,Basqueland Aupa,3,6,Basqueland Brewing,Lata,44.0,https://basqueland.com/wp-content/uploads/2023/05/Aupa-Lata.png,1.1
+15,Basqueland Imparable,3,6,Basqueland Brewing,Lata,44.0,https://basqueland.com/wp-content/uploads/2023/05/Imparable-Lata.png,1.1
+16,La Virgen IPA,3,7,Cervezas La Virgen,Botella,33.0,https://www.cervezaslavirgen.com/wp-content/uploads/2023/03/IPA-Botella.png,2.75
+17,La Virgen Jamonera,1,7,Cervezas La Virgen,Botella,33.0,https://www.cervezaslavirgen.com/wp-content/uploads/2023/03/Jamonera-Botella.png,1.1
+18,La Virgen 360,6,7,Cervezas La Virgen,Lata,33.0,https://www.cervezaslavirgen.com/wp-content/uploads/2023/03/360-Lata.png,1.1
+19,Yakka Blonde Ale,10,8,Yakka,Botella,33.0,https://yakka.beer/wp-content/uploads/2023/01/yakka-blonde-bottle.png,1.1
+20,Yakka IPA,3,8,Yakka,Botella,33.0,https://yakka.beer/wp-content/uploads/2023/01/yakka-ipa-bottle.png,2.75
+21,Yakka Tripel,14,8,Yakka,Botella,33.0,https://yakka.beer/wp-content/uploads/2023/01/yakka-tripel-bottle.png,1.1
+22,Dougall's IPA 942,13,9,Dougall's,Lata,33.0,https://www.dougalls.es/wp-content/uploads/2023/02/IPA-942-Lata.png,2.75
+23,Dougall's Leyenda,6,9,Dougall's,Botella,33.0,https://www.dougalls.es/wp-content/uploads/2023/02/Leyenda-Botella.png,1.1
+24,Dougall's Tres Mares,4,9,Dougall's,Botella,33.0,https://www.dougalls.es/wp-content/uploads/2023/02/Tres-Mares-Botella.png,1.1
+25,Arriaca Imperial Red IPA,3,10,Cerveza Arriaca,Botella,33.0,https://www.cervezaarriaca.com/wp-content/uploads/2023/01/Imperial-Red-IPA.png,2.75
+26,Arriaca Pale Ale,6,10,Cerveza Arriaca,Lata,33.0,https://www.cervezaarriaca.com/wp-content/uploads/2023/01/Pale-Ale-Lata.png,1.1
+27,Cierzo IPA,3,11,Cierzo Brewing,Lata,44.0,https://www.cierzobrewing.com/wp-content/uploads/2023/03/Cierzo-IPA-Lata.png,2.75
+28,Cierzo Malandar,9,11,Cierzo Brewing,Lata,44.0,https://www.cierzobrewing.com/wp-content/uploads/2023/03/Malandar-Lata.png,1.1
+29,Garage Beer Soup,8,12,Garage Beer Co,Lata,44.0,https://www.garagebeer.co/wp-content/uploads/2023/02/Soup-Lata.png,1.1
+30,Garage Beer IPA,3,12,Garage Beer Co,Lata,44.0,https://www.garagebeer.co/wp-content/uploads/2023/02/IPA-Lata.png,2.75
+31,Laugar Aupa Tovarisch,3,13,Laugar Brewery,Lata,44.0,https://www.laugarbrewery.com/wp-content/uploads/2023/01/Aupa-Tovarisch-Lata.png,1.1
+32,Lauger Basurde,5,13,Laugar Brewery,Botella,33.0,https://www.laugarbrewery.com/wp-content/uploads/2023/01/Basurde-Botella.png,1.1
+33,Laugar Kiskale,13,13,Laugar Brewery,Lata,44.0,https://www.laugarbrewery.com/wp-content/uploads/2023/01/Kiskale-Lata.png,1.1
+34,Montseny Lupulus,3,14,Montseny,Botella,33.0,https://www.ccvrac.com/wp-content/uploads/2023/02/Lupulus-Botella.png,1.1
+35,Montseny Mala Vida,11,14,Montseny,Botella,33.0,https://www.ccvrac.com/wp-content/uploads/2023/02/Mala-Vida-Botella.png,1.1
+36,Tyris Paquita Brown,9,15,Tyris,Lata,44.0,https://www.tyrisbeer.com/wp-content/uploads/2023/01/Paquita-Brown-Lata.png,1.1
+37,Tyris Socarrat IPA,3,15,Tyris,Botella,33.0,https://www.tyrisbeer.com/wp-content/uploads/2023/01/Socarrat-IPA-Botella.png,2.75
+38,Nómada American Pale Ale,6,16,Nómada Brewing,Lata,44.0,https://www.nomadabrewing.com/wp-content/uploads/2023/02/APA-Lata.png,1.1
+39,Saltus Kloratipa,3,17,Saltus Brewing,Lata,44.0,https://www.saltusbrewing.com/wp-content/uploads/2023/01/Kloratipa-Lata.png,2.75
+40,Saltus Ttipia,2,17,Saltus Brewing,Lata,33.0,https://www.saltusbrewing.com/wp-content/uploads/2023/01/Ttipia-Lata.png,1.1
+41,Antiga Cream Ale,10,18,Antiga Artesana,Botella,33.0,https://www.antigaartesana.com/wp-content/uploads/2023/01/Cream-Ale-Botella.png,1.1
+42,Antiga Belgian Tripel,14,18,Antiga Artesana,Botella,33.0,https://www.antigaartesana.com/wp-content/uploads/2023/01/Belgian-Tripel-Botella.png,1.1
+43,Zeta Hop,3,19,Zeta,Lata,33.0,https://www.cervezazeta.com/wp-content/uploads/2023/02/Hop-Lata.png,1.1
+44,Zeta Hell,1,19,Zeta,Lata,33.0,https://www.cervezazeta.com/wp-content/uploads/2023/02/Hell-Lata.png,1.1
+45,Barcelona Beer IPA,3,20,Barcelona Beer Company,Lata,44.0,https://www.barcelonabeercompany.com/wp-content/uploads/2023/01/IPA-Lata.png,2.75
+46,Rec Brew Session IPA,13,21,Rec Brew,Lata,44.0,https://www.recbrew.com/wp-content/uploads/2023/01/Session-IPA-Lata.png,2.75
+47,Freddo Fox Triple IPA,3,22,Freddo Fox,Lata,33.0,https://www.freddofox.com/wp-content/uploads/2023/01/Triple-IPA-Lata.png,2.75
+48,Guinness Draught,5,23,Guinness,Lata,44.0,https://www.guinness.com/media/guinness-draught-can.png,1.1
+49,Guinness Draught,5,23,Guinness,Botella,33.0,https://www.guinness.com/media/guinness-draught-bottle.png,1.1
+50,Guinness Extra Stout,5,23,Guinness,Botella,33.0,https://www.guinness.com/media/guinness-extra-stout-bottle.png,1.1
+51,Guinness Special Export,11,23,Guinness,Botella,33.0,https://www.guinness.com/media/guinness-special-export-bottle.png,1.1
+52,Corona Extra,1,24,Grupo Modelo,Botella,33.0,https://corona.com/media/corona-extra-bottle.png,1.1
+53,Corona Extra,1,24,Grupo Modelo,Lata,35.5,https://corona.com/media/corona-extra-can.png,1.1
+54,Stella Artois,2,25,AB InBev,Botella,33.0,https://www.stellaartois.com/media/stella-artois-bottle.png,1.1
+55,Stella Artois,2,25,AB InBev,Lata,33.0,https://www.stellaartois.com/media/stella-artois-can.png,1.1
+56,Budweiser,1,26,Anheuser-Busch,Lata,33.0,https://www.budweiser.com/media/budweiser-can.png,1.1
+57,Budweiser,1,26,Anheuser-Busch,Botella,33.0,https://www.budweiser.com/media/budweiser-bottle.png,1.1
+58,Paulaner Weissbier,7,27,Paulaner Brauerei,Botella,50.0,https://www.paulaner.com/media/weissbier-bottle.png,1.1
+59,Paulaner Hefe-Weizen,7,27,Paulaner Brauerei,Lata,50.0,https://www.paulaner.com/media/hefe-weizen-can.png,1.1
+60,Franziskaner Weissbier,7,28,Spaten-Franziskaner,Botella,50.0,https://www.franziskaner-weissbier.de/media/weissbier-bottle.png,1.1
+61,Hoegaarden,7,29,AB InBev,Botella,33.0,https://www.hoegaarden.com/media/hoegaarden-bottle.png,1.1
+62,Hoegaarden,7,29,AB InBev,Lata,33.0,https://www.hoegaarden.com/media/hoegaarden-can.png,1.1
+63,Leffe Blonde,14,30,AB InBev,Botella,33.0,https://www.leffe.com/media/leffe-blonde-bottle.png,1.1
+64,Leffe Brune,9,30,AB InBev,Botella,33.0,https://www.leffe.com/media/leffe-brune-bottle.png,1.1
+65,Chimay Blue,14,31,Chimay Brewery,Botella,33.0,https://www.chimay.com/media/chimay-blue-bottle.png,3.45
+66,Chimay Red,9,31,Chimay Brewery,Botella,33.0,https://www.chimay.com/media/chimay-red-bottle.png,3.45
+67,Duvel,10,32,Duvel Moortgat,Botella,33.0,https://www.duvel.com/media/duvel-bottle.png,3.45
+68,Brewdog Punk IPA,3,33,BrewDog,Lata,33.0,https://www.brewdog.com/media/punk-ipa-can.png,2.75
+69,Brewdog Elvis Juice,3,33,BrewDog,Lata,33.0,https://www.brewdog.com/media/elvis-juice-can.png,2.75
+70,Sierra Nevada Pale Ale,6,34,Sierra Nevada Brewing,Botella,35.5,https://www.sierranevada.com/media/pale-ale-bottle.png,2.75
+71,Sierra Nevada Torpedo,3,34,Sierra Nevada Brewing,Lata,35.5,https://www.sierranevada.com/media/torpedo-can.png,2.75
+72,Lagunitas IPA,3,35,Lagunitas Brewing,Lata,35.5,https://lagunitas.com/media/ipa-can.png,2.75
+73,Stone IPA,3,36,Stone Brewing,Botella,33.0,https://www.stonebrewing.com/media/stone-ipa-bottle.png,2.75
+74,Goose Island IPA,3,37,Goose Island Beer Co,Lata,35.5,https://www.gooseisland.com/media/ipa-can.png,2.75
+75,Brooklyn Lager,15,38,Brooklyn Brewery,Botella,33.0,https://www.brooklynbrewery.com/media/lager-bottle.png,1.1
+76,Blue Moon Belgian White,7,39,MillerCoors,Botella,33.0,https://www.bluemoonbrewingcompany.com/media/belgian-white-bottle.png,1.1
+77,Samuel Adams Boston Lager,15,40,Boston Beer Company,Botella,33.0,https://www.samueladams.com/media/boston-lager-bottle.png,1.1
+78,Carlsberg,2,41,Carlsberg Group,Lata,33.0,https://www.carlsberg.com/media/carlsberg-can.png,1.1
+79,Carlsberg,2,41,Carlsberg Group,Botella,33.0,https://www.carlsberg.com/media/carlsberg-bottle.png,1.1
+80,Tuborg,2,41,Carlsberg Group,Lata,33.0,https://www.carlsberg.com/media/tuborg-can.png,1.1

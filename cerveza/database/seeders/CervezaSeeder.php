@@ -40,6 +40,8 @@ class CervezaSeeder extends Seeder
                 'cerveceria_id' => $row[3],
                 'formato' => $row[5],
                 'capacidad' => $row[6],
+                'imagen_url' => $row[7] ?? null,
+                'precio_eur' => isset($row[8]) ? (float)str_replace(',', '.', $row[8]) : null,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

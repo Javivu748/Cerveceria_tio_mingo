@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('formato');
             $table->decimal('capacidad', 5, 2);
+            $table->string('imagen_url')->nullable();
+            $table->decimal('precio_eur', 8, 2)->nullable();
             
             // Claves foráneas
             $table->foreignId('estilo_id')
