@@ -16,10 +16,17 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('formato');
-            $table->string('estilo_id');
-            $table->string('cerveceria_id');
-            $table->decimal('capacidad',5,2);
-            $table->string('user_id');
+            $table->decimal('capacidad', 5, 2);
+            
+            // Claves foráneas
+            $table->foreignId('estilo_id')
+                  ->constrained('estilos')
+                  ->onDelete('cascade');
+                  
+            $table->foreignId('cerveceria_id')
+                  ->constrained('cervecerias')
+                  ->onDelete('cascade');
+            
             
 
         });

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Proveedor;
+use App\Models\Cerveceria;
 use App\Models\Pedido;
 use App\Models\Resenia;
 use App\Models\Estilo;
@@ -26,7 +27,6 @@ class Cerveza extends Model
         'cerveceria_id', // si representa Local
         'formato',
         'capacidad',
-        'user_id',
     ];
 
     /**
@@ -43,10 +43,6 @@ class Cerveza extends Model
      */
 
     // N:1 → Una cerveza pertenece a un usuario
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
 
     // N:1 → Una cerveza pertenece a un estilo
     public function estilo()
@@ -54,10 +50,9 @@ class Cerveza extends Model
         return $this->belongsTo(Estilo::class, 'estilo_id');
     }
 
-    // N:1 → Una cerveza pertenece a un local/cervecería
-    public function local()
+    public function cerveceria()
     {
-        return $this->belongsTo(Local::class, 'cerveceria_id');
+        return $this->belongsTo(Cerveceria::class, 'cerveceria_id');
     }
 
     // 1:N → Una cerveza puede tener muchas reseñas

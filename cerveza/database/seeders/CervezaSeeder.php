@@ -22,20 +22,24 @@ class CervezaSeeder extends Seeder
         // Saltar encabezados
         $header = fgetcsv($file);
         
+        // Deshabilitar restricciones de clave foránea
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        
         // Limpiar tabla (opcional)
         DB::table('cervezas')->truncate();
+        
+        // Habilitar restricciones de clave foránea
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         
         // Importar datos
         while (($row = fgetcsv($file)) !== false) {
             DB::table('cervezas')->insert([
                 'id' => $row[0],
-                'nombre' => $row[1],
+                'name' => $row[1],
                 'estilo_id' => $row[2],
                 'cerveceria_id' => $row[3],
-                // Si tienes una tabla separada de cervecerias, solo necesitas cerveceria_id
-                // Si no, puedes agregar el campo cerveceria_nombre
                 'formato' => $row[5],
-                'capacidad_cl' => $row[6],
+                'capacidad' => $row[6],
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

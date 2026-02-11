@@ -2,16 +2,52 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
-class CerveceríaSeeder extends Seeder
+class CerveceriaSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
+    public function run()
     {
-        //
+        // Leer el archivo CSV
+        $csvFile = database_path('data/cervecerias.csv');
+        
+        if (!File::exists($csvFile)) {
+            $this->command->error('El archivo cervecerias.csv no existe!');
+            return;
+        }
+
+        $file = fopen($csvFile, 'r');
+        
+        // Saltar la primera línea (encabezados)
+        $header = fgetcsv($file);
+        
+        // Deshabilitar restricciones de clave foránea
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        
+        // Limpiar tabla antes de insertar (opcional)
+        DB::table('cervecerias')->truncate();
+        
+        // Habilitar restricciones de clave foránea
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        
+        // Leer cada línea del CSV
+        while (($row = fgetcsv($file)) !== false) {
+            DB::table('cervecerias')->insert([
+                'id' => $row[0],
+                'nombre' => $row[1],
+                'pais_ciudad' => $row[2],
+                'anio_fundacion' => $row[3],
+                'descripcion' => $row[4],
+                'sitio_web' => $row[5],
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
+        
+        fclose($file);
+        
+        $this->command->info('Cervecerías importadas correctamente!');
     }
 }

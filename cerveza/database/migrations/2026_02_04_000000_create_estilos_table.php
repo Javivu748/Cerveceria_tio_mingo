@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cervecerías', function (Blueprint $table) {
+        Schema::create('estilos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('pais_ciudad'); 
-            $table->integer('anio_fundacion');
+            $table->string('nombre'); 
+            $table->string('tipo_fermentacion'); 
             $table->text('descripcion');
-            $table->string('sitio_web')->nullable(); 
-            $table->timestamps(); 
+            $table->timestamps();
         });
     }
 
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cervecerías');
+        Schema::dropIfExists('estilos');
     }
 };

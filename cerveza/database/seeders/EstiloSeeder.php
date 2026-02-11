@@ -23,8 +23,14 @@ class EstiloSeeder extends Seeder
         // Saltar la primera línea (encabezados)
         $header = fgetcsv($file);
         
+        // Deshabilitar restricciones de clave foránea
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        
         // Limpiar tabla antes de insertar (opcional)
         DB::table('estilos')->truncate();
+        
+        // Habilitar restricciones de clave foránea
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         
         // Leer cada línea del CSV
         while (($row = fgetcsv($file)) !== false) {
