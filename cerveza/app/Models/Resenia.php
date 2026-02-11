@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use App\Models\Cerveza;
+use App\Models\User;
 
 class Resenia extends Model
 {
@@ -12,18 +14,22 @@ class Resenia extends Model
 
     protected $table = "resenias";
 
-    // Campos que se pueden asignar masivamente
+    /**
+     * Campos asignables masivamente
+     */
     protected $fillable = [
         'cerveza_id',
         'user_id',
         'puntuacion',
         'comentario',
         'fecha',
-        'nombre_publico',      // NUEVO: para guardar el nombre del formulario
-        'email_publico',       // NUEVO: para guardar el email del formulario
+        'nombre_publico',
+        'email_publico',
     ];
 
-    // Castear los campos a sus tipos correctos
+    /**
+     * Casts
+     */
     protected $casts = [
         'fecha' => 'date',
         'puntuacion' => 'integer',
@@ -31,62 +37,79 @@ class Resenia extends Model
         'updated_at' => 'datetime',
     ];
 
-    // Relación: una reseña pertenece a una cerveza (N:1)
+    /**
+     * =========================
+     * Relaciones
+     * =========================
+     */
+
+    // N:1 → Una reseña pertenece a una cerveza
     public function cerveza()
     {
-        return $this->belongsTo(Cerveza::class);
+        return $this->belongsTo(Cerveza::class, 'cerveza_id');
     }
 
-    // Relación: una reseña pertenece a un usuario (N:1)
+    // N:1 → Una reseña pertenece a un usuario
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     /**
-     * Scope para obtener reseñas más recientes
+     * =========================
+     * Scopes
+     * =========================
      */
+
     public function scopeMasRecientes($query)
     {
         return $query->orderBy('fecha', 'desc')
-                    ->orderBy('created_at', 'desc');
+                     ->orderBy('created_at', 'desc');
     }
 
     /**
-     * Accessor para obtener la fecha en formato legible
+     * =========================
+     * Accessors
+     * =========================
      */
+
+    // Fecha formateada en español
     public function getFechaFormateadaAttribute()
     {
-        return Carbon::parse($this->fecha)->locale('es')->isoFormat('D [de] MMMM [de] YYYY');
+        if (!$this->fecha) {
+            return null;
+        }
+
+        return Carbon::parse($this->fecha)
+            ->locale('es')
+            ->isoFormat('D [de] MMMM [de] YYYY');
     }
 
-    /**
-     * Obtener el nombre a mostrar (prioriza nombre_publico sobre user.name)
-     */
+    // Nombre a mostrar
     public function getNombreMostrarAttribute()
     {
         if ($this->nombre_publico) {
             return $this->nombre_publico;
         }
-        
+
         if ($this->user) {
-            return $this->user->name;
+            return $this->user->nombre; // corregido según tu modelo User
         }
-        
+
         return 'Usuario Anónimo';
     }
 
     /**
-     * Método para validar antes de guardar
+     * =========================
+     * Eventos del modelo
+     * =========================
      */
-    public static function boot()
-    {
-        parent::boot();
 
+    protected static function booted()
+    {
         static::creating(function ($resenia) {
-            // Si no se proporciona fecha, usar la fecha actual
             if (!$resenia->fecha) {
-                $resenia->fecha = now()->format('Y-m-d');
+                $resenia->fecha = now();
             }
         });
     }

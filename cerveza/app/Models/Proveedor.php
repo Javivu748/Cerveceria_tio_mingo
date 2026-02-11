@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Cerveza;
 
 class Proveedor extends Model
 {
@@ -11,6 +12,9 @@ class Proveedor extends Model
 
     protected $table = 'proveedores';
 
+    /**
+     * Campos asignables masivamente
+     */
     protected $fillable = [
         'nombre_distribuidora',
         'contacto',
@@ -18,9 +22,22 @@ class Proveedor extends Model
         'plazo_entrega_estimado'
     ];
 
-    // Relación muchos a muchos con Cervezas
+    /**
+     * =========================
+     * Relaciones
+     * =========================
+     */
+
+    // N:M → Un proveedor puede distribuir muchas cervezas
     public function cervezas()
     {
-        return $this->belongsToMany(Cerveza::class, 'cerveza_proveedor');
+        return $this->belongsToMany(
+            Cerveza::class,
+            'cerveza_proveedor',
+            'proveedor_id',
+            'cerveza_id'
+        );
+        // Si la tabla pivote tiene timestamps:
+        // ->withTimestamps();
     }
 }

@@ -7,18 +7,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Local;
+use App\Models\Pedido;
 use App\Notifications\VerifyEmail;
 use App\Notifications\ResetPasswordNotification;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var list<string>
+     * @var array<int, string>
      */
     protected $fillable = [
         'nombre',
@@ -28,31 +28,40 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
     ];
 
+    /**
+     * Relationships
+     */
+
+    // 1:1 - Un usuario tiene un local
     public function local()
     {
-        return $this->hasOne(Local::class);
+        return $this->hasOne(Local::class, 'user_id');
+    }
+
+    // 1:N - Un usuario tiene muchos pedidos
+    public function pedidos()
+    {
+        return $this->hasMany(Pedido::class, 'user_id');
     }
 
     /**
-     * Send the email verification notification.
+     * Notifications
      */
+
     public function sendEmailVerificationNotification()
     {
         $this->notify(new VerifyEmail());
     }
 
-    /**
-     * Send the password reset notification.
-     */
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));
     }
 
     /**
-     * The attributes that should be hidden for serialization.
+     * Hidden attributes
      *
-     * @var list<string>
+     * @var array<int, string>
      */
     protected $hidden = [
         'password',
@@ -60,9 +69,7 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
+     * Attribute casting
      */
     protected function casts(): array
     {
@@ -71,10 +78,4 @@ class User extends Authenticatable implements MustVerifyEmail
             'password' => 'hashed',
         ];
     }
-
-    public function pedidos()
-{
-    return $this->hasMany(Pedido::class);
-}
-
 }
