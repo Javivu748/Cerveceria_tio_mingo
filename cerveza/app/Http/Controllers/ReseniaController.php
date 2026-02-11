@@ -7,59 +7,46 @@ use Illuminate\Http\Request;
 
 class ReseniaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // Muestra todas las reseñas con su usuario y cerveza
     public function index()
     {
-        //
+        return Resenia::with('user', 'cerveza')->get();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Crea una nueva reseña
     public function store(Request $request)
     {
-        //
+        $resenia = Resenia::create($request->only([
+            'cerveza_id',
+            'user_id',
+            'puntuacion',
+            'comentario',
+            'fecha'
+        ]));
+
+        return $resenia->load('user', 'cerveza');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Resenia $resenia)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Resenia $resenia)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
+    // Actualiza una reseña existente
     public function update(Request $request, Resenia $resenia)
     {
-        //
+        $resenia->update($request->only([
+            'puntuacion',
+            'comentario',
+            'fecha'
+        ]));
+
+        return $resenia->load('user', 'cerveza');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    // Elimina una reseña
     public function destroy(Resenia $resenia)
     {
-        //
+        $resenia->delete();
+
+        return response()->json([
+            'message' => 'Reseña eliminada correctamente'
+        ]);
     }
 }

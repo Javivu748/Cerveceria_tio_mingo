@@ -30,4 +30,11 @@ class Cerveza extends Model
         return $this->belongsToMany(Proveedor::class, 'cerveza_proveedor');
     }
     
+
+    // Relación muchos a muchos con Pedidos
+    public function pedidos()
+{
+    return $this->belongsToMany(Pedido::class, 'cerveza_pedido')->withPivot('cantidad')->withTimestamps();
+}
+
 }
