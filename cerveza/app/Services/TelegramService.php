@@ -62,7 +62,7 @@ class TelegramService
     public function sendTestMessage()
     {
     $message = "━━━━━━━━━━━━━━━━━━\n";
-    $message .= "🚨 <b>COMUNICADO OFICIAL</b> 🚨\n";
+    $message .= "🚨 <b>comunicado OFICIAL</b> 🚨\n";
     $message .= "━━━━━━━━━━━━━━━━━━\n\n";
     
     $message .= "📢 <b>NOTICIA DE ÚLTIMA HORA:</b>\n\n";
