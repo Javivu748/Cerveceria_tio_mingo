@@ -2,22 +2,22 @@
 
 namespace Database\Factories;
 
-use App\Models\Pedido;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Pedido>
+ */
 class PedidoFactory extends Factory
 {
-    protected $model = Pedido::class;
-
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
     public function definition(): array
     {
         return [
-            'fecha' => $this->faker->date(),
-            'user_id' => User::factory(), // crea un usuario automáticamente
-            'estado' => $this->faker->randomElement(['pendiente', 'procesando', 'entregado']),
-            'total' => $this->faker->randomFloat(2, 100, 1000),
-            'metodoPago' => $this->faker->randomElement(['efectivo', 'tarjeta', 'transferencia']),
+            //
         ];
     }
 }

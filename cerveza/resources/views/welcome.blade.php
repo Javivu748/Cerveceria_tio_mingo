@@ -143,6 +143,20 @@
             width: 100%;
         }
 
+        /* Icono de candado junto a los links de nav protegidos */
+        nav a.protected::before {
+            content: '🔒';
+            font-size: 0.7rem;
+            margin-right: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            vertical-align: middle;
+        }
+
+        nav a.protected:hover::before {
+            opacity: 1;
+        }
+
         /* Botones de autenticación */
         .auth-buttons {
             display: flex;
@@ -888,10 +902,7 @@
 
             <div class="nav-container" id="navContainer">
                 <nav>
-
-                    <a href="{{ url('/cervezas') }}">Cervezas</a>
-
-
+                    <a href="#cervezas">Cervezas</a>
                     <a href="#nosotros">Nosotros</a>
                     <a href="#tienda">Tienda</a>
                 </nav>
@@ -930,7 +941,7 @@
                         Elaboramos cerveza artesanal de calidad premium usando recetas 
                         tradicionales y los mejores ingredientes naturales.
                     </p>
-                    <a href="#tienda" class="cta-button">Descubre Nuestras Cervezas</a>
+                    <a href="{{ route('login') }}" class="cta-button">Descubre Nuestras Cervezas</a>
                 </div>
                 <div class="hero-image">
                     <div class="beer-container">

@@ -62,11 +62,4 @@ class User extends Authenticatable implements MustVerifyEmail
             'password' => 'hashed',
         ];
     }
-
-    // Relación: un Usuario tiene muchos Pedidos
-    public function pedidos()
-{
-    return $this->hasMany(Pedido::class);
-}
-
 }

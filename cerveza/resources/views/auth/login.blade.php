@@ -228,7 +228,8 @@
             gap: 1rem;
         }
 
-        .forgot-password {
+        /* Enlace sutil (forgot password y registro) */
+        .link-subtle {
             color: var(--primary-gold);
             text-decoration: none;
             font-size: 0.9rem;
@@ -237,7 +238,7 @@
             position: relative;
         }
 
-        .forgot-password::after {
+        .link-subtle::after {
             content: '';
             position: absolute;
             bottom: -2px;
@@ -248,12 +249,19 @@
             transition: width 0.3s ease;
         }
 
-        .forgot-password:hover {
+        .link-subtle:hover {
             color: var(--deep-amber);
         }
 
-        .forgot-password:hover::after {
+        .link-subtle:hover::after {
             width: 100%;
+        }
+
+        /* Separador entre los dos links */
+        .links-left {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
         }
 
         .btn-login {
@@ -314,7 +322,7 @@
                 width: 100%;
             }
 
-            .forgot-password {
+            .link-subtle {
                 text-align: center;
             }
         }
@@ -327,7 +335,7 @@
             <p class="login-subtitle">Acceso al Sistema</p>
         </div>
 
-        <!-- Session Status (uncomment if needed) -->
+        <!-- Session Status -->
         <!-- <div class="status-message">
             Your session status message here
         </div> -->
@@ -357,7 +365,7 @@
 
             <!-- Password -->
             <div class="form-group">
-                <label for="password" class="form-label">Password</label>
+                <label for="password" class="form-label">Contraseña</label>
                 <input 
                     id="password" 
                     class="form-input"
@@ -382,22 +390,34 @@
                     name="remember"
                 />
                 <label for="remember_me" class="checkbox-label">
-                    Remember me
+                    Recordarme
                 </label>
             </div>
 
             <div class="form-footer">
-                @if (Route::has('password.request'))
-                    <a class="forgot-password" href="{{ route('password.request') }}">
-                        Forgot your password?
-                    </a>
-                @endif
 
+                {{-- Links a la izquierda: olvidé contraseña + crear cuenta --}}
+                <div class="links-left">
+                    @if (Route::has('password.request'))
+                        <a class="link-subtle" href="{{ route('password.request') }}">
+                            ¿Olvidaste tu contraseña?
+                        </a>
+                    @endif
+
+                    @if (Route::has('register'))
+                        <a class="link-subtle" href="{{ route('register') }}">
+                            ¿No tienes cuenta? Regístrate
+                        </a>
+                    @endif
+                </div>
+
+                {{-- Botón a la derecha --}}
                 <button type="submit" class="btn-login">
-                    Log in
+                    Entrar
                 </button>
+
             </div>
         </form>
     </div>
 </body>
-</html> 
+</html>

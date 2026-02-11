@@ -7,50 +7,59 @@ use Illuminate\Http\Request;
 
 class PedidoController extends Controller
 {
-    // Mostrar todos los pedidos
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        return Pedido::with('cervezas', 'user')->get();
+        //
     }
 
-    // Mostrar un pedido
-    public function show(Pedido $pedido)
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
     {
-        return $pedido->load('cervezas', 'user');
+        //
     }
 
-    // Crear un pedido nuevo
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
-        $pedido = Pedido::create($request->only(['fecha', 'user_id', 'estado', 'total', 'metodoPago']));
-
-        if ($request->has('cervezas')) {
-            foreach ($request->cervezas as $c) {
-                $pedido->cervezas()->attach($c['id'], ['cantidad' => $c['cantidad'] ?? 1]);
-            }
-        }
-
-        return $pedido->load('cervezas', 'user');
+        //
     }
 
-    // Actualizar pedido
+    /**
+     * Display the specified resource.
+     */
+    public function show(Pedido $pedido)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Pedido $pedido)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(Request $request, Pedido $pedido)
     {
-        $pedido->update($request->only(['fecha', 'estado', 'total', 'metodoPago']));
-
-        if ($request->has('cervezas')) {
-            $pedido->cervezas()->sync(collect($request->cervezas)->mapWithKeys(function($c){
-                return [$c['id'] => ['cantidad' => $c['cantidad'] ?? 1]];
-            })->toArray());
-        }
-
-        return $pedido->load('cervezas', 'user');
+        //
     }
 
-    // Eliminar pedido
+    /**
+     * Remove the specified resource from storage.
+     */
     public function destroy(Pedido $pedido)
     {
-        $pedido->delete();
-        return response()->json(['message' => 'Pedido eliminado correctamente']);
+        //
     }
 }
