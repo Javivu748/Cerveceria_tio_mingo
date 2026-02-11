@@ -89,27 +89,4 @@ class Cerveza extends Model
         ->withPivot('cantidad')
         ->withTimestamps();
     }
-
-    /**
-     * =========================
-     * Accesor / Helper
-     * =========================
-     */
-
-    // Promedio de puntuación de todas las reseñas
-    public function getPuntuacionPromedioAttribute()
-    {
-        return $this->resenias()->avg('puntuacion') ?? 0;
-    }
-
-    /**
-     * Scope para cervezas con mayor rating
-     */
-    public function scopeMejorValoradas($query, $limit = 10)
-    {
-        return $query->with('resenias')
-                     ->get()
-                     ->sortByDesc(fn($c) => $c->puntuacion_promedio)
-                     ->take($limit);
-    }
 }

@@ -37,7 +37,6 @@ class Proveedor extends Model
             'proveedor_id',
             'cerveza_id'
         );
-        // Si la tabla pivote tiene timestamps:
-        // ->withTimestamps();
+       
     }
 }

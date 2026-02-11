@@ -99,18 +99,4 @@ class Resenia extends Model
         return 'Usuario Anónimo';
     }
 
-    /**
-     * =========================
-     * Eventos del modelo
-     * =========================
-     */
-
-    protected static function booted()
-    {
-        static::creating(function ($resenia) {
-            if (!$resenia->fecha) {
-                $resenia->fecha = now();
-            }
-        });
-    }
 }
