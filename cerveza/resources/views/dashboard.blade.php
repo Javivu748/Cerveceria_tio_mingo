@@ -792,7 +792,7 @@
         <div class="nav-container" id="navContainer">
             <nav>
                 <a href="{{ route('cervezas') }}">Cervezas</a>
-                <a href="#">Nosotros</a>
+                <a href="/nosotros">Nosotros</a>
                 <a href="#">Tienda</a>
                 <a href="{{ route('pedidos.index') }}">Pedidos</a>
             </nav>
