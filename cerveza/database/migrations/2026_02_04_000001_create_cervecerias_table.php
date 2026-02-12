@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('pais_ciudad'); 
+            $table->decimal('latitud', 10, 7)->nullable();
+            $table->decimal('longitud', 10, 7)->nullable();
             $table->integer('anio_fundacion');
             $table->text('descripcion');
             $table->string('sitio_web')->nullable(); 

@@ -19,6 +19,8 @@ class Cerveceria extends Model
     protected $fillable = [
         'nombre',
         'pais_ciudad',
+        'latitud',
+        'longitud',
         'anio_fundacion',
         'descripcion',
         'sitio_web',
