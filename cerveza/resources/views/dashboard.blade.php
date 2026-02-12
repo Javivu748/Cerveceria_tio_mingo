@@ -795,7 +795,11 @@
                 <a href="#">Cervezas</a>
                 <a href="#">Nosotros</a>
                 <a href="#">Tienda</a>
+                <a href="{{ route('pedidos.index') }}">Pedidos</a>
             </nav>
+
+
+
 
             <div class="auth-buttons">
                 {{-- Saludo al usuario autenticado --}}

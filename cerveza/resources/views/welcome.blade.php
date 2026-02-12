@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cervecería Tío Mingo - Cerveza Artesanal de Calidad</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --primary-gold: #D4A574;
@@ -38,14 +40,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                repeating-linear-gradient(
-                    90deg,
+            background-image:
+                repeating-linear-gradient(90deg,
                     transparent,
                     transparent 2px,
                     rgba(212, 165, 116, 0.03) 2px,
-                    rgba(212, 165, 116, 0.03) 4px
-                );
+                    rgba(212, 165, 116, 0.03) 4px);
             pointer-events: none;
             z-index: 1;
         }
@@ -75,6 +75,7 @@
                 transform: translateY(-100%);
                 opacity: 0;
             }
+
             to {
                 transform: translateY(0);
                 opacity: 1;
@@ -270,8 +271,17 @@
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.1; }
-            50% { transform: scale(1.2); opacity: 0.15; }
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.1;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 0.15;
+            }
         }
 
         .hero-content {
@@ -288,6 +298,7 @@
                 opacity: 0;
                 transform: translateY(40px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -368,24 +379,23 @@
             max-width: 450px;
             height: 650px;
             margin: 0 auto;
-            overflow: hidden; 
+            overflow: hidden;
             border-radius: 0 0 50% 50% / 0 0 30% 30%;
         }
 
         .beer-glass {
             width: 100%;
             height: 550px;
-            background: linear-gradient(180deg, 
-                rgba(255, 193, 7, 0.1) 0%,
-                rgba(255, 152, 0, 0.2) 30%,
-                rgba(255, 111, 0, 0.3) 70%,
-                rgba(230, 81, 0, 0.4) 100%
-            );
+            background: linear-gradient(180deg,
+                    rgba(255, 193, 7, 0.1) 0%,
+                    rgba(255, 152, 0, 0.2) 30%,
+                    rgba(255, 111, 0, 0.3) 70%,
+                    rgba(230, 81, 0, 0.4) 100%);
             border-radius: 0 0 50% 50% / 0 0 30% 30%;
             position: absolute;
             bottom: 0;
             left: 0;
-            box-shadow: 
+            box-shadow:
                 inset 0 -50px 100px rgba(255, 193, 7, 0.3),
                 0 20px 60px rgba(0, 0, 0, 0.5);
             animation: fillGlass 2.5s ease-out 1s both;
@@ -395,6 +405,7 @@
             from {
                 clip-path: inset(100% 0 0 0);
             }
+
             to {
                 clip-path: inset(0 0 0 0);
             }
@@ -407,10 +418,9 @@
             right: 10%;
             width: 40%;
             height: 60%;
-            background: linear-gradient(135deg, 
-                rgba(255, 255, 255, 0.4) 0%,
-                transparent 50%
-            );
+            background: linear-gradient(135deg,
+                    rgba(255, 255, 255, 0.4) 0%,
+                    transparent 50%);
             border-radius: 50%;
             filter: blur(20px);
         }
@@ -418,15 +428,14 @@
         .espuma {
             position: absolute;
             bottom: -50px;
-            left: 0; 
+            left: 0;
             width: 100%;
             height: 140px;
-            background: radial-gradient(ellipse at center, 
-                rgba(255, 255, 255, 0.95) 0%,
-                rgba(255, 248, 220, 0.9) 30%,
-                rgba(255, 248, 220, 0.7) 60%,
-                rgba(255, 248, 220, 0.5) 100%
-            );
+            background: radial-gradient(ellipse at center,
+                    rgba(255, 255, 255, 0.95) 0%,
+                    rgba(255, 248, 220, 0.9) 30%,
+                    rgba(255, 248, 220, 0.7) 60%,
+                    rgba(255, 248, 220, 0.5) 100%);
             animation: foamRise 2.5s ease-out 1s both, foamFloat 3s ease-in-out 3.5s infinite;
             filter: blur(2px);
             z-index: 10;
@@ -437,21 +446,26 @@
                 transform: translateY(0);
                 opacity: 0;
             }
+
             10% {
                 opacity: 1;
             }
+
             100% {
-                transform: translateY(-540px); 
+                transform: translateY(-540px);
                 opacity: 1;
             }
         }
 
         @keyframes foamFloat {
-            0%, 100% { 
-                transform: translateY(-540px) scale(1); 
+
+            0%,
+            100% {
+                transform: translateY(-540px) scale(1);
             }
-            50% { 
-                transform: translateY(-548px) scale(1.03); 
+
+            50% {
+                transform: translateY(-548px) scale(1.03);
             }
         }
 
@@ -461,7 +475,7 @@
             position: absolute;
             background: radial-gradient(circle, rgba(255, 255, 255, 0.9), rgba(255, 248, 220, 0.6));
             border-radius: 50%;
-            animation: bubble 4s ease-in-out 3s infinite; 
+            animation: bubble 4s ease-in-out 3s infinite;
         }
 
         .espuma::before {
@@ -481,11 +495,14 @@
         }
 
         @keyframes bubble {
-            0%, 100% { 
+
+            0%,
+            100% {
                 transform: translateY(0) scale(1);
                 opacity: 0.8;
             }
-            50% { 
+
+            50% {
                 transform: translateY(-10px) scale(1.1);
                 opacity: 1;
             }
@@ -493,33 +510,54 @@
 
         .bubble {
             position: absolute;
-            background: radial-gradient(circle at 30% 30%, 
-                rgba(255, 255, 255, 0.9), 
-                rgba(255, 248, 220, 0.6)
-            );
+            background: radial-gradient(circle at 30% 30%,
+                    rgba(255, 255, 255, 0.9),
+                    rgba(255, 248, 220, 0.6));
             border-radius: 50%;
             animation: bubbleRise 3s ease-in-out infinite;
         }
-        
+
         .bubble:nth-child(1) {
-            width: 40px; height: 40px; top: -10px; left: 15%; animation-delay: 1.5s;
+            width: 40px;
+            height: 40px;
+            top: -10px;
+            left: 15%;
+            animation-delay: 1.5s;
         }
+
         .bubble:nth-child(2) {
-            width: 35px; height: 35px; top: 5px; left: 40%; animation-delay: 2s;
+            width: 35px;
+            height: 35px;
+            top: 5px;
+            left: 40%;
+            animation-delay: 2s;
         }
+
         .bubble:nth-child(3) {
-            width: 45px; height: 45px; top: -5px; right: 15%; animation-delay: 2.5s;
+            width: 45px;
+            height: 45px;
+            top: -5px;
+            right: 15%;
+            animation-delay: 2.5s;
         }
+
         .bubble:nth-child(4) {
-            width: 30px; height: 30px; top: 10px; right: 35%; animation-delay: 2.2s;
+            width: 30px;
+            height: 30px;
+            top: 10px;
+            right: 35%;
+            animation-delay: 2.2s;
         }
 
         @keyframes bubbleRise {
-            0%, 100% { 
+
+            0%,
+            100% {
                 transform: translateY(0) scale(1);
                 opacity: 0.7;
             }
-            50% { 
+
+            50% {
                 transform: translateY(-15px) scale(1.15);
                 opacity: 1;
             }
@@ -559,9 +597,17 @@
             animation: fadeInUp 1s ease-out both;
         }
 
-        .feature-card:nth-child(1) { animation-delay: 0.2s; }
-        .feature-card:nth-child(2) { animation-delay: 0.4s; }
-        .feature-card:nth-child(3) { animation-delay: 0.6s; }
+        .feature-card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .feature-card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .feature-card:nth-child(3) {
+            animation-delay: 0.6s;
+        }
 
         .feature-card::before {
             content: '';
@@ -728,14 +774,31 @@
             }
 
             @keyframes foamRiseResponsiveMedium {
-                0% { transform: translateY(0); opacity: 0; }
-                10% { opacity: 1; }
-                100% { transform: translateY(-440px); opacity: 1; }
+                0% {
+                    transform: translateY(0);
+                    opacity: 0;
+                }
+
+                10% {
+                    opacity: 1;
+                }
+
+                100% {
+                    transform: translateY(-440px);
+                    opacity: 1;
+                }
             }
 
             @keyframes foamFloatResponsiveMedium {
-                0%, 100% { transform: translateY(-440px) scale(1); }
-                50% { transform: translateY(-448px) scale(1.03); }
+
+                0%,
+                100% {
+                    transform: translateY(-440px) scale(1);
+                }
+
+                50% {
+                    transform: translateY(-448px) scale(1.03);
+                }
             }
 
             .features-grid {
@@ -809,14 +872,31 @@
             }
 
             @keyframes foamRiseResponsiveSmall {
-                0% { transform: translateY(0); opacity: 0; }
-                10% { opacity: 1; }
-                100% { transform: translateY(-370px); opacity: 1; }
+                0% {
+                    transform: translateY(0);
+                    opacity: 0;
+                }
+
+                10% {
+                    opacity: 1;
+                }
+
+                100% {
+                    transform: translateY(-370px);
+                    opacity: 1;
+                }
             }
 
             @keyframes foamFloatResponsiveSmall {
-                0%, 100% { transform: translateY(-370px) scale(1); }
-                50% { transform: translateY(-378px) scale(1.03); }
+
+                0%,
+                100% {
+                    transform: translateY(-370px) scale(1);
+                }
+
+                50% {
+                    transform: translateY(-378px) scale(1.03);
+                }
             }
 
             .features {
@@ -873,14 +953,31 @@
             }
 
             @keyframes foamRiseResponsiveSmall {
-                0% { transform: translateY(0); opacity: 0; }
-                10% { opacity: 1; }
-                100% { transform: translateY(-320px); opacity: 1; }
+                0% {
+                    transform: translateY(0);
+                    opacity: 0;
+                }
+
+                10% {
+                    opacity: 1;
+                }
+
+                100% {
+                    transform: translateY(-320px);
+                    opacity: 1;
+                }
             }
 
             @keyframes foamFloatResponsiveSmall {
-                0%, 100% { transform: translateY(-320px) scale(1); }
-                50% { transform: translateY(-328px) scale(1.03); }
+
+                0%,
+                100% {
+                    transform: translateY(-320px) scale(1);
+                }
+
+                50% {
+                    transform: translateY(-328px) scale(1.03);
+                }
             }
 
             .features-title {
@@ -889,11 +986,12 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <header>
             <div class="logo">CERVECERÍA TÍO MINGO</div>
-            
+
             <div class="menu-toggle" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
@@ -916,7 +1014,6 @@
                         <a href="{{ route('login') }}" class="protected">Tienda</a>
                     @endauth
                 </nav>
-                
                 <div class="auth-buttons">
                     @if (Route::has('login'))
                         @auth
@@ -947,8 +1044,8 @@
                         <span>Hecha con Pasión</span>
                     </h1>
                     <p>
-                        En Cervecería Tío Mingo, cada gota cuenta una historia. 
-                        Elaboramos cerveza artesanal de calidad premium usando recetas 
+                        En Cervecería Tío Mingo, cada gota cuenta una historia.
+                        Elaboramos cerveza artesanal de calidad premium usando recetas
                         tradicionales y los mejores ingredientes naturales.
                     </p>
                     <a href="{{ route('login') }}" class="cta-button">Descubre Nuestras Cervezas</a>
@@ -969,7 +1066,7 @@
                     <span class="feature-icon">🌾</span>
                     <h3>100% Natural</h3>
                     <p>
-                        Usamos únicamente ingredientes naturales de primera calidad. 
+                        Usamos únicamente ingredientes naturales de primera calidad.
                         Sin conservantes ni aditivos artificiales.
                     </p>
                 </div>
@@ -977,7 +1074,7 @@
                     <span class="feature-icon">⚗️</span>
                     <h3>Receta Artesanal</h3>
                     <p>
-                        Cada lote es elaborado cuidadosamente siguiendo procesos 
+                        Cada lote es elaborado cuidadosamente siguiendo procesos
                         tradicionales perfeccionados por generaciones.
                     </p>
                 </div>
@@ -985,7 +1082,7 @@
                     <span class="feature-icon">🏆</span>
                     <h3>Sabor Premium</h3>
                     <p>
-                        Nuestras cervezas han ganado múltiples reconocimientos por 
+                        Nuestras cervezas han ganado múltiples reconocimientos por
                         su excepcional sabor y calidad inigualable.
                     </p>
                 </div>
@@ -997,7 +1094,7 @@
         function toggleMenu() {
             const navContainer = document.getElementById('navContainer');
             const menuToggle = document.querySelector('.menu-toggle');
-            
+
             navContainer.classList.toggle('active');
             menuToggle.classList.toggle('active');
         }
@@ -1007,7 +1104,7 @@
             link.addEventListener('click', () => {
                 const navContainer = document.getElementById('navContainer');
                 const menuToggle = document.querySelector('.menu-toggle');
-                
+
                 navContainer.classList.remove('active');
                 menuToggle.classList.remove('active');
             });
@@ -1017,12 +1114,13 @@
         document.addEventListener('click', (e) => {
             const navContainer = document.getElementById('navContainer');
             const menuToggle = document.querySelector('.menu-toggle');
-            
+
             if (!navContainer.contains(e.target) && !menuToggle.contains(e.target)) {
                 navContainer.classList.remove('active');
                 menuToggle.classList.remove('active');
             }
         });
     </script>
-</body> 
+</body>
+
 </html>
