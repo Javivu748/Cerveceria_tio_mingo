@@ -6,6 +6,7 @@
 <title>Realizar Pedido - Cervecería Tío Mingo</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -17,135 +18,89 @@
     --forest-green:#1B4332;
 }
 
+/* ─────────── Estilos generales ─────────── */
 *{margin:0;padding:0;box-sizing:border-box;}
-
-body{
-    font-family:'Montserrat',sans-serif;
-    background:var(--dark-brown);
-    color:var(--warm-cream);
-}
-
-.container{padding:2rem 5%;}
+body{font-family:'Montserrat',sans-serif;background:var(--dark-brown);color:var(--warm-cream);}
+.container{padding:2rem 5%;position:relative;z-index:2;}
 
 /* TITULOS */
-.page-title{
-    font-family:'Bebas Neue',sans-serif;
-    font-size:3.5rem;
-    color:var(--primary-gold);
-    text-align:center;
-    margin-bottom:3rem;
-    letter-spacing:3px;
-}
+.page-title{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:var(--primary-gold);text-align:center;margin-bottom:3rem;letter-spacing:3px;}
 
 /* GRID PRINCIPAL */
-.grid-layout{
-    display:grid;
-    grid-template-columns:3fr 1fr;
-    gap:3rem;
-}
+.grid-layout{display:grid;grid-template-columns:3fr 1fr;gap:3rem;}
 
 /* CARD CERVEZA */
-.beer-card{
-    background:rgba(245,230,211,0.05);
-    border:2px solid var(--primary-gold);
-    padding:1.5rem;
-    text-align:center;
-    transition:0.3s;
-}
-
-.beer-card:hover{
-    transform:translateY(-8px);
-    box-shadow:0 15px 30px rgba(212,165,116,0.2);
-}
-
-.beer-card img{
-    width:80px;
-    height:80px;
-    object-fit:cover;
-    border-radius:8px;
-    margin-bottom:1rem;
-}
-
-.beer-card h4{
-    font-family:'Bebas Neue',sans-serif;
-    font-size:1.3rem;
-    color:var(--primary-gold);
-    margin-bottom:0.5rem;
-}
-
-.beer-price{
-    font-size:0.9rem;
-    margin-bottom:0.5rem;
-}
-
-.beer-card input{
-    width:60px;
-    padding:0.4rem;
-    background:transparent;
-    border:1px solid var(--primary-gold);
-    color:var(--warm-cream);
-    text-align:center;
-}
+.beer-card{background:rgba(245,230,211,0.05);border:2px solid var(--primary-gold);padding:1.5rem;text-align:center;transition:0.3s;}
+.beer-card:hover{transform:translateY(-8px);box-shadow:0 15px 30px rgba(212,165,116,0.2);}
+.beer-card img{width:80px;height:80px;object-fit:cover;border-radius:8px;margin-bottom:1rem;}
+.beer-card h4{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--primary-gold);margin-bottom:0.5rem;}
+.beer-price{font-size:0.9rem;margin-bottom:0.5rem;}
+.beer-card input{width:60px;padding:0.4rem;background:transparent;border:1px solid var(--primary-gold);color:var(--warm-cream);text-align:center;}
 
 /* GRID CERVEZAS */
-.beers-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-    gap:2rem;
-}
+.beers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:2rem;}
 
 /* RESUMEN */
-.summary{
-    border:2px solid var(--primary-gold);
-    padding:2rem;
-    background:rgba(245,230,211,0.05);
+.summary{border:2px solid var(--primary-gold);padding:2rem;background:rgba(245,230,211,0.05);position:sticky;top:20px;height:fit-content;}
+.summary h3{font-family:'Bebas Neue',sans-serif;color:var(--primary-gold);margin-bottom:1.5rem;letter-spacing:2px;}
+.summary-item{display:flex;justify-content:space-between;margin-bottom:0.5rem;font-size:0.9rem;}
+.total{display:flex;justify-content:space-between;font-size:1.2rem;font-weight:bold;margin-top:1rem;}
+.cta-button{display:block;margin-top:2rem;padding:1rem;background:linear-gradient(135deg,var(--primary-gold),var(--deep-amber));color:var(--dark-brown);text-align:center;font-weight:700;border:none;cursor:pointer;text-transform:uppercase;}
+.error-box{background:rgba(255,0,0,0.1);border:1px solid #ff6b6b;padding:1rem;margin-bottom:2rem;color:#ff6b6b;}
+
+/* ───────── HEADER y FOOTER ───────── */
+header{
+    padding:1.5rem 5%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:2px solid var(--primary-gold);
+    background: rgba(44,24,16,0.95);
+    backdrop-filter: blur(10px);
     position:sticky;
-    top:20px;
-    height:fit-content;
+    top:0;
+    z-index:100;
 }
 
-.summary h3{
+.logo{
     font-family:'Bebas Neue',sans-serif;
+    font-size:2rem;
+    letter-spacing:3px;
     color:var(--primary-gold);
-    margin-bottom:1.5rem;
-    letter-spacing:2px;
+    text-decoration:none;
+    position:relative;
 }
+.logo::after{content:'🍺';position:absolute;right:-40px;top:-5px;font-size:1.8rem;}
 
-.summary-item{
+.nav-container{display:flex;align-items:center;gap:2rem;}
+nav{display:flex;gap:2rem;align-items:center;}
+nav a{color:var(--warm-cream);text-decoration:none;font-weight:600;font-size:0.9rem;text-transform:uppercase;position:relative;transition:color 0.3s ease;}
+nav a::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:2px;background:var(--primary-gold);transition:width 0.3s ease;}
+nav a:hover{color:var(--primary-gold);}
+nav a:hover::after{width:100%;}
+nav a.active{color:var(--primary-gold);} 
+nav a.active::after{width:100%;}
+
+.auth-buttons{display:flex;gap:1rem;align-items:center;}
+.user-greeting{color:var(--primary-gold);font-weight:600;font-size:0.85rem;}
+.btn-profile,.btn-logout{padding:0.7rem 1.5rem;text-decoration:none;font-weight:600;font-size:0.85rem;text-transform:uppercase;border:2px solid var(--primary-gold);cursor:pointer;display:inline-block;}
+.btn-profile{background:transparent;color:var(--primary-gold);}
+.btn-profile:hover{background:var(--primary-gold);color:var(--dark-brown);transform:translateY(-2px);box-shadow:0 5px 15px rgba(212,165,116,0.3);}
+.btn-logout{background:transparent;color:rgba(245,230,211,0.6);border-color:rgba(245,230,211,0.3);font-size:0.8rem;}
+.btn-logout:hover{background:rgba(255,60,60,0.15);color:#ff6b6b;border-color:#ff6b6b;transform:translateY(-2px);}
+
+footer{
+    padding:2.5rem 5%;
+    border-top:2px solid rgba(212,165,116,0.3);
     display:flex;
     justify-content:space-between;
-    margin-bottom:0.5rem;
-    font-size:0.9rem;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:1rem;
+    background:rgba(20,10,5,0.5);
 }
-
-.total{
-    display:flex;
-    justify-content:space-between;
-    font-size:1.2rem;
-    font-weight:bold;
-    margin-top:1rem;
-}
-
-.cta-button{
-    display:block;
-    margin-top:2rem;
-    padding:1rem;
-    background:linear-gradient(135deg,var(--primary-gold),var(--deep-amber));
-    color:var(--dark-brown);
-    text-align:center;
-    font-weight:700;
-    border:none;
-    cursor:pointer;
-    text-transform:uppercase;
-}
-
-.error-box{
-    background:rgba(255,0,0,0.1);
-    border:1px solid #ff6b6b;
-    padding:1rem;
-    margin-bottom:2rem;
-    color:#ff6b6b;
-}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:3px;color:var(--primary-gold);opacity:0.7;}
+.footer-text{font-size:0.8rem;color:rgba(245,230,211,0.4);letter-spacing:1px;}
 </style>
 </head>
 
@@ -153,6 +108,38 @@ body{
 
 <div class="container">
 
+{{-- HEADER --}}
+<header>
+    <a href="{{ url('/') }}" class="logo">CERVECERÍA TÍO MINGO</a>
+
+    <div class="menu-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="nav-container" id="navContainer">
+        <nav>
+            <a href="#">Cervezas</a>
+            <a href="#">Nosotros</a>
+            <a href="#">Tienda</a>
+            <a href="{{ route('pedidos.index') }}">Pedidos</a>
+        </nav>
+
+        <div class="auth-buttons">
+            <span class="user-greeting">
+                ¡Hola, {{ Auth::user()->nombre }}!
+            </span>
+            <a href="{{ route('profile.edit') }}" class="btn-profile">Mi Perfil</a>
+            <form method="POST" action="{{ route('logout') }}" style="display:inline;">
+                @csrf
+                <button type="submit" class="btn-logout">Salir</button>
+            </form>
+        </div>
+    </div>
+</header>
+
+{{-- TITULO DE LA PÁGINA --}}
 <h1 class="page-title">Realizar Pedido</h1>
 
 @if ($errors->any())
@@ -213,6 +200,13 @@ body{
 
 </div>
 </form>
+
+{{-- FOOTER --}}
+<footer>
+    <div class="footer-logo">CERVECERÍA TÍO MINGO</div>
+    <div class="footer-text">© {{ date('Y') }} — Hecho con pasión 🍺</div>
+</footer>
+
 </div>
 
 <script>
@@ -225,13 +219,11 @@ inputs.forEach(input=>{
     input.addEventListener('input',actualizarResumen);
 });
 
-// 🔥 SOLUCIÓN: antes de enviar, desactivar inputs con 0
+// Desactivar inputs con 0 al enviar
 form.addEventListener('submit', function () {
     inputs.forEach(input => {
         const cantidad = parseInt(input.value) || 0;
-        if (cantidad <= 0) {
-            input.disabled = true;
-        }
+        if (cantidad <= 0) input.disabled = true;
     });
 });
 
@@ -263,8 +255,31 @@ function actualizarResumen(){
     resumenDiv.innerHTML=contenido;
     totalSpan.innerText=total.toFixed(2);
 }
-</script>
 
+// Toggle menú responsive
+function toggleMenu() {
+    const navContainer = document.getElementById('navContainer');
+    const menuToggle   = document.querySelector('.menu-toggle');
+    navContainer.classList.toggle('active');
+    menuToggle.classList.toggle('active');
+}
+
+// Cerrar menú al hacer clic en enlaces o fuera
+document.querySelectorAll('.nav-container a, .nav-container button').forEach(el=>{
+    el.addEventListener('click', ()=> {
+        document.getElementById('navContainer').classList.remove('active');
+        document.querySelector('.menu-toggle').classList.remove('active');
+    });
+});
+document.addEventListener('click', (e)=>{
+    const navContainer = document.getElementById('navContainer');
+    const menuToggle   = document.querySelector('.menu-toggle');
+    if(!navContainer.contains(e.target) && !menuToggle.contains(e.target)){
+        navContainer.classList.remove('active');
+        menuToggle.classList.remove('active');
+    }
+});
+</script>
 
 </body>
 </html>
