@@ -17,4 +17,20 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+//Rutas para pedidos
+use App\Http\Controllers\PedidoController;
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index');
+
+    Route::get('/pedidos/crear', [PedidoController::class, 'create'])->name('pedidos.create');
+
+    Route::post('/pedidos', [PedidoController::class, 'store'])->name('pedidos.store');
+
+    Route::delete('/pedidos/{pedido}', [PedidoController::class, 'destroy'])->name('pedidos.destroy');
+});
+
+
 require __DIR__.'/auth.php';

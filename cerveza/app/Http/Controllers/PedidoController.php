@@ -3,54 +3,91 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pedido;
+use App\Models\Cerveza;
 use Illuminate\Http\Request;
 
 class PedidoController extends Controller
 {
-    // Mostrar todos los pedidos
+    /**
+     * Mostrar SOLO los pedidos del usuario autenticado
+     */
     public function index()
     {
-        return Pedido::with('cervezas', 'user')->get();
+        $pedidos = auth()->user()
+            ->pedidos()
+            ->with('cervezas')
+            ->orderBy('fecha', 'desc')
+            ->get();
+
+        return view('pedidos.index', compact('pedidos'));
     }
 
-    // Mostrar un pedido
-    public function show(Pedido $pedido)
+    /**
+     * Mostrar formulario de creación
+     */
+    public function create()
     {
-        return $pedido->load('cervezas', 'user');
+        $cervezas = Cerveza::all();
+
+        return view('pedidos.create', compact('cervezas'));
     }
 
-    // Crear un pedido nuevo
+    /**
+     * Guardar pedido
+     */
     public function store(Request $request)
     {
-        $pedido = Pedido::create($request->only(['fecha', 'user_id', 'estado', 'total', 'metodoPago']));
+        $request->validate([
+            'cervezas' => 'required|array',
+            'cervezas.*.cantidad' => 'required|integer|min:1'
+        ]);
 
-        if ($request->has('cervezas')) {
-            foreach ($request->cervezas as $c) {
-                $pedido->cervezas()->attach($c['id'], ['cantidad' => $c['cantidad'] ?? 1]);
-            }
+        $total = 0;
+        $cervezasSeleccionadas = [];
+
+        foreach ($request->cervezas as $cerveza_id => $data) {
+
+            $cerveza = Cerveza::findOrFail($cerveza_id);
+
+            $cantidad = $data['cantidad'];
+
+            $subtotal = $cerveza->precio * $cantidad;
+
+            $total += $subtotal;
+
+            $cervezasSeleccionadas[$cerveza_id] = [
+                'cantidad' => $cantidad
+            ];
         }
 
-        return $pedido->load('cervezas', 'user');
+        $pedido = Pedido::create([
+            'fecha' => now(),
+            'estado' => 'pendiente',
+            'total' => $total,
+            'metodoPago' => 'pendiente'
+        ]);
+
+        $pedido->user()->associate(auth()->user());
+        $pedido->save();
+
+        $pedido->cervezas()->attach($cervezasSeleccionadas);
+
+        return redirect()->route('pedidos.index')
+            ->with('success', 'Pedido realizado correctamente');
     }
 
-    // Actualizar pedido
-    public function update(Request $request, Pedido $pedido)
-    {
-        $pedido->update($request->only(['fecha', 'estado', 'total', 'metodoPago']));
-
-        if ($request->has('cervezas')) {
-            $pedido->cervezas()->sync(collect($request->cervezas)->mapWithKeys(function($c){
-                return [$c['id'] => ['cantidad' => $c['cantidad'] ?? 1]];
-            })->toArray());
-        }
-
-        return $pedido->load('cervezas', 'user');
-    }
-
-    // Eliminar pedido
+    /**
+     * Eliminar pedido
+     */
     public function destroy(Pedido $pedido)
     {
+        if ($pedido->user_id !== auth()->id()) {
+            abort(403);
+        }
+
         $pedido->delete();
-        return response()->json(['message' => 'Pedido eliminado correctamente']);
+
+        return redirect()->route('pedidos.index')
+            ->with('success', 'Pedido eliminado correctamente');
     }
 }
