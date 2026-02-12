@@ -791,7 +791,6 @@
 
         <div class="nav-container" id="navContainer">
             <nav>
-                {{-- TODO: reemplaza '#' por route('cervezas.index') etc. cuando crees las vistas --}}
                 <a href="{{ route('cervezas') }}">Cervezas</a>
                 <a href="#">Nosotros</a>
                 <a href="#">Tienda</a>
