@@ -74,6 +74,7 @@ class Cerveza extends Model
             'proveedor_id'
         );
     }
+    
 
     // N:M → Una cerveza puede estar en muchos pedidos
     public function pedidos()

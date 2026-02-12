@@ -1000,20 +1000,18 @@
 
             <div class="nav-container" id="navContainer">
                 <nav>
-                    {{--
-                    Si el usuario está autenticado, los enlaces van a sus secciones normales.
-                    Si NO está autenticado, redirigen al login para indicar que necesita sesión.
+                    {{-- 
+                        Si el usuario está autenticado, los enlaces van a sus secciones normales.
+                        Si NO está autenticado,  redirigen al login para indicar que necesita sesión.
                     --}}
                     @auth
                         <a href="#cervezas">Cervezas</a>
                         <a href="#nosotros">Nosotros</a>
                         <a href="#tienda">Tienda</a>
-                        <a href="#pedidos">Pedidos</a>
                     @else
                         <a href="{{ route('login') }}" class="protected">Cervezas</a>
                         <a href="{{ route('login') }}" class="protected">Nosotros</a>
                         <a href="{{ route('login') }}" class="protected">Tienda</a>
-                        <a href="{{ route('login') }}" class="protected">Pedidos</a>
                     @endauth
                 </nav>
                 <div class="auth-buttons">

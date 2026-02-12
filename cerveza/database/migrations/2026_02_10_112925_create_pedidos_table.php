@@ -16,6 +16,7 @@ return new class extends Migration
             $table->decimal('total', 10, 2);
             $table->string('metodoPago');
             $table->timestamps();
+            $table->time('fecha');
         });
     }
 

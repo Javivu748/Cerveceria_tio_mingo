@@ -1,10 +1,16 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CervezaController;
 use Illuminate\Support\Facades\Route;
+use App\Services\TelegramService;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/cervezas', function () {
+    return view('cervezas');
 });
 
 Route::get('/dashboard', function () {
@@ -33,4 +39,25 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
+
+
+
+Route::get('/test-telegram', function() {
+    $telegram = new \App\Services\TelegramService();
+    
+    try {
+        $result = $telegram->sendTestMessage();
+        return [
+            'success' => $result,
+            'message' => $result ? 'Mensaje enviado' : 'Error al enviar'
+        ];
+    } catch (\Exception $e) {
+        return [
+            'error' => $e->getMessage(),
+            'line' => $e->getLine(),
+            'file' => $e->getFile()
+        ];
+    }
+});
 require __DIR__.'/auth.php';
+
