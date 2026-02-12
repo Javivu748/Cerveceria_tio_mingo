@@ -59,5 +59,9 @@ Route::get('/test-telegram', function() {
         ];
     }
 });
+
+
+Route::get('/cervezas', [CervezaController::class, 'index'])
+     ->name('cervezas');
 require __DIR__.'/auth.php';
 
