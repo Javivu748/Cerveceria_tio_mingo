@@ -9,85 +9,98 @@ use Illuminate\Http\Request;
 class PedidoController extends Controller
 {
     /**
-     * Mostrar SOLO los pedidos del usuario autenticado
+     * Mostrar todos los pedidos del usuario
      */
     public function index()
     {
-        $pedidos = auth()->user()
-            ->pedidos()
-            ->with('cervezas')
-            ->orderBy('fecha', 'desc')
-            ->get();
+        $pedidos = Pedido::where('user_id', auth()->id())
+                         ->orderBy('fecha', 'desc')
+                         ->get();
 
         return view('pedidos.index', compact('pedidos'));
     }
 
     /**
-     * Mostrar formulario de creación
+     * Mostrar formulario de crear pedido
      */
     public function create()
     {
         $cervezas = Cerveza::all();
-
         return view('pedidos.create', compact('cervezas'));
     }
 
     /**
-     * Guardar pedido
+     * Guardar pedido pagado vía PayPal
      */
-    public function store(Request $request)
+    public function storePayPal(array $pedidoTemp, string $orderId, array $result)
     {
-        $request->validate([
-            'cervezas' => 'required|array',
-            'cervezas.*.cantidad' => 'required|integer|min:1'
+        // Crear el pedido en la base de datos
+        $pedido = Pedido::create([
+            'user_id' => auth()->id(),
+            'fecha' => now(),
+            'total' => $pedidoTemp['total'],
+            'estado' => 'completado',
+            'metodoPago' => 'paypal',
+            'paypal_order_id' => $orderId,
+            'paypal_payer_id' => $result['payer']['payer_id'] ?? null,
+            'paypal_payer_email' => $result['payer']['email_address'] ?? null,
         ]);
 
-        $total = 0;
-        $cervezasSeleccionadas = [];
-
-        foreach ($request->cervezas as $cerveza_id => $data) {
-
-            $cerveza = Cerveza::findOrFail($cerveza_id);
-
-            $cantidad = $data['cantidad'];
-
-            $subtotal = $cerveza->precio * $cantidad;
-
-            $total += $subtotal;
-
-            $cervezasSeleccionadas[$cerveza_id] = [
-                'cantidad' => $cantidad
-            ];
+        // Agregar detalles de cervezas (si existe)
+        if (!empty($pedidoTemp['cervezas'])) {
+            foreach ($pedidoTemp['cervezas'] as $cervezaId => $data) {
+                $pedido->cervezas()->attach($cervezaId, [
+                    'cantidad' => $data['cantidad']
+                ]);
+            }
         }
 
-        $pedido = Pedido::create([
-            'fecha' => now(),
-            'estado' => 'pendiente',
-            'total' => $total,
-            'metodoPago' => 'pendiente'
-        ]);
-
-        $pedido->user()->associate(auth()->user());
-        $pedido->save();
-
-        $pedido->cervezas()->attach($cervezasSeleccionadas);
-
-        return redirect()->route('pedidos.index')
-            ->with('success', 'Pedido realizado correctamente');
+        return $pedido;
     }
 
     /**
-     * Eliminar pedido
+     * Obtener detalle de un pedido (AJAX)
      */
-    public function destroy(Pedido $pedido)
+    public function detalle($id)
     {
-        if ($pedido->user_id !== auth()->id()) {
-            abort(403);
-        }
+        $pedido = Pedido::with('detalles.cerveza')
+                        ->where('id', $id)
+                        ->where('user_id', auth()->id())
+                        ->firstOrFail();
 
+        return response()->json([
+            'id' => $pedido->id,
+            'fecha' => $pedido->fecha->format('d/m/Y H:i'),
+            'total' => $pedido->total,
+            'estado' => ucfirst($pedido->estado),
+            'paypal_order_id' => $pedido->paypal_order_id,
+            'detalles' => $pedido->detalles->map(function($detalle) {
+                return [
+                    'cerveza_nombre' => $detalle->cerveza->name,
+                    'cantidad' => $detalle->cantidad,
+                    'precio_unitario' => $detalle->precio_unitario,
+                    'subtotal' => $detalle->subtotal,
+                ];
+            })
+        ]);
+    }
+
+    /**
+     * Cancelar (eliminar) un pedido
+     */
+    public function destroy($id)
+    {
+        $pedido = Pedido::where('id', $id)
+                        ->where('user_id', auth()->id())
+                        ->firstOrFail();
+
+        // Eliminar detalles primero
+        $pedido->detalles()->delete();
+
+        // Eliminar pedido
         $pedido->delete();
 
         return redirect()->route('pedidos.index')
-            ->with('success', 'Pedido eliminado correctamente');
+                        ->with('success', 'Pedido cancelado correctamente.');
     }
 }
