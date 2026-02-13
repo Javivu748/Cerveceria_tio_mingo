@@ -40,11 +40,11 @@ id,nombre,estilo_id,cerveceria_id,cerveceria_nombre,formato,capacidad_cl,imagen_
 39,Saltus Kloratipa,3,17,Saltus Brewing,Lata,44.0,https://imgs.search.brave.com/PsJo_JGmJCBOCXYMwqVLYpQmZf1ePyrI0sj7tsGMhds/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/Y29yb25hZGVzcHVt/YS5lcy93cC1jb250/ZW50L3VwbG9hZHMv/MjAyMS8wMy9TYWx0/dXMtS2xvcmF0aXBh/LUlQQS1UcmFuc3Bh/cmVudGUtMS02MDB4/NjQ0LnBuZw,2.75
 40,Saltus Ttipia,2,17,Saltus Brewing,Lata,33.0,https://imgs.search.brave.com/hNs_gG8RakgCaI3tFh_GGV2dssSdz78jIUM5LIR6ge4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9iaXJy/YXBlZGlhLmNvbS9p/bWcvbW9kdWxvcy9j/ZXJ2ZXphLzA2OC9z/YWx0dXMtdHRpcGlh/XzE2MTg5OTQ1Mzgx/MTIyX3QuanBn,1.1
 41,Antiga Cream Ale,10,18,Antiga Artesana,Botella,33.0,https://picsum.photos/seed/beer41/400/600,1.1
-42,Antiga Belgian Tripel,14,18,Antiga Artesana,Botella,33.0,https://picsum.photos/seed/beer42/400/600,1.1
-43,Zeta Hop,3,19,Zeta,Lata,33.0,https://picsum.photos/seed/beer43/400/600,1.1
-44,Zeta Hell,1,19,Zeta,Lata,33.0,http://googleusercontent.com/image_collection/image_retrieval/2897341526756425964_0,1.1
-45,Barcelona Beer IPA,3,20,Barcelona Beer Company,Lata,44.0,https://picsum.photos/seed/beer45/400/600,2.75
-46,Rec Brew Session IPA,13,21,Rec Brew,Lata,44.0,https://picsum.photos/seed/beer46/400/600,2.75
+42,Antiga Belgian Tripel,14,18,Antiga Artesana,Botella,33.0,https://imgs.search.brave.com/VFC6Kc5xRVDEDlX6IJFuol-A4DTNrSlOKF0zJ_7ycw0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/ZGNlcnZlemFzLmNv/bS93cC1jb250ZW50/L3VwbG9hZHMvMjAy/MS8wMy9hbnRpZ2Et/YmVsZ2lhbi10cmlw/ZWwuanBn,1.1
+43,Zeta Hop,3,19,Zeta,Lata,33.0,https://imgs.search.brave.com/DQETeP8o6OpAHi9GVGG-Z17lgL3Vg3WS3s8kGhyIyzI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZXJ2/ZXphcGFzaW9uLmNv/bS93cC1jb250ZW50/L3VwbG9hZHMvemV0/YS1ob3AtY2VydmV6/YS1hcnRlc2FuYWwt/ZGUtY2FsaWRhZC15/LXNhYm9yLXVuaWNv/LnBuZw,1.1
+44,Zeta Hell,1,19,Zeta,Lata,33.0,https://imgs.search.brave.com/2YAqO1ZqPXS1ZbMGDpvNpNkgib2zee12-rM8NnBFAcg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/ZGNlcnZlemFzLmNv/bS93cC1jb250ZW50/L3VwbG9hZHMvMjAx/Ny8wNi96ZXRhLWhl/bGwucG5n,1.1
+45,Barcelona Beer IPA,3,20,Barcelona Beer Company,Lata,44.0,https://imgs.search.brave.com/4P_OEMYDqZZKpAaUTn4RwIsWY5gpoPl2lEf9eOzRBt8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9yZXNv/dXJjZXMudmluby5j/b20vZGF0YS9vZmZl/cnRhRmlsZUZpbGUv/b2ZmZXJ0YUZpbGVG/aWxlLTIxNTY1NC5q/cGc,2.75
+46,Rec Brew Session IPA,13,21,Rec Brew,Lata,44.0,https://imgs.search.brave.com/YbAnN5JUASQSPHH_RLId5LX4RyFn9b1yZONYRzzZn2c/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9iaXJy/YXBlZGlhLmNvbS9p/bWcvbW9kdWxvcy9j/ZXJ2ZXphLzc4Yi9y/ZWMtYnJldy1ncmVl/bi1jdXJlXzE2MjU0/Nzc1ODIxNTQzX3Qu/anBn,2.75
 47,Freddo Fox Triple IPA,3,22,Freddo Fox,Lata,33.0,https://picsum.photos/seed/beer47/400/600,2.75
 48,Guinness Draught,5,23,Guinness,Lata,44.0,https://www.guinness.com/media/guinness-draught-can-440ml.png,1.1
 49,Guinness Draught,5,23,Guinness,Botella,33.0,https://www.guinness.com/media/guinness-draught-bottle-330ml.png,1.1
