@@ -1,44 +1,44 @@
 id,nombre,estilo_id,cerveceria_id,cerveceria_nombre,formato,capacidad_cl,imagen_url,precio_eur
-1,Mahou Clásica,1,1,Mahou San Miguel,Lata,33.0,http://googleusercontent.com/image_collection/image_retrieval/1471187586612582665_0,0.7
-2,Mahou Cinco Estrellas,1,1,Mahou San Miguel,Botella,33.0,http://googleusercontent.com/image_collection/image_retrieval/11256781458328185248_0,0.85
-3,San Miguel Especial,1,1,Mahou San Miguel,Lata,33.0,http://googleusercontent.com/image_collection/image_retrieval/9007605565171580763_0,0.85
-4,Alhambra Especial,1,2,Cervezas Alhambra,Botella,33.0,http://googleusercontent.com/image_collection/image_retrieval/1494507754390722242_0,1.1
-5,Alhambra Reserva Roja,15,2,Cervezas Alhambra,Botella,33.0,http://googleusercontent.com/image_collection/image_retrieval/7066570854551610904_0,1.35
-6,Estrella Damm,2,3,Damm,Lata,33.0,https://cdn.damm.com/products/estrella-damm-lata-330ml.png,1.1
-7,Damm Lemon,1,3,Damm,Lata,33.0,https://cdn.damm.com/products/damm-lemon-lata-330ml.png,1.1
-8,Voll-Damm,15,3,Damm,Botella,33.0,https://cdn.damm.com/products/voll-damm-botella-330ml.png,1.1
-9,Estrella Galicia,2,4,Estrella Galicia,Botella,33.0,https://www.estrellagalicia.es/sites/default/files/productos/estrella-galicia-especial-botella-250ml.png,0.7
-10,Estrella Galicia 1906,15,4,Estrella Galicia,Botella,33.0,https://www.estrellagalicia.es/sites/default/files/productos/estrella-galicia-1906-botella-250ml.png,0.7
-11,Cruzcampo,1,5,Heineken España,Lata,33.0,https://cruzcampo.es/sites/default/files/productos/cruzcampo-lata-330ml.png,1.1
-12,Heineken,1,5,Heineken España,Lata,33.0,https://www.heineken.com/media-eu/lkqb2awe/heineken-original-can-330ml.png,1.1
-13,Heineken Original,1,5,Heineken España,Botella,33.0,https://www.heineken.com/media-eu/ezvbx0uv/heineken-original-bottle-330ml.png,1.1
-14,Basqueland Aupa,3,6,Basqueland Brewing,Lata,44.0,https://basqueland.com/wp-content/uploads/2023/05/basqueland-aupa-lata-440ml.png,1.1
-15,Basqueland Imparable,3,6,Basqueland Brewing,Lata,44.0,https://basqueland.com/wp-content/uploads/2023/05/basqueland-imparable-lata-440ml.png,1.1
-16,La Virgen IPA,3,7,Cervezas La Virgen,Botella,33.0,https://www.cervezaslavirgen.com/wp-content/uploads/2023/03/la-virgen-ipa-botella-330ml.png,2.75
-17,La Virgen Jamonera,1,7,Cervezas La Virgen,Botella,33.0,https://www.cervezaslavirgen.com/wp-content/uploads/2023/03/la-virgen-jamonera-botella-330ml.png,1.1
-18,La Virgen 360,6,7,Cervezas La Virgen,Lata,33.0,https://www.cervezaslavirgen.com/wp-content/uploads/2023/03/la-virgen-360-lata-330ml.png,1.1
-19,Yakka Blonde Ale,10,8,Yakka,Botella,33.0,https://yakka.beer/wp-content/uploads/2023/01/yakka-blonde-ale-botella-330ml.png,1.1
-20,Yakka IPA,3,8,Yakka,Botella,33.0,https://yakka.beer/wp-content/uploads/2023/01/yakka-ipa-botella-330ml.png,2.75
-21,Yakka Tripel,14,8,Yakka,Botella,33.0,https://yakka.beer/wp-content/uploads/2023/01/yakka-tripel-botella-330ml.png,1.1
-22,Dougall's IPA 942,13,9,Dougall's,Lata,33.0,http://googleusercontent.com/image_collection/image_retrieval/12644870240908426981_0,2.75
-23,Dougall's Leyenda,6,9,Dougall's,Botella,33.0,http://googleusercontent.com/image_collection/image_retrieval/2437239041466172532_0,1.1
-24,Dougall's Tres Mares,4,9,Dougall's,Botella,33.0,https://picsum.photos/seed/beer24/400/600,1.1
-25,Arriaca Imperial Red IPA,3,10,Cerveza Arriaca,Botella,33.0,http://googleusercontent.com/image_collection/image_retrieval/15715885356108230464_0,2.75
-26,Arriaca Pale Ale,6,10,Cerveza Arriaca,Lata,33.0,https://picsum.photos/seed/beer26/400/600,1.1
-27,Cierzo IPA,3,11,Cierzo Brewing,Lata,44.0,https://picsum.photos/seed/beer27/400/600,2.75
-28,Cierzo Malandar,9,11,Cierzo Brewing,Lata,44.0,https://picsum.photos/seed/beer28/400/600,1.1
-29,Garage Beer Soup,8,12,Garage Beer Co,Lata,44.0,http://googleusercontent.com/image_collection/image_retrieval/13793564275282316452_0,1.1
-30,Garage Beer IPA,3,12,Garage Beer Co,Lata,44.0,https://picsum.photos/seed/beer30/400/600,2.75
-31,Laugar Aupa Tovarisch,3,13,Laugar Brewery,Lata,44.0,http://googleusercontent.com/image_collection/image_retrieval/5352153307417875782_0,1.1
-32,Lauger Basurde,5,13,Laugar Brewery,Botella,33.0,https://picsum.photos/seed/beer32/400/600,1.1
-33,Laugar Kiskale,13,13,Laugar Brewery,Lata,44.0,https://picsum.photos/seed/beer33/400/600,1.1
-34,Montseny Lupulus,3,14,Montseny,Botella,33.0,https://picsum.photos/seed/beer34/400/600,1.1
-35,Montseny Mala Vida,11,14,Montseny,Botella,33.0,https://picsum.photos/seed/beer35/400/600,1.1
-36,Tyris Paquita Brown,9,15,Tyris,Lata,44.0,http://googleusercontent.com/image_collection/image_retrieval/13381114359848654173_0,1.1
-37,Tyris Socarrat IPA,3,15,Tyris,Botella,33.0,https://picsum.photos/seed/beer37/400/600,2.75
-38,Nómada American Pale Ale,6,16,Nómada Brewing,Lata,44.0,https://picsum.photos/seed/beer38/400/600,1.1
-39,Saltus Kloratipa,3,17,Saltus Brewing,Lata,44.0,https://picsum.photos/seed/beer39/400/600,2.75
-40,Saltus Ttipia,2,17,Saltus Brewing,Lata,33.0,https://picsum.photos/seed/beer40/400/600,1.1
+1,Mahou Clásica,1,1,Mahou San Miguel,Lata,33.0,https://imgs.search.brave.com/QtrxTpRSWjgCTsPSuIqVLVgGZq9ZFP12AK8T6lhCtp4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL1Mv/YXBsdXMtbWVkaWEv/dmMvYmNiZDFhYzYt/YjkzNS00YzUwLWEx/MWItYTU1NTkzZDM2/MmEzLl9DUjAsMCwy/NTYwLDI1NjBfUFQw/X1NYMzAwX18uanBn,0.7
+2,Mahou Cinco Estrellas,1,1,Mahou San Miguel,Botella,33.0,https://imgs.search.brave.com/LLl1Tmw1aBoZUEF4Ep_4yXb3xQyEPQ9Qp2Anpu9YXv4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/bWFob3Utc2FubWln/dWVsLmNvbS9kdy9p/bWFnZS92Mi9CQlRK/X1BSRC9vbi9kZW1h/bmR3YXJlLnN0YXRp/Yy8tL1NpdGVzLWxh/c29sYW5hLW1hc3Rl/ci1jYXRhbG9nL2Rl/ZmF1bHQvZHczZDg4/YTBiZC9pbWFnZXMv/aGktcmVzL0lTMjcy/OC0yLmpwZz9zdz00/MjAmc2g9NDIwJnNm/cm09anBn,0.85
+3,San Miguel Especial,1,1,Mahou San Miguel,Lata,33.0,https://imgs.search.brave.com/bbvrf8LivTJ7SKCzUFgnxUIs4aKV0AG1zy6vtCtWTKM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9kZW5k/YS5wYXR4aWtvb3Au/ZXVzLzE3MS1OaWFy/YV9sYXJnZS9zYW4t/bWlndWVsLWVzcGVj/aWFsLTEzLWxhdGEt/MjQuanBn,0.85
+4,Alhambra Especial,1,2,Cervezas Alhambra,Botella,33.0,https://imgs.search.brave.com/O30OdmT0v7t09g34eUWpIMGPqdCVf-dNfqcKxXqlA0g/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/YmdydXAuZXMvaW1n/X3Byb2QvMzYwLTM2/MC8yODUuanBn,1.1
+5,Alhambra Reserva Roja,15,2,Cervezas Alhambra,Botella,33.0,https://imgs.search.brave.com/wHZlrkm7FdvR-rVzllP57VUJfRS2KWz8P0qhX5QkddI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9hbmRh/bHVib3guY29tL3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDI1LzA2/L0FMSEFNQlJBLUdS/QU5BREEtUk9KQS1S/RVNFUlZBLTE5MjUt/MzNDTC5qcGc,1.35
+6,Estrella Damm,2,3,Damm,Lata,33.0,https://imgs.search.brave.com/uk5AXidiovYmfP3SYAlbMfrRjI9IWb8ZIZZ6XQMlhck/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9sb25k/cmVzLXVrLWZlYnJl/cm8tY2VydmV6YS1l/c3RyZWxsYS1kZS1k/YW1tLW9yaWdpbmFs/LWJhcmNlbG9uYS1z/b2JyZS1mb25kby1i/bGFuY28tYXNhZG9y/LWVuLTI1MDYzMTU0/MS5qcGc,1.1
+7,Damm Lemon,1,3,Damm,Lata,33.0,https://imgs.search.brave.com/BKAvAuXSTf3WJKHS0gq8SB8S2jmdTzfadV1KpTTTZcQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93b25k/ZXJmdWx3aW5lcy5l/cy8xMzg1LWxhcmdl/X2RlZmF1bHQvZGFt/bS1sZW1vbi1sYXRh/LTMzY2wuanBn,1.1
+8,Voll-Damm,15,3,Damm,Botella,33.0,https://imgs.search.brave.com/GYPZ-2TAILqAw1Ji3D1M-T4458p7NM0GLvFymD022Ng/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/Y29tcHJhci1iZWJp/ZGFzLmNvbS9tZWRp/YS9jYXRhbG9nL3By/b2R1Y3QvY2FjaGUv/NS9zbWFsbF9pbWFn/ZS8zNTB4NDY2Lzlk/Zjc4ZWFiMzM1MjVk/MDhkNmU1ZmI4ZDI3/MTM2ZTk1L0MvZS9D/ZTIyMy5qcGc,1.1
+9,Estrella Galicia,2,4,Estrella Galicia,Botella,33.0,https://imgs.search.brave.com/AxKiFDsPr_IWqAq8QQTIrmF6EKTD3QSGILug9ivjhhw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9lc2Nl/cnZlemEuY29tL2Nk/bi9zaG9wL3Byb2R1/Y3RzL2NvbGxlY3Rp/b24tdGl0bGUtZXNj/ZXJ2ZXphLTMtMjEz/OTE0MzE2MzA5NDgu/anBnP3Y9MTY5NzQw/Njc2MA,0.7
+10,Estrella Galicia 1906,15,4,Estrella Galicia,Botella,33.0,https://imgs.search.brave.com/wdb-Lfo2N7U04sodUURdtZBq-3TRKavR2CvXteQOPUw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/YWxleWZhLmNvbS9p/bWFnZXMvdGh1bWJz/LzAwMDAzMzZfMzMx/MTZfNjAwLmpwZWc,0.7
+11,Cruzcampo,1,5,Heineken España,Lata,33.0,https://imgs.search.brave.com/jNyPqelaLxFfPEmDalgW8f222iBC8t-dags6vKUAQOE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wb2xs/b3NzYW5qdWFuLmVz/L3dwLWNvbnRlbnQv/dXBsb2Fkcy8yMDE4/LzExLzkzNTg2ODcx/NDE5MTguanBn,1.1
+12,Heineken,1,5,Heineken España,Lata,33.0,https://imgs.search.brave.com/SzH8es0I264qFyg4EYBRZnaRfiRVr_5x_zEnfCLw1VI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90dWNl/cnZlemFhZG9taWNp/bGlvLmNvbS93cC1j/b250ZW50L3VwbG9h/ZHMvMjAyMS8wOC9s/YXRhLWhlaW5la2Vu/LXdlYi5qcGc,1.1
+13,Heineken Original,1,5,Heineken España,Botella,33.0,https://imgs.search.brave.com/3_GG-96aGipHdNaH6TRgmPRKgaYbpMEeaBjbPkoyhR0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9oZWlu/ZWtlbi1iZWVyLWJv/dHRsZS1pc29sYXRl/ZC13aGl0ZS1iYWNr/Z3JvdW5kLWhlaW5l/a2VuLWJlZXItYm90/dGxlLWlzb2xhdGVk/LXdoaXRlLWJhY2tn/cm91bmQtMjcyMDE1/NDE3LmpwZw,1.1
+14,Basqueland Aupa,3,6,Basqueland Brewing,Lata,44.0,https://imgs.search.brave.com/2eCC5Yu9G4oE9CpOfXcUvGpqRlnzniSntWYeRwi0p2o/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9iYXNx/dWViZWVyLmNvbS93/cC1jb250ZW50L3Vw/bG9hZHMvMjAyNC8w/OS9iYXNxdWVsYW5k/X2NlcnZlemFfYXVw/YV9nb2xkX2VkaXRp/b25fcGFsZV9hbGVf/Y3JhZnRfYmVlcl9j/YW5fNDQwbWwtY29w/aWEuanBn,1.1
+15,Basqueland Imparable,3,6,Basqueland Brewing,Lata,44.0,https://imgs.search.brave.com/dc-1bxdJaAcm5ZaunrKyuAA7bos29UNoZGdHmKCxvwg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/ZXN0dWNlcnZlemEu/Y29tL3Byb2R1Y3Rv/cy9pbWFnZW5lcy9p/bWdfMzkyMF9jNmI5/YTc3YjI1Njk1NTdi/YmE0OGMyNWFiOWRl/MTg0Yl8yMC5qcGVn,1.1
+16,La Virgen IPA,3,7,Cervezas La Virgen,Botella,33.0,https://imgs.search.brave.com/l5sWEnOf0rvRMq8hP1di01sNPd1N_zcaOzsyCH3yMFI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vYWV0Y20u/ZXMvd3AtY29udGVu/dC91cGxvYWRzLzIw/MjQvMDcvTEEtVklS/R0VOLUlQQS5qcGc_/Zml0PTYwMCw2MDAm/c3NsPTE,2.75
+17,La Virgen Jamonera,1,7,Cervezas La Virgen,Botella,33.0,https://imgs.search.brave.com/3865EWZp9b9WaLZ8fjjXd0W8m3HeqO41GBrashmuGA8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91bmdy/YW52aW5vLmNvbS93/cC1jb250ZW50L3Vw/bG9hZHMvMjAyMC8x/MC9MYS12aXJnZW4t/SmFtb25lcmEuanBn,1.1
+18,La Virgen 360,6,7,Cervezas La Virgen,Lata,33.0,https://imgs.search.brave.com/Pel8m-bQWla7DFIr64BI9ZiSlL2eqsCxDt4gYmJTB4c/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/bWFudGVxdWVyaWFh/bmRyZXMuY29tL3Rp/ZW5kYS80MzEwLWhv/bWVfZGVmYXVsdC9j/ZXJ2ZXphLTM2MC1s/YS12aXJnZW4uanBn,1.1
+19,Yakka Blonde Ale,10,8,Yakka,Botella,33.0,https://imgs.search.brave.com/IDhvPkf2KbZ8mm0C0sDabOzLlSnQj8tqU9Dv6TRjxN0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wdXJh/ZmludXJhLmVzL3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDIxLzEw/L2FsdGhhaWFfYmxv/bmQtYWxlLTMwMHgz/MDAuanBn,1.1
+20,Yakka IPA,3,8,Yakka,Botella,33.0,https://imgs.search.brave.com/HDWPlw0zEuyoNc13I7RchAVRFDNbSonamJdaYbWmAwc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZXJ2/ZXRyaS5jb20vMTE3/NS1ob21lX2RlZmF1/bHQveWFra2EtdGlw/by1pcGEtMzMtY2wu/anBn,2.75
+21,Yakka Tripel,14,8,Yakka,Botella,33.0,https://imgs.search.brave.com/Z6YeTgiGgmY6ZAD8szxPhPsyIMwDUUtS6ZCXkVuKkQQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/Y2FsZmVydS5jb20v/d2ViL2ltYWdlL3By/b2R1Y3QucHJvZHVj/dC84ODkwL2ltYWdl/XzEwMjQvQ0VSVkVa/QSUyMFlBS0tBJTIw/VFJJUExFJTIwMCwz/M0wuP3VuaXF1ZT03/ZjRmMjEz,1.1
+22,Dougall's IPA 942,13,9,Dougall's,Lata,33.0,https://imgs.search.brave.com/NQ2AooxIAoAW9kKeoDe7TexhwClh0bxb0GXf17hl4JY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90aWVu/ZGEuZWxyZXRyb2d1/c3RvLmVzL3dwLWNv/bnRlbnQvdXBsb2Fk/cy8yMDI0LzA2L0Rv/dWdhbGxzLTk0Mi1J/UEEtcHJvdi1zY2Fs/ZWQuanBn,2.75
+23,Dougall's Leyenda,6,9,Dougall's,Botella,33.0,https://imgs.search.brave.com/msnw6iJXtByzsbjnb8Q5vMr8ZTduMkeiZGmpSq00Zkw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9lc2Nl/cnZlemEuY29tL2Nk/bi9zaG9wL3Byb2R1/Y3RzL2NvbGxlY3Rp/b24tdGl0bGUtZXNj/ZXJ2ZXphLTEtMjEz/OTE0MjkxNDA1ODAu/anBnP3Y9MTY5NzQw/NzAzMA,1.1
+24,Dougall's Tres Mares,4,9,Dougall's,Botella,33.0,https://imgs.search.brave.com/8YOHG07tkDXml6NfGWv229kwiKRxxXxv0yTVIOQKRO4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9lc2Nl/cnZlemEuY29tL2Nk/bi9zaG9wL3Byb2R1/Y3RzL2NvbGxlY3Rp/b24tdGl0bGUtZXNj/ZXJ2ZXphLTEtMjEz/OTE0Mjk0MzU0OTIu/anBnP3Y9MTY5NzQw/NzAzMA,1.1
+25,Arriaca Imperial Red IPA,3,10,Cerveza Arriaca,Botella,33.0,https://imgs.search.brave.com/v9LkCzFeIHAvDQgV2u52Nfq573g4yC3ZzEOemLf1lBo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/YmVlcnN0b3JlYmNu/LmNvbS8zMzMwLWhv/bWVfZGVmYXVsdC9h/cnJpYWNhLWltcGVy/aWFsLXJlZC1pcGEt/LmpwZw,2.75
+26,Arriaca Pale Ale,6,10,Cerveza Arriaca,Lata,33.0,https://imgs.search.brave.com/Ek6FeKuVw9k5cKD2CY5reGSfZqlbRD5VBBNduHq62G8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9hbGlt/ZW50b3NkZWd1YWRh/bGFqYXJhLmVzL3dw/LWNvbnRlbnQvdXBs/b2Fkcy9hcnJpYWNh/LXJ1YmlhLWxhZ2Vy/LWxhdGEucG5n,1.1
+27,Cierzo IPA,3,11,Cierzo Brewing,Lata,44.0,https://imgs.search.brave.com/JzGUMUNi9uGgNCj6Z1gpK7NshxPSFLoG52GrcDyOu04/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jaWVy/em9icmV3aW5nLmNv/bS93cC1jb250ZW50/L3VwbG9hZHMvMjAy/MC8wMy9jaXRyYS1s/YXRhLXAud2VicA,2.75
+28,Cierzo Malandar,9,11,Cierzo Brewing,Lata,44.0,https://imgs.search.brave.com/VRPbaT8nftMWKhUkkq2V66BAWfzSsRmcl1WC0wbz364/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/Ym9kZWNhbGwuY29t/L2ltYWdlcy9zdG9y/aWVzL3ZpcnR1ZW1h/cnQvcHJvZHVjdC8w/NjA2NjE1XW1hbGFu/ZGFyLWNpZXJ6by1z/ZXF1b2lhLnBuZw,1.1
+29,Garage Beer Soup,8,12,Garage Beer Co,Lata,44.0,https://imgs.search.brave.com/avVuv2eplLjD2VZgmqIWlcKZZENvNub9KYnAPw_JWMg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/d2Vic2hvcGFwcC5j/b20vc2hvcHMvMjk3/NTM4L2ZpbGVzLzQw/MzcxNzIxMy8yOTB4/MjAweDIvZ2FyYWdl/LWJlZXItY28tZ2Fy/YWdlLWJlZXItY28t/ZG91YmxlLXNvdXAu/anBn,1.1
+30,Garage Beer IPA,3,12,Garage Beer Co,Lata,44.0,https://imgs.search.brave.com/krf-gcX1BS7vIaoKCA7MNEvIIaERMuQyCOGi37RmYws/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZXJ2/ZXpvbmUuZXMvY2Ru/L3Nob3AvcHJvZHVj/dHMvMjU4OV8yNTB4/MjUwQDJ4LmpwZz92/PTE2MjQ2MDY5OTM,2.75
+31,Laugar Aupa Tovarisch,3,13,Laugar Brewery,Lata,44.0,https://imgs.search.brave.com/pBalQkXcNMrMxLn_emhu3kzoTXKDk_4Bzyl4Mw3TM3g/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90aWVu/ZGEuZWxyZXRyb2d1/c3RvLmVzL3dwLWNv/bnRlbnQvdXBsb2Fk/cy8yMDE5LzEwL0xh/dWdhci1BdXBhLXRv/dmFyaXNjaC0xLmpw/Zw,1.1
+32,Lauger Basurde,5,13,Laugar Brewery,Botella,33.0,https://imgs.search.brave.com/XVEaYQxNAo8mdxp5FmdrXU2MaS4vxJqjYM2ICN6giSY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGFsYmluY2RuLmNv/bS91c2Vycy80MjI4/Ny9pbWFnZXMvX01H/XzY2NTctMTYxNTgz/MjI4OEB4NTEyLS1m/W2FzXS5KUEcudGh1/bWI,1.1
+33,Laugar Kiskale,13,13,Laugar Brewery,Lata,44.0,https://imgs.search.brave.com/Nn6TQPTeP8QOAUDaHKFx1kS--4bEgAtonNxje-NJnv0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/YmVlcnN0b3JlYmNu/LmNvbS8xOTg1LWhv/bWVfZGVmYXVsdC9r/aXNrYWxlLS5qcGc,1.1
+34,Montseny Lupulus,3,14,Montseny,Botella,33.0,https://imgs.search.brave.com/Fc9HA0J9l-H02h0OltFSzZ2uRBCDbtCcCPlU7zrq-OI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/c2hvcGlmeS5jb20v/cy9maWxlcy8xLzAx/MzcvOTg3Mi9wcm9k/dWN0cy9lY28xX2Ft/cG9sbGEuanBnP3Y9/MTQyMjYxNDY3Mw,1.1
+35,Montseny Mala Vida,11,14,Montseny,Botella,33.0,https://imgs.search.brave.com/0M5txfZDxfmqodbR1FwFaV_OkOtW-oQtgPqDBrQ_ajA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tbXdp/bmVsaXF1b3IuY29t/L2Nkbi9zaG9wL2Zp/bGVzL01hbGFWaWRh/Q2VydmVzYURlbE1v/bnRzZW55MzMwbWwu/anBnP3Y9MTcxNzc1/NzQ5MCZ3aWR0aD00/ODA,1.1
+36,Tyris Paquita Brown,9,15,Tyris,Lata,44.0,https://imgs.search.brave.com/HnCmFbqt9MHBL7IOWimXS1wQPN7F_1BhZXQ4UmGL9iY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZXJ2/ZXphdHlyaXMuY29t/L3dwLWNvbnRlbnQv/dXBsb2Fkcy8yMDIw/LzA2L3R5cmlzLXBh/cXVpdGEtYnJvd24u/cG5n,1.1
+37,Tyris Socarrat IPA,3,15,Tyris,Botella,33.0,https://imgs.search.brave.com/ugxyWlawBKbCF1uGnf9YmRgOT1rtJwbf6ZUNW0XP_0A/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/YmViaWRhc3Nhbmp1/YW4uZXMvd3AtY29u/dGVudC91cGxvYWRz/LzIwMjIvMTEvdHly/aXMtaXBhLXJlbW92/ZWJnLXByZXZpZXcu/cG5n,2.75
+38,Nómada American Pale Ale,6,16,Nómada Brewing,Botella,33.0,https://imgs.search.brave.com/1WrMr6abWEL6CNpW1msIMDLBEdjajycPIYAeqnPUcyg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9lc2Nl/cnZlemEuY29tL2Nk/bi9zaG9wL3Byb2R1/Y3RzL2NvbGxlY3Rp/b24tdGl0bGUtZXNj/ZXJ2ZXphLTIxMzkx/NDU4MjA1Nzk2Lmpw/Zz92PTE2OTc0MDcx/MjE,1.1
+39,Saltus Kloratipa,3,17,Saltus Brewing,Lata,44.0,https://imgs.search.brave.com/PsJo_JGmJCBOCXYMwqVLYpQmZf1ePyrI0sj7tsGMhds/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/Y29yb25hZGVzcHVt/YS5lcy93cC1jb250/ZW50L3VwbG9hZHMv/MjAyMS8wMy9TYWx0/dXMtS2xvcmF0aXBh/LUlQQS1UcmFuc3Bh/cmVudGUtMS02MDB4/NjQ0LnBuZw,2.75
+40,Saltus Ttipia,2,17,Saltus Brewing,Lata,33.0,https://imgs.search.brave.com/hNs_gG8RakgCaI3tFh_GGV2dssSdz78jIUM5LIR6ge4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9iaXJy/YXBlZGlhLmNvbS9p/bWcvbW9kdWxvcy9j/ZXJ2ZXphLzA2OC9z/YWx0dXMtdHRpcGlh/XzE2MTg5OTQ1Mzgx/MTIyX3QuanBn,1.1
 41,Antiga Cream Ale,10,18,Antiga Artesana,Botella,33.0,https://picsum.photos/seed/beer41/400/600,1.1
 42,Antiga Belgian Tripel,14,18,Antiga Artesana,Botella,33.0,https://picsum.photos/seed/beer42/400/600,1.1
 43,Zeta Hop,3,19,Zeta,Lata,33.0,https://picsum.photos/seed/beer43/400/600,1.1

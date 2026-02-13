@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use app\Http\Controllers\ExchangeController; 
+use App\Http\Controllers\ExchangeController; 
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

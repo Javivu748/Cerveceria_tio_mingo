@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CervezaController;
 use Illuminate\Support\Facades\Route;
 use App\Services\TelegramService;
+use App\Http\Controllers\NosotrosController; 
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,6 +22,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+//Ruta para la vista de nosotros
+Route::middleware('auth')->group(function () {
+    Route::get('/nosotros', [NosotrosController::class, 'index'])->name('nosotros.index');
 });
 
 
@@ -59,29 +65,11 @@ Route::get('/test-telegram', function() {
         ];
     }
 });
-
-
-use App\Http\Controllers\PayPalController;
-
-// ════════════════════════════════════════
-// RUTAS DE PAYPAL
-// ════════════════════════════════════════
-
-// Procesar pago
-Route::post('/paypal/payment', [PayPalController::class, 'createPayment'])
-    ->name('paypal.payment')
-    ->middleware('auth');
-
-// PayPal redirige aquí cuando el pago es exitoso
-Route::get('/paypal/success', [PayPalController::class, 'paymentSuccess'])
-    ->name('paypal.success')
-    ->middleware('auth');
-
-// PayPal redirige aquí si el usuario cancela
-Route::get('/paypal/cancel', [PayPalController::class, 'paymentCancel'])
-    ->name('paypal.cancel')
-    ->middleware('auth');
-
-
 require __DIR__.'/auth.php';
+
+// API endpoints (compatibilidad local): exponer rutas de cambio bajo /api/currency
+use App\Http\Controllers\ExchangeController;
+
+Route::post('/api/currency/convert', [ExchangeController::class, 'convert']);
+Route::get('/api/currency/rates', [ExchangeController::class, 'getRates']);
 
