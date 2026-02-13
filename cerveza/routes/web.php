@@ -59,5 +59,29 @@ Route::get('/test-telegram', function() {
         ];
     }
 });
+
+
+use App\Http\Controllers\PayPalController;
+
+// ════════════════════════════════════════
+// RUTAS DE PAYPAL
+// ════════════════════════════════════════
+
+// Procesar pago
+Route::post('/paypal/payment', [PayPalController::class, 'createPayment'])
+    ->name('paypal.payment')
+    ->middleware('auth');
+
+// PayPal redirige aquí cuando el pago es exitoso
+Route::get('/paypal/success', [PayPalController::class, 'paymentSuccess'])
+    ->name('paypal.success')
+    ->middleware('auth');
+
+// PayPal redirige aquí si el usuario cancela
+Route::get('/paypal/cancel', [PayPalController::class, 'paymentCancel'])
+    ->name('paypal.cancel')
+    ->middleware('auth');
+
+
 require __DIR__.'/auth.php';
 

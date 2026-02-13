@@ -45,8 +45,15 @@ body{font-family:'Montserrat',sans-serif;background:var(--dark-brown);color:var(
 .summary h3{font-family:'Bebas Neue',sans-serif;color:var(--primary-gold);margin-bottom:1.5rem;letter-spacing:2px;}
 .summary-item{display:flex;justify-content:space-between;margin-bottom:0.5rem;font-size:0.9rem;}
 .total{display:flex;justify-content:space-between;font-size:1.2rem;font-weight:bold;margin-top:1rem;}
-.cta-button{display:block;margin-top:2rem;padding:1rem;background:linear-gradient(135deg,var(--primary-gold),var(--deep-amber));color:var(--dark-brown);text-align:center;font-weight:700;border:none;cursor:pointer;text-transform:uppercase;}
-.error-box{background:rgba(255,0,0,0.1);border:1px solid #ff6b6b;padding:1rem;margin-bottom:2rem;color:#ff6b6b;}
+.cta-button{display:block;margin-top:2rem;padding:1rem;background:linear-gradient(135deg,var(--primary-gold),var(--deep-amber));color:var(--dark-brown);text-align:center;font-weight:700;border:none;cursor:pointer;text-transform:uppercase;transition:all 0.3s;}
+.cta-button:hover{transform:translateY(-3px);box-shadow:0 10px 25px rgba(212,165,116,0.4);}
+.cta-button:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+
+/* ALERTAS */
+.alert{padding:1rem;margin-bottom:2rem;border-radius:8px;border:2px solid;}
+.alert-danger{background:rgba(255,0,0,0.1);border-color:#ff6b6b;color:#ff6b6b;}
+.alert-success{background:rgba(0,255,0,0.1);border-color:#51cf66;color:#51cf66;}
+.alert-warning{background:rgba(255,165,0,0.1);border-color:#ffa94d;color:#ffa94d;}
 
 /* ───────── HEADER y FOOTER ───────── */
 header{
@@ -83,7 +90,7 @@ nav a.active::after{width:100%;}
 
 .auth-buttons{display:flex;gap:1rem;align-items:center;}
 .user-greeting{color:var(--primary-gold);font-weight:600;font-size:0.85rem;}
-.btn-profile,.btn-logout{padding:0.7rem 1.5rem;text-decoration:none;font-weight:600;font-size:0.85rem;text-transform:uppercase;border:2px solid var(--primary-gold);cursor:pointer;display:inline-block;}
+.btn-profile,.btn-logout{padding:0.7rem 1.5rem;text-decoration:none;font-weight:600;font-size:0.85rem;text-transform:uppercase;border:2px solid var(--primary-gold);cursor:pointer;display:inline-block;transition:all 0.3s;}
 .btn-profile{background:transparent;color:var(--primary-gold);}
 .btn-profile:hover{background:var(--primary-gold);color:var(--dark-brown);transform:translateY(-2px);box-shadow:0 5px 15px rgba(212,165,116,0.3);}
 .btn-logout{background:transparent;color:rgba(245,230,211,0.6);border-color:rgba(245,230,211,0.3);font-size:0.8rem;}
@@ -142,17 +149,37 @@ footer{
 {{-- TITULO DE LA PÁGINA --}}
 <h1 class="page-title">Realizar Pedido</h1>
 
+{{-- MENSAJES DE ALERTA --}}
+@if(session('error'))
+    <div class="alert alert-danger">
+        ❌ {{ session('error') }}
+    </div>
+@endif
+
+@if(session('success'))
+    <div class="alert alert-success">
+        ✅ {{ session('success') }}
+    </div>
+@endif
+
+@if(session('warning'))
+    <div class="alert alert-warning">
+        ⚠️ {{ session('warning') }}
+    </div>
+@endif
+
 @if ($errors->any())
-<div class="error-box">
-    <ul>
+<div class="alert alert-danger">
+    <ul style="margin:0;padding-left:1.5rem;">
         @foreach ($errors->all() as $error)
-            <li>• {{ $error }}</li>
+            <li>{{ $error }}</li>
         @endforeach
     </ul>
 </div>
 @endif
 
-<form method="POST" action="{{ route('pedidos.store') }}">
+{{-- FORMULARIO --}}
+<form method="POST" action="{{ route('paypal.payment') }}" id="pedidoForm">
 @csrf
 
 <div class="grid-layout">
@@ -189,12 +216,12 @@ footer{
             <span>€<span id="total">0.00</span></span>
         </div>
 
-        <button type="submit" class="cta-button">
-            Pagar
+        <button type="submit" class="cta-button" id="btnPagar">
+            💳 Pagar con PayPal
         </button>
 
         <p style="font-size:0.75rem;opacity:0.6;margin-top:0.5rem;text-align:center;">
-            *La pasarela de pago se implementará próximamente.
+            Pasarela segura de PayPal
         </p>
     </div>
 
@@ -213,23 +240,32 @@ footer{
 const inputs = document.querySelectorAll('.cantidad');
 const resumenDiv = document.getElementById('resumen');
 const totalSpan = document.getElementById('total');
-const form = document.querySelector('form');
+const form = document.getElementById('pedidoForm');
+const btnPagar = document.getElementById('btnPagar');
 
 inputs.forEach(input=>{
     input.addEventListener('input',actualizarResumen);
 });
 
-// Desactivar inputs con 0 al enviar
-form.addEventListener('submit', function () {
-    inputs.forEach(input => {
-        const cantidad = parseInt(input.value) || 0;
-        if (cantidad <= 0) input.disabled = true;
-    });
+// Validar antes de enviar
+form.addEventListener('submit', function (e) {
+    const total = parseFloat(totalSpan.innerText);
+    
+    if (total <= 0) {
+        e.preventDefault();
+        alert('⚠️ Debes seleccionar al menos un producto para continuar.');
+        return false;
+    }
+    
+    // Deshabilitar botón para evitar doble clic
+    btnPagar.disabled = true;
+    btnPagar.innerText = 'Procesando...';
 });
 
 function actualizarResumen(){
     let total=0;
     let contenido='';
+    let cantidadProductos = 0;
 
     inputs.forEach(input=>{
         const cantidad=parseInt(input.value)||0;
@@ -238,6 +274,7 @@ function actualizarResumen(){
             const precio=parseFloat(input.dataset.precio);
             const subtotal=cantidad*precio;
             total+=subtotal;
+            cantidadProductos += cantidad;
 
             contenido+=`
                 <div class="summary-item">
@@ -250,6 +287,9 @@ function actualizarResumen(){
 
     if(contenido===''){
         contenido='<p style="opacity:0.6;">No hay productos seleccionados.</p>';
+        btnPagar.disabled = true;
+    } else {
+        btnPagar.disabled = false;
     }
 
     resumenDiv.innerHTML=contenido;
@@ -279,6 +319,9 @@ document.addEventListener('click', (e)=>{
         menuToggle.classList.remove('active');
     }
 });
+
+// Inicializar
+actualizarResumen();
 </script>
 
 </body>
