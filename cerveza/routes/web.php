@@ -1,53 +1,52 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CervezaController;
-use Illuminate\Support\Facades\Route;
-use App\Services\TelegramService;
-use App\Http\Controllers\NosotrosController; 
+use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\NosotrosController;
+use App\Http\Controllers\ExchangeController;
+use App\Http\Controllers\PayPalController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Página principal
+Route::get('/', fn() => view('welcome'));
 
-Route::get('/cervezas', function () {
-    return view('cervezas');
-});
+// Dashboard
+Route::get('/dashboard', fn() => view('dashboard'))
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
+// Perfil de usuario
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-//Ruta para la vista de nosotros
+// Nosotros (solo usuarios autenticados)
+Route::middleware('auth')->get('/nosotros', [NosotrosController::class, 'index'])->name('nosotros.index');
+
+// Cervezas
+Route::get('/cervezas', [CervezaController::class, 'index'])->name('cervezas');
+Route::get('/cervezas/{id}', [CervezaController::class, 'show'])->name('cervezas.show');
+
+// Pedidos y PayPal (solo usuarios autenticados)
 Route::middleware('auth')->group(function () {
-    Route::get('/nosotros', [NosotrosController::class, 'index'])->name('nosotros.index');
-});
 
-
-//Rutas para pedidos
-use App\Http\Controllers\PedidoController;
-
-Route::middleware(['auth'])->group(function () {
-
+    // Pedidos
     Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index');
-
     Route::get('/pedidos/crear', [PedidoController::class, 'create'])->name('pedidos.create');
-
     Route::post('/pedidos', [PedidoController::class, 'store'])->name('pedidos.store');
+    Route::get('/pedidos/{id}/detalle', [PedidoController::class, 'detalle'])->name('pedidos.detalle');
+    Route::delete('/pedidos/{id}', [PedidoController::class, 'destroy'])->name('pedidos.destroy');
 
-    Route::delete('/pedidos/{pedido}', [PedidoController::class, 'destroy'])->name('pedidos.destroy');
+    // PayPal
+    Route::post('/paypal/payment', [PayPalController::class, 'createPayment'])->name('paypal.payment');
+    Route::get('/paypal/success', [PayPalController::class, 'paymentSuccess'])->name('paypal.success');
+    Route::get('/paypal/cancel', [PayPalController::class, 'paymentCancel'])->name('paypal.cancel');
 });
 
-
-
-
-
+// Test Telegram
 Route::get('/test-telegram', function() {
     $telegram = new \App\Services\TelegramService();
     
@@ -66,6 +65,9 @@ Route::get('/test-telegram', function() {
     }
 });
 
+
+Route::get('/cervezas', [CervezaController::class, 'index'])
+     ->name('cervezas');
 // Mostrar una cerveza individual
 Route::get('/cervezas/{id}', [CervezaController::class, 'show'])
     ->name('cervezas.show');
@@ -76,3 +78,4 @@ use App\Http\Controllers\ExchangeController;
 
 Route::post('/api/currency/convert', [ExchangeController::class, 'convert']);
 Route::get('/api/currency/rates', [ExchangeController::class, 'getRates']);
+
