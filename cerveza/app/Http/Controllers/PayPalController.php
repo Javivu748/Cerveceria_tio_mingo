@@ -116,7 +116,6 @@ class PayPalController extends Controller
                 
                 foreach ($order['links'] as $link) {
                     if ($link['rel'] === 'approve') {
->>>>>>> b13fda1c723d7b846b6cc5998653514cd12ca886
                         return redirect()->away($link['href']);
                     }
                 }
@@ -131,11 +130,7 @@ class PayPalController extends Controller
     }
 
     /**
-<<<<<<< HEAD
      * Pago exitoso - Capturar el pago
-=======
-     * Pago exitoso - Capturar y guardar
->>>>>>> b13fda1c723d7b846b6cc5998653514cd12ca886
      */
     public function paymentSuccess(Request $request)
     {
@@ -156,10 +151,7 @@ class PayPalController extends Controller
 
             if (isset($result['status']) && $result['status'] == 'COMPLETED') {
                 
-<<<<<<< HEAD
                 // Obtener datos del pedido temporal
-=======
->>>>>>> b13fda1c723d7b846b6cc5998653514cd12ca886
                 $pedidoTemp = session('pedido_temp');
                 
                 if (!$pedidoTemp) {
@@ -223,14 +215,9 @@ class PayPalController extends Controller
      */
     public function paymentCancel()
     {
-<<<<<<< HEAD
         // Limpiar datos de sesión
         session()->forget(['pedido_temp', 'paypal_order_id']);
         
         return redirect()->route('pedidos.index')->with('warning', 'Has cancelado el pago. Puedes intentarlo de nuevo cuando quieras.');
-=======
-        session()->forget(['pedido_temp', 'paypal_order_id']);
-        return redirect()->route('pedidos.index')->with('warning', 'Has cancelado el pago.');
->>>>>>> b13fda1c723d7b846b6cc5998653514cd12ca886
     }
 }
