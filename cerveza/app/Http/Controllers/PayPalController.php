@@ -113,12 +113,30 @@ class PayPalController extends Controller
                 }
             }
 
-            throw new \Exception('No se pudo crear la orden en PayPal');
 
         } catch (\Exception $e) {
-            Log::error('Error en PayPal createPayment: ' . $e->getMessage());
-            return redirect()->back()->with('error', 'Error al procesar el pago: ' . $e->getMessage());
-        }
+    // Log completo con stack trace
+    Log::error('Error en PayPal createPayment', [
+        'mensaje' => $e->getMessage(),
+        'archivo' => $e->getFile(),
+        'linea' => $e->getLine(),
+        'codigo' => $e->getCode(),
+        'trace' => $e->getTraceAsString(),
+        'tipo_excepcion' => get_class($e)
+    ]);
+    
+    // Si estás en desarrollo, muestra el error completo
+    if (config('app.debug')) {
+        dd([
+            'error' => $e->getMessage(),
+            'archivo' => $e->getFile(),
+            'linea' => $e->getLine(),
+            'trace' => $e->getTraceAsString()
+        ]);
+    }
+    
+    return redirect()->back()->with('error', 'Error al procesar el pago: ' . $e->getMessage());
+}
     }
 
     /**
