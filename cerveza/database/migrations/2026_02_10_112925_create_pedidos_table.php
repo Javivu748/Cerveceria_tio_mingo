@@ -11,7 +11,6 @@ return new class extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->date('fecha');
             $table->string('estado');
             $table->decimal('total', 10, 2);
             $table->string('metodoPago');
