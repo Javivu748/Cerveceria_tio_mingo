@@ -19,7 +19,7 @@ class LocalFactory extends Factory
     {
         return [
             'nombre' => fake()->firstName(),
-            'userId' => User::factory()->create()->id,
+            'user_Id' => User::factory()->create()->id,
             'telefono' => fake()->phoneNumber(),
             'email' => fake()->unique()->safeEmail(),
         ];
