@@ -12,22 +12,33 @@ class Pedido extends Model
     protected $table = "pedidos";
 
     protected $fillable = [
-        'fecha',
-        'user_id',
-        'estado',
-        'total',
-        'metodoPago',
-    ];
+    'user_id',
+    'fecha',
+    'total',
+    'estado',
+    'metodoPago',  
+    'paypal_order_id',
+    'paypal_payer_id',
+    'paypal_payer_email',
+];
 
     protected $casts = [
         'fecha' => 'date',
     ];
 
+    // Relación con usuario
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
+    // Relación uno a muchos (si usas tabla detalle_pedidos)
+    public function detalles()
+    {
+        return $this->hasMany(DetallePedido::class);
+    }
+
+    // Relación muchos a muchos con cervezas
     public function cervezas()
     {
         return $this->belongsToMany(
@@ -35,6 +46,7 @@ class Pedido extends Model
             'cerveza_pedido',
             'pedido_id',
             'cerveza_id'
-        )->withPivot('cantidad')->withTimestamps();
+        )->withPivot('cantidad')
+         ->withTimestamps();
     }
 }

@@ -761,14 +761,14 @@
                         @if($cerveza->estilo)
                         <div class="beer-attr">
                             <span class="beer-attr-icon">🏷️</span>
-                            <span>{{ $cerveza->estilo->name ?? $cerveza->estilo->nombre ?? '—' }}</span>
+                            <span>{{ $cerveza->estilo->nombre ?? '—' }}</span>
                         </div>
                         @endif
 
                         @if($cerveza->cerveceria)
                         <div class="beer-attr">
                             <span class="beer-attr-icon">🏭</span>
-                            <span>{{ $cerveza->cerveceria->name ?? $cerveza->cerveceria->nombre }}</span>
+                            <span>{{ $cerveza->cerveceria->nombre ?? '—' }}</span>
                         </div>
                         @endif
 
@@ -786,7 +786,7 @@
                             <div class="beer-price">€{{ number_format($cerveza->precio_eur, 2) }}</div>
                             <div class="beer-price-label">Precio unidad</div>
                         </div>
-                        <a href="#" class="beer-btn">Ver más</a>
+                        <a href="{{ route('cervezas.show', $cerveza->id) }}" class="beer-btn">Ver más</a>
                     </div>
                 </div>
             </article>

@@ -45,6 +45,18 @@ class ExchangeService
                 return $response->json();
             }
 
+            // Registrar el fallo para poder depurarlo desde los logs
+            try {
+                \Log::error('ExchangeService: request failed', [
+                    'url' => $this->apiUrl . 'latest',
+                    'params' => $params,
+                    'status' => $response->status(),
+                    'body' => $response->body(),
+                ]);
+            } catch (\Exception $e) {
+                // No interrumpir si falla el logger
+            }
+
             return null;
         });
     }
@@ -61,7 +73,14 @@ class ExchangeService
     {
         $rates = $this->getRates('EUR', [$from, $to]);
 
-        if (!$rates || !$rates['success']) {
+        // Aceptar formatos distintos: comprobamos que exista el array 'rates'
+        if (!$rates || !isset($rates['rates']) || !is_array($rates['rates'])) {
+            // Registrar info para depuración
+            try {
+                \Log::warning('ExchangeService::convert - invalid rates response', ['response' => $rates]);
+            } catch (\Exception $e) {
+            }
+
             return null;
         }
 
