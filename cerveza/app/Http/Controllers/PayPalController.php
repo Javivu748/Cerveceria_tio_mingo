@@ -9,6 +9,7 @@ use App\Models\DetallePedido;
 use App\Models\Cerveza;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class PayPalController extends Controller
 {
@@ -18,21 +19,13 @@ class PayPalController extends Controller
     public function createPayment(Request $request)
     {
         try {
-<<<<<<< HEAD
-            // 1. Validar que haya productos seleccionados
-=======
             // 1. Validar que haya productos
->>>>>>> b13fda1c723d7b846b6cc5998653514cd12ca886
             $request->validate([
                 'cervezas' => 'required|array',
                 'cervezas.*.cantidad' => 'integer|min:0',
             ]);
 
-<<<<<<< HEAD
-            // 2. Procesar las cervezas seleccionadas
-=======
             // 2. Procesar cervezas seleccionadas
->>>>>>> b13fda1c723d7b846b6cc5998653514cd12ca886
             $cervezasSeleccionadas = [];
             $total = 0;
 
@@ -52,16 +45,12 @@ class PayPalController extends Controller
                 }
             }
 
-            // 3. Verificar que hay productos
+            //Verificar que hay productos
             if (empty($cervezasSeleccionadas)) {
                 return redirect()->back()->with('error', 'Debes seleccionar al menos un producto.');
             }
 
-<<<<<<< HEAD
-            // 4. Guardar en sesión para usarlo después
-=======
             // 4. Guardar en sesión
->>>>>>> b13fda1c723d7b846b6cc5998653514cd12ca886
             session([
                 'pedido_temp' => [
                     'cervezas' => $cervezasSeleccionadas,
@@ -69,7 +58,7 @@ class PayPalController extends Controller
                 ]
             ]);
 
-            // 5. Configurar PayPal
+            //Configurar PayPal
             $provider = new PayPalClient;
             $provider->setApiCredentials(config('paypal'));
             $accessToken = $provider->getAccessToken();
@@ -78,7 +67,7 @@ class PayPalController extends Controller
                 throw new \Exception('No se pudo obtener el token de PayPal');
             }
 
-            // 6. Crear items para PayPal
+            //Crear items para PayPal
             $items = [];
             foreach ($cervezasSeleccionadas as $item) {
                 $items[] = [
@@ -91,11 +80,7 @@ class PayPalController extends Controller
                 ];
             }
 
-<<<<<<< HEAD
-            // 7. Crear la orden en PayPal
-=======
             // 7. Crear orden en PayPal
->>>>>>> b13fda1c723d7b846b6cc5998653514cd12ca886
             $order = $provider->createOrder([
                 "intent" => "CAPTURE",
                 "application_context" => [
@@ -125,17 +110,6 @@ class PayPalController extends Controller
                 ]
             ]);
 
-<<<<<<< HEAD
-            // 8. Verificar que se creó la orden
-            if (isset($order['id']) && $order['id'] != null) {
-                // Guardar el ID de la orden en sesión
-                session(['paypal_order_id' => $order['id']]);
-                
-                // Buscar el link de aprobación
-                foreach ($order['links'] as $link) {
-                    if ($link['rel'] === 'approve') {
-                        // Redirigir al usuario a PayPal
-=======
             // 8. Verificar orden creada
             if (isset($order['id']) && $order['id'] != null) {
                 session(['paypal_order_id' => $order['id']]);
@@ -172,12 +146,12 @@ class PayPalController extends Controller
                 return redirect()->route('pedidos.index')->with('error', 'No se encontró la orden.');
             }
 
-            // Configurar PayPal
+            //Configurar PayPal
             $provider = new PayPalClient;
             $provider->setApiCredentials(config('paypal'));
             $provider->getAccessToken();
 
-            // Capturar el pago
+            //Capturar el pago
             $result = $provider->capturePaymentOrder($orderId);
 
             if (isset($result['status']) && $result['status'] == 'COMPLETED') {
@@ -192,39 +166,23 @@ class PayPalController extends Controller
                     throw new \Exception('No se encontraron datos del pedido');
                 }
 
-<<<<<<< HEAD
-                // Guardar el pedido en la base de datos
-                DB::beginTransaction();
-                
-                try {
-                    // Crear el pedido
-                    $pedido = Pedido::create([
-                        'user_id' => auth()->id(),
-                        'total' => $pedidoTemp['total'],
-                        'estado' => 'pagado',
-=======
                 // Guardar en base de datos
                 DB::beginTransaction();
                 
                 try {
                     // Crear pedido
                     $pedido = Pedido::create([
-                        'user_id' => auth()->id(),
+                        'user_id' => Auth::id(),
                         'fecha' => now(),
                         'total' => $pedidoTemp['total'],
                         'estado' => 'completado',
                         'metodoPago' => 'paypal',              // ← LÍNEA AÑADIDA
->>>>>>> b13fda1c723d7b846b6cc5998653514cd12ca886
                         'paypal_order_id' => $orderId,
                         'paypal_payer_id' => $result['payer']['payer_id'] ?? null,
                         'paypal_payer_email' => $result['payer']['email_address'] ?? null,
                     ]);
 
-<<<<<<< HEAD
-                    // Crear los detalles del pedido
-=======
                     // Crear detalles
->>>>>>> b13fda1c723d7b846b6cc5998653514cd12ca886
                     foreach ($pedidoTemp['cervezas'] as $item) {
                         DetallePedido::create([
                             'pedido_id' => $pedido->id,
@@ -237,14 +195,10 @@ class PayPalController extends Controller
 
                     DB::commit();
 
-                    // Limpiar sesión
+                    //Limpiar sesión
                     session()->forget(['pedido_temp', 'paypal_order_id']);
 
-<<<<<<< HEAD
-                    // Redirigir a página de éxito
-=======
                     // IMPORTANTE: Mostrar vista de éxito
->>>>>>> b13fda1c723d7b846b6cc5998653514cd12ca886
                     return view('paypal.success', [
                         'pedido' => $pedido,
                         'paypalData' => $result
