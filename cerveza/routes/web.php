@@ -73,8 +73,7 @@ Route::get('/cervezas/{id}', [CervezaController::class, 'show'])
     ->name('cervezas.show');
 require __DIR__.'/auth.php';
 
-// API endpoints (compatibilidad local): exponer rutas de cambio bajo /api/currency
-use App\Http\Controllers\ExchangeController;
+
 
 Route::post('/api/currency/convert', [ExchangeController::class, 'convert']);
 Route::get('/api/currency/rates', [ExchangeController::class, 'getRates']);
