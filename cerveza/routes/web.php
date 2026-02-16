@@ -74,7 +74,6 @@ Route::get('/cervezas/{id}', [CervezaController::class, 'show'])
 require __DIR__.'/auth.php';
 
 
-
 Route::post('/api/currency/convert', [ExchangeController::class, 'convert']);
 Route::get('/api/currency/rates', [ExchangeController::class, 'getRates']);
 
