@@ -562,108 +562,11 @@
             <p>Gestiona tu información personal y preferencias de seguridad</p>
         </div>
 
-        {{-- ═══════════════════════════════════════════
-             SECCIÓN 1 — INFORMACIÓN DEL PERFIL
-        ════════════════════════════════════════════ --}}
-        <div class="profile-card">
 
-            <h2 class="section-title">Información del Perfil</h2>
-            <p class="section-subtitle">
-                Actualiza tu nombre y dirección de correo electrónico.
-            </p>
-            <hr class="section-divider">
-
-            <form method="post" action="{{ route('profile.update') }}">
-                @csrf
-                @method('patch')
-
-                {{-- Nombre --}}
-                <div class="form-group">
-                    <label class="field-label" for="name">Nombre</label>
-                    <div class="input-wrap">
-                        <span class="input-icon">👤</span>
-                        {{-- NOTA: He cambiado name="nombre" a name="name" para compatibilidad con Breeze --}}
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            value="{{ old('name', $user->name) }}"
-                            placeholder="Tu nombre completo"
-                            required
-                            autofocus
-                            autocomplete="name"
-                        >
-                    </div>
-                    @error('name')
-                        <p class="input-error">⚠ {{ $message }}</p>
-                    @enderror
-                </div>
-
-                {{-- OJO: Laravel por defecto no trae "apellido". Si lo añades, descomenta esto y asegúrate de tener el campo en DB --}}
-                {{-- 
-                <div class="form-group">
-                    <label class="field-label" for="apellido">Apellido</label>
-                    <div class="input-wrap">
-                        <span class="input-icon">👤</span>
-                        <input
-                            type="text"
-                            id="apellido"
-                            name="apellido"
-                            value="{{ old('apellido', $user->apellido) }}"
-                            placeholder="Tu apellido"
-                            autocomplete="family-name"
-                        >
-                    </div>
-                    @error('apellido')
-                        <p class="input-error">⚠ {{ $message }}</p>
-                    @enderror
-                </div>
-                --}}
-
-                {{-- Email --}}
-                <div class="form-group">
-                    <label class="field-label" for="email">Correo Electrónico</label>
-                    <div class="input-wrap">
-                        <span class="input-icon">✉</span>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            value="{{ old('email', $user->email) }}"
-                            placeholder="tu@correo.com"
-                            required
-                            autocomplete="username"
-                        >
-                    </div>
-                    @error('email')
-                        <p class="input-error">⚠ {{ $message }}</p>
-                    @enderror
-
-                    {{-- Aviso email no verificado --}}
-                    @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
-                        <div class="alert-warning">
-                            ⚠ Tu dirección de email aún no está verificada.
-                            <button type="button" form="send-verification" onclick="document.getElementById('send-verification').submit()">
-                                Haz clic aquí para reenviar el email de verificación.
-                            </button>
-                            @if (session('status') === 'verification-link-sent')
-                                <br><br>✓ Se ha enviado un nuevo enlace a tu dirección de email.
-                            @endif
-                        </div>
-                    @endif
-                </div>
-
-                <div class="form-footer">
-                    <button type="submit" class="btn-primary">Guardar Cambios</button>
-                    @if (session('status') === 'profile-updated')
-                        <span class="saved-flash">✓ Guardado correctamente</span>
-                    @endif
-                </div>
-            </form>
-        </div>
+  
 
         {{-- ═══════════════════════════════════════════
-             SECCIÓN 2 — ACTUALIZAR CONTRASEÑA
+             SECCIÓN 1 — ACTUALIZAR CONTRASEÑA
         ════════════════════════════════════════════ --}}
         <div class="profile-card">
 
@@ -747,7 +650,7 @@
         </div>
 
         {{-- ═══════════════════════════════════════════
-             SECCIÓN 3 — ELIMINAR CUENTA
+             SECCIÓN 2 — ELIMINAR CUENTA
         ════════════════════════════════════════════ --}}
         <div class="profile-card danger-card">
 

@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Cervecería Tío Mingo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --primary-gold: #D4A574;
@@ -38,14 +40,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                repeating-linear-gradient(
-                    90deg,
+            background-image:
+                repeating-linear-gradient(90deg,
                     transparent,
                     transparent 2px,
                     rgba(212, 165, 116, 0.03) 2px,
-                    rgba(212, 165, 116, 0.03) 4px
-                );
+                    rgba(212, 165, 116, 0.03) 4px);
             pointer-events: none;
             z-index: 1;
         }
@@ -71,8 +71,15 @@
         }
 
         @keyframes slideDown {
-            from { transform: translateY(-100%); opacity: 0; }
-            to   { transform: translateY(0);     opacity: 1; }
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .logo {
@@ -130,13 +137,19 @@
             transition: width 0.3s ease;
         }
 
-        nav a:hover            { color: var(--primary-gold); }
-        nav a:hover::after     { width: 100%; }
+        nav a:hover {
+            color: var(--primary-gold);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
 
         /* Enlace activo */
         nav a.active {
             color: var(--primary-gold);
         }
+
         nav a.active::after {
             width: 100%;
         }
@@ -213,9 +226,17 @@
             transition: all 0.3s ease;
         }
 
-        .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
-        .menu-toggle.active span:nth-child(2) { opacity: 0; }
-        .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
 
         /* ── HERO / WELCOME BANNER ── */
         .hero {
@@ -241,8 +262,17 @@
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1);   opacity: 0.1;  }
-            50%       { transform: scale(1.2); opacity: 0.15; }
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.1;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 0.15;
+            }
         }
 
         .hero-content {
@@ -255,8 +285,15 @@
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to   { opacity: 1; transform: translateY(0);    }
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero-text h1 {
@@ -342,13 +379,17 @@
         .cta-button::before {
             content: '';
             position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
             background: rgba(255, 255, 255, 0.3);
             transition: left 0.5s ease;
         }
 
-        .cta-button:hover::before { left: 100%; }
+        .cta-button:hover::before {
+            left: 100%;
+        }
 
         .cta-button:hover {
             transform: translateY(-3px);
@@ -396,14 +437,14 @@
             width: 100%;
             height: 550px;
             background: linear-gradient(180deg,
-                rgba(255, 193, 7, 0.1)  0%,
-                rgba(255, 152, 0, 0.2) 30%,
-                rgba(255, 111, 0, 0.3) 70%,
-                rgba(230, 81,  0, 0.4) 100%
-            );
+                    rgba(255, 193, 7, 0.1) 0%,
+                    rgba(255, 152, 0, 0.2) 30%,
+                    rgba(255, 111, 0, 0.3) 70%,
+                    rgba(230, 81, 0, 0.4) 100%);
             border-radius: 0 0 50% 50% / 0 0 30% 30%;
             position: absolute;
-            bottom: 0; left: 0;
+            bottom: 0;
+            left: 0;
             box-shadow:
                 inset 0 -50px 100px rgba(255, 193, 7, 0.3),
                 0 20px 60px rgba(0, 0, 0, 0.5);
@@ -411,59 +452,107 @@
         }
 
         @keyframes fillGlass {
-            from { clip-path: inset(100% 0 0 0); }
-            to   { clip-path: inset(0 0 0 0);    }
+            from {
+                clip-path: inset(100% 0 0 0);
+            }
+
+            to {
+                clip-path: inset(0 0 0 0);
+            }
         }
 
         .beer-glass::after {
             content: '';
             position: absolute;
-            top: 20%; right: 10%;
-            width: 40%; height: 60%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 50%);
+            top: 20%;
+            right: 10%;
+            width: 40%;
+            height: 60%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, transparent 50%);
             border-radius: 50%;
             filter: blur(20px);
         }
 
         .espuma {
             position: absolute;
-            bottom: -50px; left: 0;
-            width: 100%; height: 140px;
+            bottom: -50px;
+            left: 0;
+            width: 100%;
+            height: 140px;
             background: radial-gradient(ellipse at center,
-                rgba(255,255,255,0.95)  0%,
-                rgba(255,248,220,0.9)  30%,
-                rgba(255,248,220,0.7)  60%,
-                rgba(255,248,220,0.5) 100%
-            );
+                    rgba(255, 255, 255, 0.95) 0%,
+                    rgba(255, 248, 220, 0.9) 30%,
+                    rgba(255, 248, 220, 0.7) 60%,
+                    rgba(255, 248, 220, 0.5) 100%);
             animation: foamRise 2.5s ease-out 1s both, foamFloat 3s ease-in-out 3.5s infinite;
             filter: blur(2px);
             z-index: 10;
         }
 
         @keyframes foamRise {
-            0%   { transform: translateY(0);      opacity: 0; }
-            10%  { opacity: 1; }
-            100% { transform: translateY(-540px); opacity: 1; }
+            0% {
+                transform: translateY(0);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-540px);
+                opacity: 1;
+            }
         }
 
         @keyframes foamFloat {
-            0%, 100% { transform: translateY(-540px) scale(1);    }
-            50%       { transform: translateY(-548px) scale(1.03); }
+
+            0%,
+            100% {
+                transform: translateY(-540px) scale(1);
+            }
+
+            50% {
+                transform: translateY(-548px) scale(1.03);
+            }
         }
 
-        .espuma::before, .espuma::after {
+        .espuma::before,
+        .espuma::after {
             content: '';
             position: absolute;
-            background: radial-gradient(circle, rgba(255,255,255,0.9), rgba(255,248,220,0.6));
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.9), rgba(255, 248, 220, 0.6));
             border-radius: 50%;
         }
 
-        .espuma::before { width:60px; height:60px; top:20px; left:20%;  animation: bubble 4s ease-in-out 3s   infinite; }
-        .espuma::after  { width:50px; height:50px; top:35px; right:25%; animation: bubble 4s ease-in-out 3.5s infinite; }
+        .espuma::before {
+            width: 60px;
+            height: 60px;
+            top: 20px;
+            left: 20%;
+            animation: bubble 4s ease-in-out 3s infinite;
+        }
+
+        .espuma::after {
+            width: 50px;
+            height: 50px;
+            top: 35px;
+            right: 25%;
+            animation: bubble 4s ease-in-out 3.5s infinite;
+        }
 
         @keyframes bubble {
-            0%,100% { transform: translateY(0)    scale(1);   opacity:0.8; }
-            50%      { transform: translateY(-10px) scale(1.1); opacity:1;   }
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: translateY(-10px) scale(1.1);
+                opacity: 1;
+            }
         }
 
         /* ── STATS BANNER (nuevo, sólo en dashboard) ── */
@@ -487,10 +576,21 @@
             animation: fadeInUp 0.8s ease-out both;
         }
 
-        .stat-item:nth-child(1) { animation-delay: 0.1s; }
-        .stat-item:nth-child(2) { animation-delay: 0.2s; }
-        .stat-item:nth-child(3) { animation-delay: 0.3s; }
-        .stat-item:nth-child(4) { animation-delay: 0.4s; }
+        .stat-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .stat-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .stat-item:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .stat-item:nth-child(4) {
+            animation-delay: 0.4s;
+        }
 
         .stat-number {
             font-family: 'Bebas Neue', sans-serif;
@@ -545,20 +645,32 @@
             color: inherit;
         }
 
-        .feature-card:nth-child(1) { animation-delay: 0.2s; }
-        .feature-card:nth-child(2) { animation-delay: 0.4s; }
-        .feature-card:nth-child(3) { animation-delay: 0.6s; }
+        .feature-card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .feature-card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .feature-card:nth-child(3) {
+            animation-delay: 0.6s;
+        }
 
         .feature-card::before {
             content: '';
             position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(212,165,116,0.1), transparent);
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 165, 116, 0.1), transparent);
             transition: left 0.6s ease;
         }
 
-        .feature-card:hover::before { left: 100%; }
+        .feature-card:hover::before {
+            left: 100%;
+        }
 
         .feature-card:hover {
             transform: translateY(-10px);
@@ -568,7 +680,8 @@
         /* Indicador de "disponible" en las cards del dashboard */
         .card-badge {
             position: absolute;
-            top: 1rem; right: 1rem;
+            top: 1rem;
+            right: 1rem;
             background: var(--forest-green);
             color: #fff;
             font-size: 0.65rem;
@@ -648,21 +761,43 @@
 
         /* ── RESPONSIVE ── */
         @media (max-width: 1024px) {
-            .logo { font-size: 1.8rem; }
-            .logo::after { right: -35px; font-size: 1.6rem; }
-            nav { gap: 1.5rem; }
-            nav a { font-size: 0.85rem; }
-            .hero-text h1 { font-size: 4rem; }
-            .hero-text h1 span { font-size: 3rem; }
+            .logo {
+                font-size: 1.8rem;
+            }
+
+            .logo::after {
+                right: -35px;
+                font-size: 1.6rem;
+            }
+
+            nav {
+                gap: 1.5rem;
+            }
+
+            nav a {
+                font-size: 0.85rem;
+            }
+
+            .hero-text h1 {
+                font-size: 4rem;
+            }
+
+            .hero-text h1 span {
+                font-size: 3rem;
+            }
         }
 
         @media (max-width: 968px) {
-            header { padding: 1.5rem 4%; }
+            header {
+                padding: 1.5rem 4%;
+            }
 
             .nav-container {
                 position: fixed;
-                top: 0; right: -100%;
-                height: 100vh; width: 300px;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 300px;
                 background: rgba(44, 24, 16, 0.98);
                 backdrop-filter: blur(20px);
                 flex-direction: column;
@@ -670,26 +805,47 @@
                 gap: 2rem;
                 transition: right 0.4s ease;
                 border-left: 2px solid var(--primary-gold);
-                box-shadow: -5px 0 20px rgba(0,0,0,0.5);
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
             }
 
-            .nav-container.active { right: 0; }
+            .nav-container.active {
+                right: 0;
+            }
 
-            nav { flex-direction: column; gap: 1.5rem; width: 100%; }
-            nav a { font-size: 1rem; padding: 0.5rem 0; width: 100%; text-align: center; }
+            nav {
+                flex-direction: column;
+                gap: 1.5rem;
+                width: 100%;
+            }
+
+            nav a {
+                font-size: 1rem;
+                padding: 0.5rem 0;
+                width: 100%;
+                text-align: center;
+            }
 
             .auth-buttons {
                 flex-direction: column;
-                width: 100%; gap: 1rem;
+                width: 100%;
+                gap: 1rem;
             }
 
-            .btn-profile, .btn-logout {
-                width: 100%; text-align: center; padding: 1rem 1.5rem; font-size: 0.9rem;
+            .btn-profile,
+            .btn-logout {
+                width: 100%;
+                text-align: center;
+                padding: 1rem 1.5rem;
+                font-size: 0.9rem;
             }
 
-            .user-greeting { text-align: center; }
+            .user-greeting {
+                text-align: center;
+            }
 
-            .menu-toggle { display: flex; }
+            .menu-toggle {
+                display: flex;
+            }
 
             .hero-content {
                 grid-template-columns: 1fr;
@@ -697,266 +853,413 @@
                 gap: 3rem;
             }
 
-            .hero-text h1 { font-size: 3.5rem; }
-            .hero-text h1 span { font-size: 2.5rem; }
-            .hero-ctas { justify-content: center; }
+            .hero-text h1 {
+                font-size: 3.5rem;
+            }
 
-            .beer-container { max-width: 350px; height: 550px; }
-            .beer-glass { height: 450px; }
+            .hero-text h1 span {
+                font-size: 2.5rem;
+            }
+
+            .hero-ctas {
+                justify-content: center;
+            }
+
+            .beer-container {
+                max-width: 350px;
+                height: 550px;
+            }
+
+            .beer-glass {
+                height: 450px;
+            }
 
             .espuma {
                 animation: foamRiseResponsiveMedium 2.5s ease-out 1s both,
-                           foamFloatResponsiveMedium 3s ease-in-out 3.5s infinite;
+                    foamFloatResponsiveMedium 3s ease-in-out 3.5s infinite;
             }
 
             @keyframes foamRiseResponsiveMedium {
-                0%   { transform: translateY(0);      opacity: 0; }
-                10%  { opacity: 1; }
-                100% { transform: translateY(-440px); opacity: 1; }
+                0% {
+                    transform: translateY(0);
+                    opacity: 0;
+                }
+
+                10% {
+                    opacity: 1;
+                }
+
+                100% {
+                    transform: translateY(-440px);
+                    opacity: 1;
+                }
             }
 
             @keyframes foamFloatResponsiveMedium {
-                0%,100% { transform: translateY(-440px) scale(1);    }
-                50%      { transform: translateY(-448px) scale(1.03); }
+
+                0%,
+                100% {
+                    transform: translateY(-440px) scale(1);
+                }
+
+                50% {
+                    transform: translateY(-448px) scale(1.03);
+                }
             }
 
-            .features-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
         }
 
         @media (max-width: 640px) {
-            header { padding: 1rem 4%; }
-            .logo { font-size: 1.5rem; letter-spacing: 2px; }
-            .logo::after { right: -30px; font-size: 1.4rem; top: -3px; }
-            .nav-container { width: 280px; }
-            .hero { min-height: auto; padding: 3rem 4% 4rem; }
-            .hero-content { gap: 2rem; }
-            .hero-text h1 { font-size: 2.5rem; margin-bottom: 1rem; }
-            .hero-text h1 span { font-size: 1.8rem; }
-            .hero-text p { font-size: 1rem; margin-bottom: 2rem; }
-            .cta-button, .cta-button-outline { padding: 1rem 2rem; font-size: 0.9rem; width: 100%; text-align: center; }
-            .beer-container { max-width: 280px; height: 480px; }
-            .beer-glass { height: 380px; }
+            header {
+                padding: 1rem 4%;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+                letter-spacing: 2px;
+            }
+
+            .logo::after {
+                right: -30px;
+                font-size: 1.4rem;
+                top: -3px;
+            }
+
+            .nav-container {
+                width: 280px;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 3rem 4% 4rem;
+            }
+
+            .hero-content {
+                gap: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .hero-text h1 span {
+                font-size: 1.8rem;
+            }
+
+            .hero-text p {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .cta-button,
+            .cta-button-outline {
+                padding: 1rem 2rem;
+                font-size: 0.9rem;
+                width: 100%;
+                text-align: center;
+            }
+
+            .beer-container {
+                max-width: 280px;
+                height: 480px;
+            }
+
+            .beer-glass {
+                height: 380px;
+            }
 
             .espuma {
                 animation: foamRiseResponsiveSmall 2.5s ease-out 1s both,
-                           foamFloatResponsiveSmall 3s ease-in-out 3.5s infinite;
+                    foamFloatResponsiveSmall 3s ease-in-out 3.5s infinite;
             }
 
             @keyframes foamRiseResponsiveSmall {
-                0%   { transform: translateY(0);      opacity: 0; }
-                10%  { opacity: 1; }
-                100% { transform: translateY(-370px); opacity: 1; }
+                0% {
+                    transform: translateY(0);
+                    opacity: 0;
+                }
+
+                10% {
+                    opacity: 1;
+                }
+
+                100% {
+                    transform: translateY(-370px);
+                    opacity: 1;
+                }
             }
 
             @keyframes foamFloatResponsiveSmall {
-                0%,100% { transform: translateY(-370px) scale(1);    }
-                50%      { transform: translateY(-378px) scale(1.03); }
+
+                0%,
+                100% {
+                    transform: translateY(-370px) scale(1);
+                }
+
+                50% {
+                    transform: translateY(-378px) scale(1.03);
+                }
             }
 
-            .features { padding: 4rem 4%; }
-            .features-title { font-size: 2.5rem; margin-bottom: 2.5rem; }
-            .feature-card { padding: 2rem; }
-            .feature-icon { font-size: 3rem; }
-            .feature-card h3 { font-size: 1.5rem; }
-            .feature-card p { font-size: 0.95rem; }
-            .stat-number { font-size: 2.5rem; }
+            .features {
+                padding: 4rem 4%;
+            }
+
+            .features-title {
+                font-size: 2.5rem;
+                margin-bottom: 2.5rem;
+            }
+
+            .feature-card {
+                padding: 2rem;
+            }
+
+            .feature-icon {
+                font-size: 3rem;
+            }
+
+            .feature-card h3 {
+                font-size: 1.5rem;
+            }
+
+            .feature-card p {
+                font-size: 0.95rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
         }
 
         @media (max-width: 400px) {
-            .logo { font-size: 1.3rem; }
-            .hero-text h1 { font-size: 2rem; }
-            .hero-text h1 span { font-size: 1.5rem; }
-            .beer-container { max-width: 240px; height: 420px; }
-            .beer-glass { height: 330px; }
-            .espuma { height: 120px; }
-            .features-title { font-size: 2rem; }
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .hero-text h1 span {
+                font-size: 1.5rem;
+            }
+
+            .beer-container {
+                max-width: 240px;
+                height: 420px;
+            }
+
+            .beer-glass {
+                height: 330px;
+            }
+
+            .espuma {
+                height: 120px;
+            }
+
+            .features-title {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
-<body>
-<div class="container">
 
-    {{-- ═══════════════════════════════════════════
+<body>
+    <div class="container">
+
+        {{-- ═══════════════════════════════════════════
          HEADER — mismo estilo que welcome, 
          pero con enlaces desbloqueados + menú de usuario
     ════════════════════════════════════════════ --}}
-    <header>
-        <a href="{{ url('/') }}" class="logo">CERVECERÍA TÍO MINGO</a>
+        <header>
+            <a href="{{ url('/') }}" class="logo">CERVECERÍA TÍO MINGO</a>
 
-        <div class="menu-toggle" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-
-        <div class="nav-container" id="navContainer">
-            <nav>
-                <a href="{{ route('cervezas') }}">Cervezas</a>
-                <a href="/nosotros">Nosotros</a>
-                <a href="#">Tienda</a>
-                <a href="{{ route('pedidos.index') }}">Pedidos</a>
-            </nav>
-
-
-
-
-            <div class="auth-buttons">
-                {{-- Saludo al usuario autenticado --}}
-                <span class="user-greeting">
-                    ¡Hola, {{ Auth::user()->nombre }}!
-                </span>
-
-                {{-- Botón perfil --}}
-                <a href="{{ route('profile.edit') }}" class="btn-profile">Mi Perfil</a>
-
-                {{-- Cerrar sesión (form POST para CSRF) --}}
-                <form method="POST" action="{{ route('logout') }}" style="display:inline;">
-                    @csrf
-                    <button type="submit" class="btn-logout">Salir</button>
-                </form>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
-        </div>
-    </header>
 
-    {{-- ═══════════════════════════════════════════
+            <div class="nav-container" id="navContainer">
+                <nav>
+                    <a href="{{ route('cervezas') }}">Cervezas</a>
+                    <a href="/nosotros">Nosotros</a>
+                    <a href="/editar">Editar Perfil</a>
+                    <a href="{{ route('pedidos.index') }}">Pedidos</a>
+                </nav>
+
+
+
+
+                <div class="auth-buttons">
+                    {{-- Saludo al usuario autenticado --}}
+                    <span class="user-greeting">
+                        ¡Hola, {{ Auth::user()->nombre }}!
+                    </span>
+
+                    {{-- Botón perfil --}}
+                    <a href="{{ route('profile.edit') }}" class="btn-profile">Mi Perfil</a>
+
+                    @if (auth()->check() && auth()->user()->role === 'ADMIN')
+                        <a href="{{ route('admin.usuarios') }}" class="btn-profile">
+                            Panel de Administración
+                        </a>
+                    @endif
+
+                    {{-- Cerrar sesión (form POST para CSRF) --}}
+                    <form method="POST" action="{{ route('logout') }}" style="display:inline;">
+                        @csrf
+                        <button type="submit" class="btn-logout">Salir</button>
+                    </form>
+                </div>
+            </div>
+        </header>
+
+        {{-- ═══════════════════════════════════════════
          HERO — igual que welcome, 
          pero con texto personalizado + doble CTA
     ════════════════════════════════════════════ --}}
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
 
-                {{-- Badge de sesión activa --}}
-                <div class="welcome-badge">
-                    Sesión activa — {{ Auth::user()->nombre }} {{ Auth::user()->apellido }}
+                    {{-- Badge de sesión activa --}}
+                    <div class="welcome-badge">
+                        Sesión activa — {{ Auth::user()->nombre }} {{ Auth::user()->apellido }}
+                    </div>
+
+                    <h1>
+                        BIENVENIDO DE NUEVO
+                        <span>A Tu Cervecería</span>
+                    </h1>
+                    <p>
+                        Ya tienes acceso completo a todo lo que Cervecería Tío Mingo
+                        tiene para ofrecerte. Explora nuestro catálogo de cervezas
+                        artesanales, conoce nuestra historia y visita la tienda.
+                    </p>
+
+                    <div class="hero-ctas">
+                        <a href="#" class="cta-button">Ver Cervezas</a>
+                        <a href="#" class="cta-button-outline">Ir a la Tienda</a>
+                    </div>
                 </div>
 
-                <h1>
-                    BIENVENIDO DE NUEVO
-                    <span>A Tu Cervecería</span>
-                </h1>
-                <p>
-                    Ya tienes acceso completo a todo lo que Cervecería Tío Mingo
-                    tiene para ofrecerte. Explora nuestro catálogo de cervezas
-                    artesanales, conoce nuestra historia y visita la tienda.
-                </p>
-
-                <div class="hero-ctas">
-                    <a href="#" class="cta-button">Ver Cervezas</a>
-                    <a href="#" class="cta-button-outline">Ir a la Tienda</a>
+                {{-- Animación vaso de cerveza — idéntica al welcome --}}
+                <div class="hero-image">
+                    <div class="beer-container">
+                        <div class="espuma"></div>
+                        <div class="beer-glass"></div>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            {{-- Animación vaso de cerveza — idéntica al welcome --}}
-            <div class="hero-image">
-                <div class="beer-container">
-                    <div class="espuma"></div>
-                    <div class="beer-glass"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    {{-- ═══════════════════════════════════════════
+        {{-- ═══════════════════════════════════════════
          STATS — bloque exclusivo del dashboard
     ════════════════════════════════════════════ --}}
-    <section class="stats-banner">
-        <div class="stats-grid">
-            <div class="stat-item">
-                <div class="stat-number">12+</div>
-                <div class="stat-label">Estilos de Cerveza</div>
+        <section class="stats-banner">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">12+</div>
+                    <div class="stat-label">Estilos de Cerveza</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Natural</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Premios Ganados</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Años de Pasión</div>
+                </div>
             </div>
-            <div class="stat-item">
-                <div class="stat-number">100%</div>
-                <div class="stat-label">Natural</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">3</div>
-                <div class="stat-label">Premios Ganados</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">∞</div>
-                <div class="stat-label">Años de Pasión</div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    {{-- ═══════════════════════════════════════════
+        {{-- ═══════════════════════════════════════════
          FEATURES — igual que welcome, 
          pero las cards son clicables y tienen badge
     ════════════════════════════════════════════ --}}
-    <section class="features">
-        <h2 class="features-title">¿Qué Quieres Explorar?</h2>
-        <div class="features-grid">
+        <section class="features">
+            <h2 class="features-title">¿Qué Quieres Explorar?</h2>
+            <div class="features-grid">
 
-            <a href="#" class="feature-card">
-                <span class="card-badge card-badge-soon">Próximamente</span>
-                <h3>Nuestras Cervezas</h3>
-                <p>
-                    Descubre toda nuestra gama de cervezas artesanales. 
-                    Desde IPA refrescantes hasta stouts oscuras y aterciopeladas.
-                </p>
-                <span class="card-cta">Explorar catálogo →</span>
-            </a>
+                <a href="#" class="feature-card">
+                    <span class="card-badge card-badge-soon">Próximamente</span>
+                    <h3>Nuestras Cervezas</h3>
+                    <p>
+                        Descubre toda nuestra gama de cervezas artesanales.
+                        Desde IPA refrescantes hasta stouts oscuras y aterciopeladas.
+                    </p>
+                    <span class="card-cta">Explorar catálogo →</span>
+                </a>
 
-            <a href="#" class="feature-card">
-                <span class="card-badge card-badge-soon">Próximamente</span>
-                <span class="feature-icon">⚗️</span>
-                <h3>Nuestra Historia</h3>
-                <p>
-                    Conoce el proceso artesanal y la historia detrás de 
-                    cada receta perfeccionada por generaciones de maestros cerveceros.
-                </p>
-                <span class="card-cta">Conocer más →</span>
-            </a>
+                <a href="#" class="feature-card">
+                    <span class="card-badge card-badge-soon">Próximamente</span>
+                    <span class="feature-icon">⚗️</span>
+                    <h3>Nuestra Historia</h3>
+                    <p>
+                        Conoce el proceso artesanal y la historia detrás de
+                        cada receta perfeccionada por generaciones de maestros cerveceros.
+                    </p>
+                    <span class="card-cta">Conocer más →</span>
+                </a>
 
-            <a href="#" class="feature-card">
-                <span class="card-badge card-badge-soon">Próximamente</span>
-                <span class="feature-icon">🏆</span>
-                <h3>Tienda Online</h3>
-                <p>
-                    Pide directamente desde casa. Envíos rápidos y seguros 
-                    para que nunca te falte tu cerveza favorita.
-                </p>
-                <span class="card-cta">Ir a la tienda →</span>
-            </a>
+                <a href="#" class="feature-card">
+                    <span class="card-badge card-badge-soon">Próximamente</span>
+                    <span class="feature-icon">🏆</span>
+                    <h3>Tienda Online</h3>
+                    <p>
+                        Pide directamente desde casa. Envíos rápidos y seguros
+                        para que nunca te falte tu cerveza favorita.
+                    </p>
+                    <span class="card-cta">Ir a la tienda →</span>
+                </a>
 
-        </div>
-    </section>
+            </div>
+        </section>
 
-    {{-- Footer mínimo --}}
-    <footer>
-        <div class="footer-logo">CERVECERÍA TÍO MINGO</div>
-        <div class="footer-text">© {{ date('Y') }} — Hecho con pasión 🍺</div>
-    </footer>
+        {{-- Footer mínimo --}}
+        <footer>
+            <div class="footer-logo">CERVECERÍA TÍO MINGO</div>
+            <div class="footer-text">© {{ date('Y') }} — Hecho con pasión 🍺</div>
+        </footer>
 
-</div>
+    </div>
 
-<script>
-    function toggleMenu() {
-        const navContainer = document.getElementById('navContainer');
-        const menuToggle   = document.querySelector('.menu-toggle');
-        navContainer.classList.toggle('active');
-        menuToggle.classList.toggle('active');
-    }
-
-    // Cerrar menú al hacer clic en cualquier enlace
-    document.querySelectorAll('.nav-container a, .nav-container button').forEach(el => {
-        el.addEventListener('click', () => {
-            document.getElementById('navContainer').classList.remove('active');
-            document.querySelector('.menu-toggle').classList.remove('active');
-        });
-    });
-
-    // Cerrar menú al hacer clic fuera
-    document.addEventListener('click', (e) => {
-        const navContainer = document.getElementById('navContainer');
-        const menuToggle   = document.querySelector('.menu-toggle');
-        if (!navContainer.contains(e.target) && !menuToggle.contains(e.target)) {
-            navContainer.classList.remove('active');
-            menuToggle.classList.remove('active');
+    <script>
+        function toggleMenu() {
+            const navContainer = document.getElementById('navContainer');
+            const menuToggle = document.querySelector('.menu-toggle');
+            navContainer.classList.toggle('active');
+            menuToggle.classList.toggle('active');
         }
-    });
-</script>
+
+        // Cerrar menú al hacer clic en cualquier enlace
+        document.querySelectorAll('.nav-container a, .nav-container button').forEach(el => {
+            el.addEventListener('click', () => {
+                document.getElementById('navContainer').classList.remove('active');
+                document.querySelector('.menu-toggle').classList.remove('active');
+            });
+        });
+
+        // Cerrar menú al hacer clic fuera
+        document.addEventListener('click', (e) => {
+            const navContainer = document.getElementById('navContainer');
+            const menuToggle = document.querySelector('.menu-toggle');
+            if (!navContainer.contains(e.target) && !menuToggle.contains(e.target)) {
+                navContainer.classList.remove('active');
+                menuToggle.classList.remove('active');
+            }
+        });
+    </script>
 </body>
+
 </html>

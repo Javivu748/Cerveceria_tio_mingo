@@ -7,6 +7,7 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\NosotrosController;
 use App\Http\Controllers\ExchangeController;
 use App\Http\Controllers\PayPalController;
+use App\Http\Controllers\UserController;
 
 // Página principal
 Route::get('/', fn() => view('welcome'));
@@ -21,10 +22,22 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+    // Mi perfil con información y pedidos
+    
 });
 
 // Nosotros (solo usuarios autenticados)
 Route::middleware('auth')->get('/nosotros', [NosotrosController::class, 'index'])->name('nosotros.index');
+
+// Dashboard Admin (solo usuarios autenticados con role ADMIN)
+Route::middleware(['auth', 'verified', 'ADMIN'])->group(function () {
+    Route::get('/admin/usuarios', [UserController::class, 'dashboard'])->name('admin.usuarios');
+    Route::get('/usuario/{id}', [UserController::class, 'userProfile'])->name('user.profile');
+    Route::get('/editar', [UserController::class, 'editar'])->name('editar.perfil');
+    Route::patch('/usuario/{id}', [UserController::class, 'update'])->name('user.update');
+    Route::post('/eliminar-cuenta/{id}', [UserController::class, 'eliminar'])->name('user.eliminar');
+});
 
 // Cervezas
 Route::get('/cervezas', [CervezaController::class, 'index'])->name('cervezas');
