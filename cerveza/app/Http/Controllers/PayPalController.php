@@ -9,6 +9,7 @@ use App\Models\DetallePedido;
 use App\Models\Cerveza;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class PayPalController extends Controller
 {
@@ -18,13 +19,13 @@ class PayPalController extends Controller
     public function createPayment(Request $request)
     {
         try {
-            // 1. Validar que haya productos
+            //Validar que haya productos
             $request->validate([
                 'cervezas' => 'required|array',
                 'cervezas.*.cantidad' => 'integer|min:0',
             ]);
 
-            // 2. Procesar cervezas seleccionadas
+            //Procesar cervezas seleccionadas
             $cervezasSeleccionadas = [];
             $total = 0;
 
@@ -44,12 +45,12 @@ class PayPalController extends Controller
                 }
             }
 
-            // 3. Verificar que hay productos
+            //Verificar que hay productos
             if (empty($cervezasSeleccionadas)) {
                 return redirect()->back()->with('error', 'Debes seleccionar al menos un producto.');
             }
 
-            // 4. Guardar en sesión
+            //Guardar en sesión
             session([
                 'pedido_temp' => [
                     'cervezas' => $cervezasSeleccionadas,
@@ -57,7 +58,7 @@ class PayPalController extends Controller
                 ]
             ]);
 
-            // 5. Configurar PayPal
+            //Configurar PayPal
             $provider = new PayPalClient;
             $provider->setApiCredentials(config('paypal'));
             $accessToken = $provider->getAccessToken();
@@ -66,7 +67,7 @@ class PayPalController extends Controller
                 throw new \Exception('No se pudo obtener el token de PayPal');
             }
 
-            // 6. Crear items para PayPal
+            //Crear items para PayPal
             $items = [];
             foreach ($cervezasSeleccionadas as $item) {
                 $items[] = [
@@ -79,7 +80,7 @@ class PayPalController extends Controller
                 ];
             }
 
-            // 7. Crear orden en PayPal
+            //Crear orden en PayPal
             $order = $provider->createOrder([
                 "intent" => "CAPTURE",
                 "application_context" => [
@@ -109,7 +110,7 @@ class PayPalController extends Controller
                 ]
             ]);
 
-            // 8. Verificar orden creada
+            //Verificar orden creada
             if (isset($order['id']) && $order['id'] != null) {
                 session(['paypal_order_id' => $order['id']]);
                 
@@ -140,12 +141,12 @@ class PayPalController extends Controller
                 return redirect()->route('pedidos.index')->with('error', 'No se encontró la orden.');
             }
 
-            // Configurar PayPal
+            //Configurar PayPal
             $provider = new PayPalClient;
             $provider->setApiCredentials(config('paypal'));
             $provider->getAccessToken();
 
-            // Capturar el pago
+            //Capturar el pago
             $result = $provider->capturePaymentOrder($orderId);
 
             if (isset($result['status']) && $result['status'] == 'COMPLETED') {
@@ -156,23 +157,23 @@ class PayPalController extends Controller
                     throw new \Exception('No se encontraron datos del pedido');
                 }
 
-                // Guardar en base de datos
+                //Guardar en base de datos
                 DB::beginTransaction();
                 
                 try {
                     // Crear pedido
                     $pedido = Pedido::create([
-                        'user_id' => auth()->id(),
+                        'user_id' => Auth::id(),
                         'fecha' => now(),
                         'total' => $pedidoTemp['total'],
                         'estado' => 'completado',
-                        'metodoPago' => 'paypal',              // ← LÍNEA AÑADIDA
+                        'metodoPago' => 'paypal',              
                         'paypal_order_id' => $orderId,
                         'paypal_payer_id' => $result['payer']['payer_id'] ?? null,
                         'paypal_payer_email' => $result['payer']['email_address'] ?? null,
                     ]);
 
-                    // Crear detalles
+                    //Crear detalles
                     foreach ($pedidoTemp['cervezas'] as $item) {
                         DetallePedido::create([
                             'pedido_id' => $pedido->id,
@@ -185,10 +186,10 @@ class PayPalController extends Controller
 
                     DB::commit();
 
-                    // Limpiar sesión
+                    //Limpiar sesión
                     session()->forget(['pedido_temp', 'paypal_order_id']);
 
-                    // IMPORTANTE: Mostrar vista de éxito
+                    //Mostrar vista de éxito
                     return view('paypal.success', [
                         'pedido' => $pedido,
                         'paypalData' => $result
