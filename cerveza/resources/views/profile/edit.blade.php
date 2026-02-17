@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Perfil - Cervecería Tío Mingo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
     <style>
         /* TUS ESTILOS CSS ORIGINALES SE MANTIENEN IGUAL */
         :root {
@@ -20,7 +22,11 @@
             --danger-light: #e74c3c;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: 'Montserrat', sans-serif;
@@ -36,12 +42,10 @@
             content: '';
             position: fixed;
             inset: 0;
-            background-image: repeating-linear-gradient(
-                90deg,
-                transparent, transparent 2px,
-                rgba(212, 165, 116, 0.03) 2px,
-                rgba(212, 165, 116, 0.03) 4px
-            );
+            background-image: repeating-linear-gradient(90deg,
+                    transparent, transparent 2px,
+                    rgba(212, 165, 116, 0.03) 2px,
+                    rgba(212, 165, 116, 0.03) 4px);
             pointer-events: none;
             z-index: 0;
         }
@@ -61,8 +65,17 @@
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1);   opacity: 0.06; }
-            50%       { transform: scale(1.2); opacity: 0.10; }
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.06;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 0.10;
+            }
         }
 
         /* ── HEADER ── */
@@ -81,8 +94,15 @@
         }
 
         @keyframes slideDown {
-            from { transform: translateY(-100%); opacity: 0; }
-            to   { transform: translateY(0);     opacity: 1; }
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .logo {
@@ -119,8 +139,13 @@
             transition: color 0.3s ease;
         }
 
-        .btn-back:hover { color: var(--primary-gold); }
-        .btn-back::before { content: '← '; }
+        .btn-back:hover {
+            color: var(--primary-gold);
+        }
+
+        .btn-back::before {
+            content: '← ';
+        }
 
         /* ── PAGE WRAPPER ── */
         main {
@@ -156,8 +181,15 @@
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to   { opacity: 1; transform: translateY(0);    }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* ── SECCIÓN CARD ── */
@@ -172,17 +204,28 @@
             transition: border-color 0.3s ease;
         }
 
-        .profile-card:nth-child(1) { animation-delay: 0.2s; }
-        .profile-card:nth-child(2) { animation-delay: 0.35s; }
-        .profile-card:nth-child(3) { animation-delay: 0.5s; }
+        .profile-card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
 
-        .profile-card:hover { border-color: var(--primary-gold); }
+        .profile-card:nth-child(2) {
+            animation-delay: 0.35s;
+        }
+
+        .profile-card:nth-child(3) {
+            animation-delay: 0.5s;
+        }
+
+        .profile-card:hover {
+            border-color: var(--primary-gold);
+        }
 
         /* Acento de color en la esquina superior */
         .profile-card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0;
+            top: 0;
+            left: 0;
             height: 4px;
             width: 80px;
             background: linear-gradient(90deg, var(--primary-gold), var(--deep-amber));
@@ -209,7 +252,9 @@
             margin-bottom: 0.4rem;
         }
 
-        .danger-card .section-title { color: #e87070; }
+        .danger-card .section-title {
+            color: #e87070;
+        }
 
         .section-subtitle {
             font-size: 0.82rem;
@@ -226,7 +271,9 @@
         }
 
         /* ── FORM GROUPS ── */
-        .form-group { margin-bottom: 1.5rem; }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
 
         label.field-label {
             display: block;
@@ -267,7 +314,10 @@
             transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
         }
 
-        input::placeholder { color: rgba(245, 230, 211, 0.25); font-weight: 300; }
+        input::placeholder {
+            color: rgba(245, 230, 211, 0.25);
+            font-weight: 300;
+        }
 
         input:focus {
             border-color: var(--primary-gold);
@@ -307,7 +357,9 @@
             font-family: 'Montserrat', sans-serif;
         }
 
-        .alert-warning button:hover { color: var(--deep-amber); }
+        .alert-warning button:hover {
+            color: var(--deep-amber);
+        }
 
         /* ── ALERTA ÉXITO ── */
         .alert-success-inline {
@@ -350,13 +402,17 @@
         .btn-primary::before {
             content: '';
             position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: rgba(255,255,255,0.22);
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.22);
             transition: left 0.5s ease;
         }
 
-        .btn-primary:hover::before { left: 100%; }
+        .btn-primary:hover::before {
+            left: 100%;
+        }
 
         .btn-primary:hover {
             transform: translateY(-2px);
@@ -399,10 +455,23 @@
         }
 
         @keyframes flashFade {
-            0%   { opacity: 0; transform: translateX(-6px); }
-            15%  { opacity: 1; transform: translateX(0);    }
-            75%  { opacity: 1; }
-            100% { opacity: 0; }
+            0% {
+                opacity: 0;
+                transform: translateX(-6px);
+            }
+
+            15% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            75% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
         }
 
         /* ══════════════════════════════════════
@@ -421,11 +490,18 @@
             animation: overlayIn 0.25s ease-out both;
         }
 
-        .modal-overlay.open { display: flex; }
+        .modal-overlay.open {
+            display: flex;
+        }
 
         @keyframes overlayIn {
-            from { opacity: 0; }
-            to   { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         .modal {
@@ -439,15 +515,24 @@
         }
 
         @keyframes modalIn {
-            from { opacity: 0; transform: translateY(20px) scale(0.97); }
-            to   { opacity: 1; transform: translateY(0)    scale(1);    }
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
         .modal::before {
             content: '';
             position: absolute;
-            top: 0; left: 0;
-            height: 4px; width: 80px;
+            top: 0;
+            left: 0;
+            height: 4px;
+            width: 80px;
             background: linear-gradient(90deg, var(--danger), var(--danger-light));
         }
 
@@ -466,6 +551,118 @@
             margin-bottom: 0.8rem;
         }
 
+         /* FORMULARIO */
+        .form-section {
+            background: rgba(212, 165, 116, 0.05);
+            border: 2px solid var(--primary-gold);
+            border-radius: 8px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(212, 165, 116, 0.15);
+            animation: fadeInUp 0.8s ease-out 0.1s both;
+        }
+
+        .form-title {
+            font-size: 1.6rem;
+            color: var(--primary-gold);
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+        }
+
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.9rem;
+            color: rgba(245, 230, 211, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.7rem;
+            font-weight: 600;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(212, 165, 116, 0.08);
+            border: 2px solid rgba(212, 165, 116, 0.3);
+            border-radius: 6px;
+            color: var(--warm-cream);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+            background: rgba(212, 165, 116, 0.12);
+            box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: rgba(245, 230, 211, 0.5);
+        }
+
+        /* Botones del formulario */
+        .form-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2.5rem;
+        }
+
+        .btn-primary {
+            flex: 1;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary-gold), var(--deep-amber));
+            color: var(--dark-brown);
+            border: none;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 5%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212, 165, 116, 0.3);
+        }
+
+        .btn-secondary {
+            flex: 1;
+            padding: 1rem 2rem;
+            background: transparent;
+            color: var(--primary-gold);
+            border: 2px solid var(--primary-gold);
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(212, 165, 116, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212, 165, 116, 0.2);
+        }
+
         .modal-text {
             font-size: 0.85rem;
             font-weight: 300;
@@ -481,7 +678,9 @@
             margin-bottom: 1.8rem;
         }
 
-        .modal .form-group { margin-bottom: 0; }
+        .modal .form-group {
+            margin-bottom: 0;
+        }
 
         .modal-footer {
             display: flex;
@@ -525,18 +724,62 @@
 
         /* ── RESPONSIVE ── */
         @media (max-width: 640px) {
-            main { padding: 2rem 4% 4rem; }
-            .profile-card { padding: 2rem 1.5rem; }
-            .logo { font-size: 1.4rem; }
-            .logo::after { font-size: 1.3rem; right: -30px; }
-            .page-header h1 { font-size: 2.2rem; }
-            .btn-primary, .btn-danger { width: 100%; text-align: center; }
-            .modal { padding: 2rem 1.5rem; }
-            .modal-footer { flex-direction: column-reverse; }
-            .btn-cancel, .modal .btn-danger { width: 100%; text-align: center; }
+            main {
+                padding: 2rem 4% 4rem;
+            }
+
+            .profile-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .logo {
+                font-size: 1.4rem;
+            }
+
+            .logo::after {
+                font-size: 1.3rem;
+                right: -30px;
+            }
+
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .btn-primary,
+            .btn-danger {
+                width: 100%;
+                text-align: center;
+            }
+
+            .modal {
+                padding: 2rem 1.5rem;
+            }
+
+            .form-section {
+                padding: 1.5rem;
+            }
+
+            .form-buttons {
+                flex-direction: column;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+            }
+
+            .modal-footer {
+                flex-direction: column-reverse;
+            }
+
+            .btn-cancel,
+            .modal .btn-danger {
+                width: 100%;
+                text-align: center;
+            }
         }
     </style>
 </head>
+
 <body>
 
     {{-- ═══ HEADER ═══ --}}
@@ -563,7 +806,69 @@
         </div>
 
 
-  
+        <section class="main-content">
+            
+            {{-- FORMULARIO DE EDICIÓN --}}
+            <div class="form-section">
+                <h2 class="form-title">Actualiza tu información</h2>
+
+                @if ($errors->any())
+                    <div class="error-alert"
+                        style="background: rgba(255, 107, 107, 0.1); border: 2px solid #ff6b6b; color: #ff6b6b; padding: 1.5rem; border-radius: 6px; margin-bottom: 2rem;">
+                        <strong>⚠️ Error al actualizar:</strong>
+                        <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <form method="POST" action="{{ route('user.update', $user->id) }}">
+                    @csrf
+                    @method('PATCH')
+
+                    {{-- Nombre --}}
+                    <div class="form-group @error('nombre') has-error @enderror">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" class="form-input"
+                            value="{{ old('nombre', $user->nombre) }}" placeholder="Ingresa tu nombre" required>
+                        @error('nombre')
+                            <span class="error-message">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    {{-- Apellido --}}
+                    <div class="form-group @error('apellido') has-error @enderror">
+                        <label for="apellido" class="form-label">Apellido</label>
+                        <input type="text" id="apellido" name="apellido" class="form-input"
+                            value="{{ old('apellido', $user->apellido) }}" placeholder="Ingresa tu apellido" required>
+                        @error('apellido')
+                            <span class="error-message">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    {{-- Teléfono --}}
+                    <div class="form-group @error('telefono') has-error @enderror">
+                        <label for="telefono" class="form-label">Teléfono</label>
+                        <input type="tel" id="telefono" name="telefono" class="form-input"
+                            value="{{ old('telefono', $user->telefono) }}" placeholder="Ingresa tu teléfono">
+                        @error('telefono')
+                            <span class="error-message">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+
+                    {{-- Botones --}}
+                    <div class="form-buttons">
+                        <button type="submit" class="btn-primary">💾 Guardar Cambios</button>
+                        <a href="{{ route('user.profile', $user->id) }}" class="btn-secondary">↩️ Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+
 
         {{-- ═══════════════════════════════════════════
              SECCIÓN 1 — ACTUALIZAR CONTRASEÑA
@@ -585,13 +890,8 @@
                     <label class="field-label" for="current_password">Contraseña Actual</label>
                     <div class="input-wrap">
                         <span class="input-icon">🔒</span>
-                        <input
-                            type="password"
-                            id="current_password"
-                            name="current_password"
-                            placeholder="••••••••"
-                            autocomplete="current-password"
-                        >
+                        <input type="password" id="current_password" name="current_password" placeholder="••••••••"
+                            autocomplete="current-password">
                     </div>
                     @if ($errors->updatePassword->get('current_password'))
                         @foreach ($errors->updatePassword->get('current_password') as $error)
@@ -605,13 +905,8 @@
                     <label class="field-label" for="password">Nueva Contraseña</label>
                     <div class="input-wrap">
                         <span class="input-icon">🔑</span>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            placeholder="••••••••"
-                            autocomplete="new-password"
-                        >
+                        <input type="password" id="password" name="password" placeholder="••••••••"
+                            autocomplete="new-password">
                     </div>
                     @if ($errors->updatePassword->get('password'))
                         @foreach ($errors->updatePassword->get('password') as $error)
@@ -625,13 +920,8 @@
                     <label class="field-label" for="password_confirmation">Confirmar Contraseña</label>
                     <div class="input-wrap">
                         <span class="input-icon">🔑</span>
-                        <input
-                            type="password"
-                            id="password_confirmation"
-                            name="password_confirmation"
-                            placeholder="••••••••"
-                            autocomplete="new-password"
-                        >
+                        <input type="password" id="password_confirmation" name="password_confirmation"
+                            placeholder="••••••••" autocomplete="new-password">
                     </div>
                     @if ($errors->updatePassword->get('password_confirmation'))
                         @foreach ($errors->updatePassword->get('password_confirmation') as $error)
@@ -692,13 +982,8 @@
                     <label class="field-label" for="delete_password">Contraseña</label>
                     <div class="input-wrap">
                         <span class="input-icon">🔒</span>
-                        <input
-                            type="password"
-                            id="delete_password"
-                            name="password"
-                            placeholder="Introduce tu contraseña"
-                            autocomplete="current-password"
-                        >
+                        <input type="password" id="delete_password" name="password"
+                            placeholder="Introduce tu contraseña" autocomplete="current-password">
                     </div>
                     @if ($errors->userDeletion->get('password'))
                         @foreach ($errors->userDeletion->get('password') as $error)
@@ -719,47 +1004,48 @@
         © {{ date('Y') }} CERVECERÍA TÍO MINGO — Hecho con pasión 🍺
     </footer>
 
-<script>
-    function openDeleteModal() {
-        const modal = document.getElementById('deleteModal');
-        if (modal) {
-            modal.classList.add('open');
-            document.body.style.overflow = 'hidden';
+    <script>
+        function openDeleteModal() {
+            const modal = document.getElementById('deleteModal');
+            if (modal) {
+                modal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
         }
-    }
 
-    function closeDeleteModal() {
-        const modal = document.getElementById('deleteModal');
-        if (modal) {
-            modal.classList.remove('open');
-            document.body.style.overflow = '';
+        function closeDeleteModal() {
+            const modal = document.getElementById('deleteModal');
+            if (modal) {
+                modal.classList.remove('open');
+                document.body.style.overflow = '';
+            }
         }
-    }
 
-    /**
-     * Usamos comillas simples para que VS Code crea que es un texto.
-     * Laravel renderizará '1' (true) o '' (false).
-     */
-    const hasDeletionErrors = "{{ $errors->userDeletion->isNotEmpty() ? '1' : '' }}";
+        /**
+         * Usamos comillas simples para que VS Code crea que es un texto.
+         * Laravel renderizará '1' (true) o '' (false).
+         */
+        const hasDeletionErrors = "{{ $errors->userDeletion->isNotEmpty() ? '1' : '' }}";
 
-    if (hasDeletionErrors === '1') {
-        document.addEventListener('DOMContentLoaded', () => {
-            openDeleteModal();
+        if (hasDeletionErrors === '1') {
+            document.addEventListener('DOMContentLoaded', () => {
+                openDeleteModal();
+            });
+        }
+
+        // Manejadores de cierre
+        const modalElement = document.getElementById('deleteModal');
+        if (modalElement) {
+            modalElement.addEventListener('click', function(e) {
+                if (e.target === this) closeDeleteModal();
+            });
+        }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeDeleteModal();
         });
-    }
-
-    // Manejadores de cierre
-    const modalElement = document.getElementById('deleteModal');
-    if (modalElement) {
-        modalElement.addEventListener('click', function(e) {
-            if (e.target === this) closeDeleteModal();
-        });
-    }
-
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') closeDeleteModal();
-    });
-</script>
+    </script>
 
 </body>
+
 </html>

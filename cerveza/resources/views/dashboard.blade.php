@@ -1089,7 +1089,6 @@
                 <nav>
                     <a href="{{ route('cervezas') }}">Cervezas</a>
                     <a href="/nosotros">Nosotros</a>
-                    <a href="/editar">Editar Perfil</a>
                     <a href="{{ route('pedidos.index') }}">Pedidos</a>
                 </nav>
 
