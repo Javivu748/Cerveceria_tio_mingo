@@ -5,7 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use App\Listeners\SendEmailVerificationNotification;
-
+use App\Models\Cerveza;
+use App\Observers\CervezaObserver;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -25,5 +26,6 @@ class AppServiceProvider extends ServiceProvider
             Registered::class,
             SendEmailVerificationNotification::class
         );
+        Cerveza::observe(CervezaObserver::class);
     }
 }

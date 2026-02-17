@@ -22,9 +22,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
+
     // Mi perfil con información y pedidos
-    
+
 });
 
 // Nosotros (solo usuarios autenticados)
@@ -34,9 +34,15 @@ Route::middleware('auth')->get('/nosotros', [NosotrosController::class, 'index']
 Route::middleware(['auth', 'verified', 'ADMIN'])->group(function () {
     Route::get('/admin/usuarios', [UserController::class, 'dashboard'])->name('admin.usuarios');
     Route::get('/usuario/{id}', [UserController::class, 'userProfile'])->name('user.profile');
-    Route::get('/editar', [UserController::class, 'editar'])->name('editar.perfil');
-    Route::patch('/usuario/{id}', [UserController::class, 'update'])->name('user.update');
     Route::post('/eliminar-cuenta/{id}', [UserController::class, 'eliminar'])->name('user.eliminar');
+
+    //Route de cerveza  
+    Route::get('/admin/cervezas', [CervezaController::class, 'adminIndex'])->name('admin.cervezas');
+    Route::get('/admin/cervezas/crear', [CervezaController::class, 'create'])->name('admin.cervezas.create');
+    Route::post('/admin/cervezas', [CervezaController::class, 'store'])->name('admin.cervezas.store');
+    Route::get('/admin/cervezas/{id}/editar', [CervezaController::class, 'edit'])->name('admin.cervezas.edit');
+    Route::patch('/admin/cervezas/{id}', [CervezaController::class, 'update'])->name('admin.cervezas.update');
+    Route::delete('/admin/cervezas/{id}', [CervezaController::class, 'destroy'])->name('admin.cervezas.destroy');
 });
 
 // Cervezas
@@ -52,6 +58,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/pedidos', [PedidoController::class, 'store'])->name('pedidos.store');
     Route::get('/pedidos/{id}/detalle', [PedidoController::class, 'detalle'])->name('pedidos.detalle');
     Route::delete('/pedidos/{id}', [PedidoController::class, 'destroy'])->name('pedidos.destroy');
+    Route::get('/editar', [UserController::class, 'editar'])->name('editar.perfil');
+    Route::patch('/usuario/{id}', [UserController::class, 'update'])->name('user.update');
 
     // PayPal
     Route::post('/paypal/payment', [PayPalController::class, 'createPayment'])->name('paypal.payment');
@@ -60,9 +68,9 @@ Route::middleware('auth')->group(function () {
 });
 
 // Test Telegram
-Route::get('/test-telegram', function() {
+Route::get('/test-telegram', function () {
     $telegram = new \App\Services\TelegramService();
-    
+
     try {
         $result = $telegram->sendTestMessage();
         return [
@@ -80,13 +88,12 @@ Route::get('/test-telegram', function() {
 
 
 Route::get('/cervezas', [CervezaController::class, 'index'])
-     ->name('cervezas');
+    ->name('cervezas');
 // Mostrar una cerveza individual
 Route::get('/cervezas/{id}', [CervezaController::class, 'show'])
     ->name('cervezas.show');
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 
 Route::post('/api/currency/convert', [ExchangeController::class, 'convert']);
 Route::get('/api/currency/rates', [ExchangeController::class, 'getRates']);
-

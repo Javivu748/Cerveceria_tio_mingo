@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Pedido;
 use App\Models\Cerveza;
-use Illuminate\Http\Request;
 
 class PedidoController extends Controller
 {
