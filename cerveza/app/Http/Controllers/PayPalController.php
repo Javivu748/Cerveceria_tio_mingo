@@ -7,12 +7,20 @@ use Srmklive\PayPal\Services\PayPal as PayPalClient;
 use App\Models\Pedido;
 use App\Models\DetallePedido;
 use App\Models\Cerveza;
+use App\Services\TelegramService;        // ← AGREGAR
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
 class PayPalController extends Controller
 {
+    protected $telegram;                  // ← AGREGAR
+
+    public function __construct(TelegramService $telegram)  // ← AGREGAR
+    {
+        $this->telegram = $telegram;
+    }
+
     /**
      * Crear el pago en PayPal
      */
@@ -34,9 +42,9 @@ class PayPalController extends Controller
                     $cerveza = Cerveza::findOrFail($cervezaId);
 
                     $cervezasSeleccionadas[] = [
-                        'cerveza' => $cerveza,
-                        'cantidad' => $cantidad,
-                        'subtotal' => $cerveza->precio_eur * $cantidad,
+                        'cerveza'   => $cerveza,
+                        'cantidad'  => $cantidad,
+                        'subtotal'  => $cerveza->precio_eur * $cantidad,
                     ];
 
                     $total += $cerveza->precio_eur * $cantidad;
@@ -50,7 +58,7 @@ class PayPalController extends Controller
             session([
                 'pedido_temp' => [
                     'cervezas' => $cervezasSeleccionadas,
-                    'total' => $total,
+                    'total'    => $total,
                 ]
             ]);
 
@@ -65,11 +73,11 @@ class PayPalController extends Controller
             $items = [];
             foreach ($cervezasSeleccionadas as $item) {
                 $items[] = [
-                    'name' => $item['cerveza']->name,
-                    'quantity' => $item['cantidad'],
+                    'name'        => $item['cerveza']->name,
+                    'quantity'    => $item['cantidad'],
                     'unit_amount' => [
                         'currency_code' => 'EUR',
-                        'value' => number_format($item['cerveza']->precio_eur, 2, '.', '')
+                        'value'         => number_format($item['cerveza']->precio_eur, 2, '.', '')
                     ]
                 ];
             }
@@ -80,27 +88,25 @@ class PayPalController extends Controller
                     "return_url" => route('paypal.success'),
                     "cancel_url" => route('paypal.cancel'),
                     "brand_name" => "Cervecería Tío Mingo",
-                    "locale" => "es-ES",
+                    "locale"     => "es-ES",
                     "landing_page" => "BILLING",
-                    "user_action" => "PAY_NOW"
+                    "user_action"  => "PAY_NOW"
                 ],
-                "purchase_units" => [
-                    [
-                        "reference_id" => "CERVECERIA_" . time(),
-                        "description" => "Pedido de cervezas artesanales",
-                        "amount" => [
-                            "currency_code" => "EUR",
-                            "value" => number_format($total, 2, '.', ''),
-                            "breakdown" => [
-                                "item_total" => [
-                                    "currency_code" => "EUR",
-                                    "value" => number_format($total, 2, '.', '')
-                                ]
+                "purchase_units" => [[
+                    "reference_id" => "CERVECERIA_" . time(),
+                    "description"  => "Pedido de cervezas artesanales",
+                    "amount" => [
+                        "currency_code" => "EUR",
+                        "value"         => number_format($total, 2, '.', ''),
+                        "breakdown"     => [
+                            "item_total" => [
+                                "currency_code" => "EUR",
+                                "value"         => number_format($total, 2, '.', '')
                             ]
-                        ],
-                        "items" => $items
-                    ]
-                ]
+                        ]
+                    ],
+                    "items" => $items
+                ]]
             ]);
 
             if (isset($order['id'])) {
@@ -113,30 +119,23 @@ class PayPalController extends Controller
                 }
             }
 
-
         } catch (\Exception $e) {
-    // Log completo con stack trace
-    Log::error('Error en PayPal createPayment', [
-        'mensaje' => $e->getMessage(),
-        'archivo' => $e->getFile(),
-        'linea' => $e->getLine(),
-        'codigo' => $e->getCode(),
-        'trace' => $e->getTraceAsString(),
-        'tipo_excepcion' => get_class($e)
-    ]);
-    
-    // Si estás en desarrollo, muestra el error completo
-    if (config('app.debug')) {
-        dd([
-            'error' => $e->getMessage(),
-            'archivo' => $e->getFile(),
-            'linea' => $e->getLine(),
-            'trace' => $e->getTraceAsString()
-        ]);
-    }
-    
-    return redirect()->back()->with('error', 'Error al procesar el pago: ' . $e->getMessage());
-}
+            Log::error('Error en PayPal createPayment', [
+                'mensaje' => $e->getMessage(),
+                'archivo' => $e->getFile(),
+                'linea'   => $e->getLine(),
+            ]);
+
+            if (config('app.debug')) {
+                dd([
+                    'error'   => $e->getMessage(),
+                    'archivo' => $e->getFile(),
+                    'linea'   => $e->getLine(),
+                ]);
+            }
+
+            return redirect()->back()->with('error', 'Error al procesar el pago: ' . $e->getMessage());
+        }
     }
 
     /**
@@ -148,7 +147,8 @@ class PayPalController extends Controller
             $orderId = session('paypal_order_id');
 
             if (!$orderId) {
-                return redirect()->route('pedidos.index')->with('error', 'No se encontró la orden.');
+                return redirect()->route('pedidos.index')
+                                 ->with('error', 'No se encontró la orden.');
             }
 
             $provider = new PayPalClient;
@@ -169,23 +169,23 @@ class PayPalController extends Controller
 
                 try {
                     $pedido = Pedido::create([
-                        'user_id' => Auth::id(),
-                        'fecha' => now(),
-                        'total' => $pedidoTemp['total'],
-                        'estado' => 'completado',
-                        'metodoPago' => 'paypal',
-                        'paypal_order_id' => $orderId,
-                        'paypal_payer_id' => $result['payer']['payer_id'] ?? null,
+                        'user_id'            => Auth::id(),
+                        'fecha'              => now(),
+                        'total'              => $pedidoTemp['total'],
+                        'estado'             => 'completado',
+                        'metodoPago'         => 'paypal',
+                        'paypal_order_id'    => $orderId,
+                        'paypal_payer_id'    => $result['payer']['payer_id'] ?? null,
                         'paypal_payer_email' => $result['payer']['email_address'] ?? null,
                     ]);
 
                     foreach ($pedidoTemp['cervezas'] as $item) {
                         DetallePedido::create([
-                            'pedido_id' => $pedido->id,
-                            'cerveza_id' => $item['cerveza']->id,
-                            'cantidad' => $item['cantidad'],
-                            'precio_unitario' => $item['cerveza']->precio_eur,
-                            'subtotal' => $item['subtotal'],
+                            'pedido_id'      => $pedido->id,
+                            'cerveza_id'     => $item['cerveza']->id,
+                            'cantidad'       => $item['cantidad'],
+                            'precio_unitario'=> $item['cerveza']->precio_eur,
+                            'subtotal'       => $item['subtotal'],
                         ]);
                     }
 
@@ -193,8 +193,11 @@ class PayPalController extends Controller
 
                     session()->forget(['pedido_temp', 'paypal_order_id']);
 
+                    // ✅ Notificar al admin por Telegram
+                    $this->telegram->notifyNewPurchase($pedido, Auth::user());
+
                     return view('paypal.success', [
-                        'pedido' => $pedido,
+                        'pedido'     => $pedido,
                         'paypalData' => $result
                     ]);
 
@@ -208,7 +211,8 @@ class PayPalController extends Controller
 
         } catch (\Exception $e) {
             Log::error('Error en PayPal paymentSuccess: ' . $e->getMessage());
-            return redirect()->route('pedidos.index')->with('error', 'Error al confirmar el pago: ' . $e->getMessage());
+            return redirect()->route('pedidos.index')
+                             ->with('error', 'Error al confirmar el pago: ' . $e->getMessage());
         }
     }
 
@@ -218,6 +222,7 @@ class PayPalController extends Controller
     public function paymentCancel()
     {
         session()->forget(['pedido_temp', 'paypal_order_id']);
-        return redirect()->route('pedidos.index')->with('warning', 'Has cancelado el pago.');
+        return redirect()->route('pedidos.index')
+                         ->with('warning', 'Has cancelado el pago.');
     }
 }

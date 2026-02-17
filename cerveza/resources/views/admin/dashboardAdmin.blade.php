@@ -681,9 +681,7 @@
                                             <a href="{{ route('user.profile', $user->id) }}" class="btn-action btn-view">
                                                 👁️ Ver
                                             </a>
-                                            <a href="#" class="btn-action btn-edit">
-                                                ✏️ Editar 
-                                            </a>
+                            
                                             <form method="POST" action="/eliminar-cuenta/{{ $user->id }}" style="display: inline;">
                                                 @csrf
                                                 <button type="submit" class="btn-action btn-delete">
