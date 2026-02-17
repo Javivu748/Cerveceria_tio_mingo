@@ -27,7 +27,7 @@ class VerifyEmail extends Notification
         );
 
         return (new MailMessage)
-            ->subject('Verifica tu dirección de email')
+            ->subject('Verifica Que eres un borracho real')
             ->view('emails.verify', [
                 'notifiable' => $notifiable,
                 'verificationUrl' => $verificationUrl,
