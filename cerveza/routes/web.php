@@ -8,9 +8,15 @@ use App\Http\Controllers\NosotrosController;
 use App\Http\Controllers\ExchangeController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ComentarioController;
+use App\Models\Comentario;
 
-// Página principal
-Route::get('/', fn() => view('welcome'));
+Route::get('/', function () {
+    $comentarios = Comentario::inRandomOrder()->get();
+    return view('welcome', compact('comentarios'));
+})->name('home');
+
+Route::post('/comentarios', [ComentarioController::class, 'store'])->name('comentarios.store');
 
 // Dashboard
 Route::get('/dashboard', fn() => view('dashboard'))

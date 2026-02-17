@@ -30,7 +30,6 @@
             color: var(--cream);
         }
 
-        /* ── FONDO ── */
         .bg {
             position: fixed; inset: 0; z-index: 0;
             background:
@@ -40,7 +39,6 @@
                 var(--dark);
         }
 
-        /* grano de textura */
         .bg::after {
             content: '';
             position: absolute; inset: 0;
@@ -49,7 +47,6 @@
             pointer-events: none;
         }
 
-        /* líneas verticales decorativas */
         .bg::before {
             content: '';
             position: absolute; inset: 0;
@@ -61,7 +58,6 @@
             pointer-events: none;
         }
 
-        /* ── LAYOUT ── */
         .page {
             position: relative; z-index: 1;
             width: 100vw; height: 100vh;
@@ -69,7 +65,6 @@
             grid-template-columns: 1fr 1fr;
         }
 
-        /* ── LADO IZQUIERDO ── */
         .left {
             display: flex;
             flex-direction: column;
@@ -79,7 +74,6 @@
             border-right: 1px solid rgba(212,165,116,.15);
         }
 
-        /* barra dorada vertical */
         .left::before {
             content: '';
             position: absolute;
@@ -128,7 +122,6 @@
             animation: fadeUp .7s ease-out .5s forwards;
         }
 
-        /* insignias */
         .badges {
             display: flex; gap: 1.2rem; flex-wrap: wrap;
             opacity: 0;
@@ -149,7 +142,6 @@
             opacity: .6;
         }
 
-        /* ── LADO DERECHO ── */
         .right {
             display: flex;
             flex-direction: column;
@@ -160,7 +152,6 @@
             overflow: hidden;
         }
 
-        /* vaso decorativo de fondo */
         .glass-bg {
             position: absolute;
             bottom: -5%; right: -8%;
@@ -200,7 +191,6 @@
             to   { clip-path: inset(0 0 0 0); }
         }
 
-        /* ── CARD ── */
         .card {
             width: 100%;
             max-width: 400px;
@@ -292,7 +282,6 @@
             letter-spacing: .05em;
         }
 
-        /* sello año */
         .year-stamp {
             position: fixed;
             bottom: 1.5rem; left: 50%;
@@ -305,13 +294,325 @@
             z-index: 10;
         }
 
-        /* ── ANIMACIONES ── */
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(22px); }
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* ── RESPONSIVE ── */
+        .sec-comentarios {
+            margin-top: 3.5rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(212,165,116,.15);
+        }
+
+        .sec-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .sec-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4rem;
+            letter-spacing: .15em;
+            color: var(--gold);
+        }
+
+        .btn-add {
+            padding: .6rem 1rem;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-size: .7rem;
+            font-weight: 700;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .25s;
+        }
+
+        .btn-add:hover {
+            background: var(--gold);
+            color: var(--dark);
+        }
+
+        .carr-wrap { overflow: hidden; }
+        .carr-track {
+            display: flex;
+            transition: transform .5s cubic-bezier(.4,0,.2,1);
+        }
+
+        .carr-item {
+            min-width: 100%;
+            padding: 0 .25rem;
+        }
+
+        .carr-box {
+            background: rgba(212,165,116,.03);
+            border: 1px solid rgba(212,165,116,.15);
+            padding: 1.5rem 1.8rem;
+            position: relative;
+        }
+
+        .carr-box::before {
+            content: '"';
+            position: absolute;
+            top: .5rem; left: .8rem;
+            font-family: Georgia, serif;
+            font-size: 3.5rem;
+            color: var(--gold);
+            opacity: .08;
+            line-height: 1;
+        }
+
+        .carr-text {
+            font-size: .85rem;
+            line-height: 1.7;
+            font-weight: 300;
+            font-style: italic;
+            color: rgba(245,230,211,.75);
+            margin-bottom: 1.2rem;
+        }
+
+        .carr-foot {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .carr-name {
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .carr-stars {
+            display: flex;
+            align-items: center;
+            gap: 1px;
+        }
+
+        .carr-st {
+            font-size: .75rem;
+            color: rgba(212,165,116,.2);
+        }
+
+        .carr-st.on { color: var(--gold); }
+
+        .carr-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: .95rem;
+            color: var(--gold);
+            margin-left: 4px;
+        }
+
+        .carr-ctrls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .carr-btn {
+            width: 32px; height: 32px;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-size: .9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .2s;
+        }
+
+        .carr-btn:hover {
+            background: var(--gold);
+            color: var(--dark);
+        }
+
+        .carr-dots { display: flex; gap: 6px; }
+        .carr-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: rgba(212,165,116,.2);
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            transition: all .25s;
+        }
+
+        .carr-dot.active {
+            background: var(--gold);
+            transform: scale(1.3);
+        }
+
+        .no-com {
+            text-align: center;
+            padding: 2rem;
+            border: 1px dashed rgba(212,165,116,.15);
+            color: rgba(245,230,211,.3);
+            font-size: .8rem;
+        }
+
+        .modal-bg {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.75);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-bg.open { display: flex; }
+
+        .modal {
+            background: var(--dark);
+            border: 2px solid var(--gold);
+            padding: 2rem;
+            width: 100%;
+            max-width: 450px;
+            position: relative;
+        }
+
+        .modal-x {
+            position: absolute;
+            top: .8rem; right: 1rem;
+            background: none;
+            border: none;
+            color: rgba(245,230,211,.4);
+            font-size: 1.5rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .modal-x:hover { color: var(--gold); }
+
+        .modal h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            letter-spacing: .15em;
+            margin-bottom: .3rem;
+        }
+
+        .modal-sub {
+            font-size: .72rem;
+            color: rgba(245,230,211,.4);
+            margin-bottom: 1.5rem;
+        }
+
+        .fld { margin-bottom: 1.2rem; }
+
+        .fld label {
+            display: block;
+            font-size: .68rem;
+            font-weight: 700;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: .4rem;
+        }
+
+        .fld input,
+        .fld textarea {
+            width: 100%;
+            background: rgba(212,165,116,.05);
+            border: 1px solid rgba(212,165,116,.2);
+            color: var(--cream);
+            font-family: 'Montserrat', sans-serif;
+            font-size: .85rem;
+            padding: .65rem .8rem;
+            outline: none;
+            transition: border-color .3s;
+        }
+
+        .fld input:focus,
+        .fld textarea:focus { border-color: var(--gold); }
+
+        .fld textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .stars-sel { display: flex; align-items: center; gap: 2px; }
+
+        .st-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: rgba(212,165,116,.2);
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+            transition: all .15s;
+        }
+
+        .st-btn:hover,
+        .st-btn.sel { color: var(--gold); }
+
+        .st-btn.sel { transform: scale(1.1); }
+
+        .st-val {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3rem;
+            color: var(--gold);
+            margin-left: 6px;
+            min-width: 2ch;
+        }
+
+        #puntuacion { display: none; }
+
+        .err {
+            font-size: .7rem;
+            color: #d88;
+            margin-top: .3rem;
+        }
+
+        .btn-send {
+            width: 100%;
+            margin-top: .5rem;
+            padding: .9rem;
+            background: linear-gradient(135deg, var(--gold), var(--amber));
+            color: var(--dark);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: .8rem;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: transform .3s, box-shadow .3s;
+        }
+
+        .btn-send:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(212,165,116,.35);
+        }
+
+        .flash {
+            margin-bottom: 1.5rem;
+            padding: .8rem 1rem;
+            background: rgba(27,67,50,.4);
+            border: 1px solid rgba(45,106,79,.7);
+            color: #95d5b2;
+            font-size: .75rem;
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+        }
+
+        .flash span { font-size: 1.1rem; }
+
         @media (max-width: 768px) {
             html, body { overflow: auto; }
 
@@ -334,6 +635,10 @@
 
             .right { padding: 3rem 8% 5rem; }
             .glass-bg, .foam-bg { display: none; }
+
+            .sec-head { flex-direction: column; text-align: center; }
+            .carr-box { padding: 1.2rem 1.4rem; }
+            .modal { padding: 1.5rem; }
         }
     </style>
 </head>
@@ -343,7 +648,6 @@
 
     <div class="page">
 
-        {{-- ══ IZQUIERDA: branding ══ --}}
         <div class="left">
             <p class="eyebrow">Desde 1987 · Artesanal · Premium</p>
 
@@ -359,19 +663,18 @@
             </p>
 
             <div class="badges">
-                <span class="badge">100% Natural</span>
-                <span class="badge">Receta Artesanal</span>
-                <span class="badge">3 Premios</span>
+                <div class="badge">100% Natural</div>
+                <div class="badge">Receta Artesanal</div>
+                <div class="badge">Sabor Premium</div>
             </div>
         </div>
 
-        {{-- ══ DERECHA: acceso ══ --}}
         <div class="right">
             <div class="glass-bg"></div>
             <div class="foam-bg"></div>
 
             <div class="card">
-                <p class="card-label">Accede a tu cuenta</p>
+                <p class="card-label">Accede al catálogo completo</p>
 
                 @auth
                     <a href="{{ url('/dashboard') }}" class="btn-main btn-primary">
@@ -396,6 +699,53 @@
                         Regístrate gratis y accede al catálogo completo 🍺
                     </p>
                 @endauth
+
+                <section class="sec-comentarios">
+                    @if (session('mensaje'))
+                        <div class="flash">
+                            <span>🍺</span>
+                            <p>{{ session('mensaje') }}</p>
+                        </div>
+                    @endif
+
+                    <div class="sec-head">
+                        <h2 class="sec-title">Lo Que Opinan</h2>
+                        <button class="btn-add" onclick="openModal()">+ Añadir</button>
+                    </div>
+
+                    @if ($comentarios->isEmpty())
+                        <div class="no-com">
+                            Aún no hay comentarios. ¡Sé el primero!
+                        </div>
+                    @else
+                        <div class="carr-wrap">
+                            <div class="carr-track" id="track">
+                                @foreach ($comentarios as $c)
+                                    <div class="carr-item">
+                                        <div class="carr-box">
+                                            <p class="carr-text">{{ $c->texto }}</p>
+                                            <div class="carr-foot">
+                                                <span class="carr-name">{{ $c->nombre }}</span>
+                                                <div class="carr-stars">
+                                                    @for ($i = 1; $i <= 10; $i++)
+                                                        <span class="carr-st {{ $i <= $c->puntuacion ? 'on' : '' }}">★</span>
+                                                    @endfor
+                                                    <span class="carr-num">{{ $c->puntuacion }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <div class="carr-ctrls">
+                            <button class="carr-btn" id="prev">◀</button>
+                            <div class="carr-dots" id="dots"></div>
+                            <button class="carr-btn" id="next">▶</button>
+                        </div>
+                    @endif
+                </section>
             </div>
         </div>
 
@@ -403,5 +753,134 @@
 
     <span class="year-stamp">CERVECERÍA TÍO MINGO · {{ date('Y') }}</span>
 
+    <div class="modal-bg" id="modalBg">
+        <div class="modal">
+            <button class="modal-x" onclick="closeModal()">&times;</button>
+
+            <h3>Tu Opinión</h3>
+            <p class="modal-sub">Sin necesidad de cuenta</p>
+
+            <form action="{{ route('comentarios.store') }}" method="POST">
+                @csrf
+
+                <div class="fld">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre"
+                           placeholder="Tu nombre"
+                           maxlength="100"
+                           value="{{ old('nombre') }}">
+                    @error('nombre') <p class="err">{{ $message }}</p> @enderror
+                </div>
+
+                <div class="fld">
+                    <label>Puntuación (1–10)</label>
+                    <div class="stars-sel" id="starsSel">
+                        @for ($i = 1; $i <= 10; $i++)
+                            <button type="button"
+                                    class="st-btn {{ old('puntuacion') >= $i ? 'sel' : '' }}"
+                                    data-v="{{ $i }}">★</button>
+                        @endfor
+                        <span class="st-val" id="stVal">{{ old('puntuacion') ?: '—' }}</span>
+                    </div>
+                    <input type="hidden" id="puntuacion" name="puntuacion" value="{{ old('puntuacion') }}">
+                    @error('puntuacion') <p class="err">{{ $message }}</p> @enderror
+                </div>
+
+                <div class="fld">
+                    <label for="texto">Comentario</label>
+                    <textarea id="texto" name="texto"
+                              placeholder="Tu experiencia..."
+                              maxlength="1000">{{ old('texto') }}</textarea>
+                    @error('texto') <p class="err">{{ $message }}</p> @enderror
+                </div>
+
+                <button type="submit" class="btn-send">Publicar</button>
+            </form>
+        </div>
+    </div>
+
+<script>
+const modalBg = document.getElementById('modalBg');
+
+function openModal()  { modalBg.classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeModal() { modalBg.classList.remove('open'); document.body.style.overflow = ''; }
+
+modalBg.addEventListener('click', e => { if (e.target === modalBg) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+@if ($errors->any()) window.addEventListener('DOMContentLoaded', openModal); @endif
+
+const btns   = document.querySelectorAll('.st-btn');
+const stVal  = document.getElementById('stVal');
+const pInput = document.getElementById('puntuacion');
+let   curr   = parseInt(pInput.value) || 0;
+
+function paint(n) { btns.forEach((b, i) => b.classList.toggle('sel', i < n)); }
+
+btns.forEach(b => {
+    const v = parseInt(b.dataset.v);
+    b.addEventListener('mouseenter', () => paint(v));
+    b.addEventListener('mouseleave', () => paint(curr));
+    b.addEventListener('click', () => {
+        curr = v;
+        pInput.value = v;
+        stVal.textContent = v;
+        paint(v);
+    });
+});
+
+paint(curr);
+
+(function () {
+    const track = document.getElementById('track');
+    const dotsW = document.getElementById('dots');
+    const prev  = document.getElementById('prev');
+    const next  = document.getElementById('next');
+    if (!track) return;
+
+    const items = track.querySelectorAll('.carr-item');
+    const total = items.length;
+    if (total === 0) return;
+
+    let idx = 0;
+    let tmr = null;
+
+    for (let i = 0; i < total; i++) {
+        const d = document.createElement('button');
+        d.className = 'carr-dot' + (i === 0 ? ' active' : '');
+        d.addEventListener('click', () => { go(i); reset(); });
+        dotsW.appendChild(d);
+    }
+
+    function go(n) {
+        idx = (n + total) % total;
+        track.style.transform = `translateX(-${idx * 100}%)`;
+        document.querySelectorAll('.carr-dot').forEach((d, i) =>
+            d.classList.toggle('active', i === idx)
+        );
+    }
+
+    function nxt() { go(idx + 1); }
+    function prv() { go(idx - 1); }
+
+    function start() { tmr = setInterval(nxt, 5000); }
+    function reset() { clearInterval(tmr); start(); }
+
+    next.addEventListener('click', () => { nxt(); reset(); });
+    prev.addEventListener('click', () => { prv(); reset(); });
+
+    track.closest('.carr-wrap').addEventListener('mouseenter', () => clearInterval(tmr));
+    track.closest('.carr-wrap').addEventListener('mouseleave', start);
+
+    let touchX = 0;
+    track.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend',   e => {
+        const diff = touchX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) { diff > 0 ? nxt() : prv(); reset(); }
+    }, { passive: true });
+
+    start();
+})();
+</script>
 </body>
 </html>
