@@ -1073,7 +1073,7 @@
     <div class="container">
 
         {{-- ═══════════════════════════════════════════
-         HEADER — mismo estilo que welcome, 
+         HEADER — mismo estilo que welcome,
          pero con enlaces desbloqueados + menú de usuario
     ════════════════════════════════════════════ --}}
         <header>
@@ -1125,7 +1125,7 @@
         </header>
 
         {{-- ═══════════════════════════════════════════
-         HERO — igual que welcome, 
+         HERO — igual que welcome,
          pero con texto personalizado + doble CTA
     ════════════════════════════════════════════ --}}
         <section class="hero">
@@ -1148,8 +1148,8 @@
                     </p>
 
                     <div class="hero-ctas">
-                        <a href="#" class="cta-button">Ver Cervezas</a>
-                        <a href="#" class="cta-button-outline">Ir a la Tienda</a>
+                        <a href="{{ route('cervezas') }}" class="cta-button">Ver Cervezas</a>
+                        <a href="{{ route('pedidos.index') }}" class="cta-button-outline">Ir a la Tienda</a>
                     </div>
                 </div>
 
@@ -1188,7 +1188,7 @@
         </section>
 
         {{-- ═══════════════════════════════════════════
-         FEATURES — igual que welcome, 
+         FEATURES — igual que welcome,
          pero las cards son clicables y tienen badge
     ════════════════════════════════════════════ --}}
         <section class="features">
