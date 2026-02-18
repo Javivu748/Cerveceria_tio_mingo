@@ -36,34 +36,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Mi perfil con información y pedidos
+    // Actualizar ubicación del usuario
+    Route::post('/perfil/ubicacion', [UserController::class, 'updateLocation'])->name('profile.location.update');
 
-});
-
-// Nosotros (solo usuarios autenticados)
-Route::middleware('auth')->get('/nosotros', [NosotrosController::class, 'index'])->name('nosotros.index');
-
-// Dashboard Admin (solo usuarios autenticados con role ADMIN)
-Route::middleware(['auth', 'verified', 'ADMIN'])->group(function () {
-    Route::get('/admin/usuarios', [UserController::class, 'dashboard'])->name('admin.usuarios');
-    Route::get('/usuario/{id}', [UserController::class, 'userProfile'])->name('user.profile');
-    Route::post('/eliminar-cuenta/{id}', [UserController::class, 'eliminar'])->name('user.eliminar');
-
-    //Route de cerveza
-    Route::get('/admin/cervezas', [CervezaController::class, 'adminIndex'])->name('admin.cervezas');
-    Route::get('/admin/cervezas/crear', [CervezaController::class, 'create'])->name('admin.cervezas.create');
-    Route::post('/admin/cervezas', [CervezaController::class, 'store'])->name('admin.cervezas.store');
-    Route::get('/admin/cervezas/{id}/editar', [CervezaController::class, 'edit'])->name('admin.cervezas.edit');
-    Route::patch('/admin/cervezas/{id}', [CervezaController::class, 'update'])->name('admin.cervezas.update');
-    Route::delete('/admin/cervezas/{id}', [CervezaController::class, 'destroy'])->name('admin.cervezas.destroy');
-});
-
-// Cervezas
-Route::get('/cervezas', [CervezaController::class, 'index'])->name('cervezas');
-Route::get('/cervezas/{id}', [CervezaController::class, 'show'])->name('cervezas.show');
-
-// Pedidos y PayPal (solo usuarios autenticados)
-Route::middleware('auth')->group(function () {
+    // Página "Nosotros"
+    Route::get('/nosotros', [NosotrosController::class, 'index'])->name('nosotros.index');
 
     // Pedidos
     Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index');
@@ -104,7 +81,7 @@ Route::get('/dashboard', fn() => view('dashboard'))
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-// API de Exchange / Monedas
+// API de monedas
 Route::post('/api/currency/convert', [ExchangeController::class, 'convert']);
 Route::get('/api/currency/rates', [ExchangeController::class, 'getRates']);
 
