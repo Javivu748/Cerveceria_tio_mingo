@@ -28,7 +28,7 @@ class UserController extends Controller
     }
 
     public function eliminar($id){
-        
+
         $user = User::findOrFail($id);
         $user->delete();
 
@@ -65,6 +65,21 @@ class UserController extends Controller
         return redirect()->route('dashboard', $user->id)
                        ->with('success', 'Perfil actualizado correctamente.');
     }
-        
+
+    public function updateLocation(Request $request)
+{
+    $user = auth()->user();
+
+    $validated = $request->validate([
+        'latitude' => 'required|numeric',
+        'longitude' => 'required|numeric',
+        'address' => 'nullable|string|max:500',
+    ]);
+
+    $user->update($validated);
+
+    return back()->with('success', 'Ubicación actualizada correctamente.');
+}
+
 }
 

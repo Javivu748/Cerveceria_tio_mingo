@@ -776,6 +776,26 @@
                 width: 100%;
                 text-align: center;
             }
+
+            #map {
+                height: 250px; /* Reducido de 400px a 250px para mejor escala */
+                width: 100%;
+                border: 1px solid rgba(212, 165, 116, 0.4);
+                border-radius: 12px;
+                margin-bottom: 1rem;
+                background-color: #1a1a1a;
+                box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+            }
+
+            .location-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            .profile-card.location-card {
+                padding: 1.5rem; 
+            }
         }
     </style>
 </head>
@@ -807,7 +827,7 @@
 
 
         <section class="main-content">
-            
+
             {{-- FORMULARIO DE EDICIÓN --}}
             <div class="form-section">
                 <h2 class="form-title">Actualiza tu información</h2>
@@ -959,6 +979,48 @@
     </main>
 
     {{-- ═══════════════════════════════════════════
+             SECCIÓN 3 — Ubicación
+        ════════════════════════════════════════════ --}}
+
+        <div class="profile-card">
+    <h2 class="section-title">📍 Mi ubicación</h2>
+    <p style="color: rgba(245, 230, 211, 0.7); font-size: 0.9rem; margin-bottom: 1.5rem; font-family: 'Montserrat', sans-serif;">
+        Mueve el marcador o haz clic en el mapa para fijar tu dirección exacta.
+    </p>
+
+    {{-- Contenedor del mapa con la misma estética --}}
+    <div id="map"
+         style="height: 350px; width: 100%; border-radius: 8px; margin-bottom: 1.5rem; border: 1px solid rgba(212, 165, 116, 0.3);"
+         data-lat="{{ $user->latitude ?? 36.5936 }}"
+         data-lng="{{ $user->longitude ?? -6.2341 }}">
+    </div>
+
+    <form action="{{ route('profile.location.update') }}" method="POST">
+        @csrf
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 1rem;">
+            <div class="form-group">
+                <label class="form-label">Latitud</label>
+                <input type="text" id="lat" name="latitude" class="form-input" value="{{ $user->latitude }}" readonly>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Longitud</label>
+                <input type="text" id="lng" name="longitude" class="form-input" value="{{ $user->longitude }}" readonly>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Dirección Detectada</label>
+            <textarea id="address" name="address" class="form-input" rows="2" readonly
+                      style="resize: none;">{{ $user->address }}</textarea>
+        </div>
+
+        <button type="submit" class="btn-primary" style="width: 100%; margin-top: 0.5rem;">
+            CONFIRMAR UBICACIÓN
+        </button>
+    </form>
+</div>
+
+    {{-- ═══════════════════════════════════════════
          MODAL DE CONFIRMACIÓN DE BORRADO
     ════════════════════════════════════════════ --}}
     <div class="modal-overlay" id="deleteModal">
@@ -1044,7 +1106,69 @@
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape') closeDeleteModal();
         });
+
     </script>
+
+    <script>
+    let map, marker, geocoder;
+
+    function initMap() {
+        // Obtenemos el contenedor del mapa y las coordenadas iniciales
+        const mapElement = document.getElementById('map');
+        const initialLoc = {
+            lat: parseFloat(mapElement.dataset.lat) || 36.5936,
+            lng: parseFloat(mapElement.dataset.lng) || -6.2341
+        };
+
+        geocoder = new google.maps.Geocoder();
+
+        // Inicializamos el mapa
+        map = new google.maps.Map(mapElement, {
+            zoom: 15,
+            center: initialLoc,
+            disableDefaultUI: false, // Permite controles básicos
+            styles: [
+                { "featureType": "all", "elementType": "labels.text.fill", "stylers": [{ "color": "#ffffff" }] },
+                { "featureType": "all", "elementType": "labels.text.stroke", "stylers": [{ "color": "#000000" }, { "lightness": 13 }] },
+                { "featureType": "administrative", "elementType": "geometry.fill", "stylers": [{ "color": "#000000" }, { "lightness": 20 }] },
+                { "featureType": "landscape", "elementType": "geometry", "stylers": [{ "color": "#2c1810" }] }, // Color de tu web
+                { "featureType": "water", "elementType": "geometry", "stylers": [{ "color": "#1a1a1a" }] }
+    ]
+        });
+
+        // Añadimos el marcador arrastrable
+        marker = new google.maps.Marker({
+            position: initialLoc,
+            map: map,
+            draggable: true,
+            title: "Arrastra para ubicar tu dirección"
+        });
+
+        // Eventos para capturar la nueva posición
+        map.addListener("click", (e) => updatePos(e.latLng));
+        marker.addListener("dragend", (e) => updatePos(e.latLng));
+    }
+
+    function updatePos(latLng) {
+        marker.setPosition(latLng);
+        map.panTo(latLng);
+
+        // Actualizamos los inputs del formulario
+        document.getElementById("lat").value = latLng.lat().toFixed(8);
+        document.getElementById("lng").value = latLng.lng().toFixed(8);
+
+        // Obtener la dirección escrita (Geocoding inverso)
+        geocoder.geocode({ location: latLng }, (results, status) => {
+            if (status === "OK" && results[0]) {
+                document.getElementById("address").value = results[0].formatted_address;
+            }
+        });
+    }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google.maps_api_key') }}&callback=initMap" async defer></script>
+
+
 
 </body>
 

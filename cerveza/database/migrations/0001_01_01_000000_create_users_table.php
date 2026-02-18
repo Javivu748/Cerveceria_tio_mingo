@@ -17,7 +17,10 @@ return new class extends Migration
             $table->string('apellido');
             $table->string('telefono');
             $table->string('email')->unique();
-            $table->string('role')->default('USER'); 
+            $table->string('role')->default('USER');
+            $table->decimal('latitude', 10, 8)->nullable();
+            $table->decimal('longitude', 11, 8)->nullable();
+            $table->text('address')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

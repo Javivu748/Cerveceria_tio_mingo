@@ -42,8 +42,12 @@ return [
     'telegram' => [
     'bot_token' => env('TELEGRAM_BOT_TOKEN'),
     'admin_chat_id' => env('TELEGRAM_ADMIN_CHAT_ID'),
-],
+    ],
 
-    
+    'google' => [
+    'maps_api_key' => env('GOOGLE_MAPS_API_KEY'),
+    ],
+
+
 
 ];
