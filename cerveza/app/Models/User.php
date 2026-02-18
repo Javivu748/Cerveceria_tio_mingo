@@ -15,11 +15,7 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    // Campos que se pueden llenar de forma masiva
     protected $fillable = [
         'nombre',
         'apellido',
@@ -32,49 +28,37 @@ class User extends Authenticatable implements MustVerifyEmail
         'address',    
     ];
 
-    /**
-     * Relationships
-     */
-
-    // 1:1 - Un usuario tiene un local
+    // Relación: un usuario puede tener un local (1 a 1)
     public function local()
     {
         return $this->hasOne(Local::class, 'user_id');
     }
 
-    // 1:N - Un usuario tiene muchos pedidos
+    // Relación: un usuario puede tener muchos pedidos (1 a N)
     public function pedidos()
     {
         return $this->hasMany(Pedido::class, 'user_id');
     }
 
-    /**
-     * Notifications
-     */
-
+    // Notificación: enviar verificación de email
     public function sendEmailVerificationNotification()
     {
         $this->notify(new VerifyEmail());
     }
 
+    // Notificación: enviar recuperación de contraseña
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));
     }
 
-    /**
-     * Hidden attributes
-     *
-     * @var array<int, string>
-     */
+    // Campos ocultos al serializar el modelo
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * Attribute casting
-     */
+    // Conversión de tipos de atributos
     protected function casts(): array
     {
         return [

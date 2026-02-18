@@ -16,47 +16,56 @@ use Illuminate\View\View;
 class NewPasswordController extends Controller
 {
     /**
-     * Display the password reset view.
+     * Muestra la vista para crear una nueva contraseña.
+     * Aquí llega el usuario desde el link que le mandaron por email.
      */
     public function create(Request $request): View
     {
-        return view('auth.reset-password', ['request' => $request]);
+        return view('auth.reset-password', [
+            'request' => $request,
+        ]);
     }
 
     /**
-     * Handle an incoming new password request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
+     * Procesa el formulario de cambio de contraseña.
+     * Valida los datos, intenta resetear la contraseña y maneja los posibles errores.
      */
     public function store(Request $request): RedirectResponse
     {
+        // Validamos los datos básicos del formulario
         $request->validate([
             'token' => ['required'],
             'email' => ['required', 'email'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        // Here we will attempt to reset the user's password. If it is successful we
-        // will update the password on an actual user model and persist it to the
-        // database. Otherwise we will parse the error and return the response.
+        // Intentamos resetear la contraseña usando el broker de Laravel
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function (User $user) use ($request) {
+                // Actualizamos la contraseña del usuario
                 $user->forceFill([
                     'password' => Hash::make($request->password),
                     'remember_token' => Str::random(60),
                 ])->save();
 
+                // Disparamos el evento de password reset por si hay listeners
                 event(new PasswordReset($user));
             }
         );
 
-        // If the password was successfully reset, we will redirect the user back to
-        // the application's home authenticated view. If there is an error we can
-        // redirect them back to where they came from with their error message.
-        return $status == Password::PASSWORD_RESET
-                    ? redirect()->route('login')->with('status', __($status))
-                    : back()->withInput($request->only('email'))
-                        ->withErrors(['email' => __($status)]);
+        // Si todo salió bien, mandamos al login con un mensaje de estado.
+        // Si hubo algún problema, regresamos al formulario con el error.
+        if ($status === Password::PASSWORD_RESET) {
+            return redirect()
+                ->route('login')
+                ->with('status', __($status));
+        }
+
+        return back()
+            ->withInput($request->only('email'))
+            ->withErrors([
+                'email' => __($status),
+            ]);
     }
 }

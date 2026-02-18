@@ -7,22 +7,36 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Ejecutar la migración: crear la tabla "local"
      */
     public function up(): void
     {
         Schema::create('local', function (Blueprint $table) {
+            // ID autoincremental del local
             $table->id();
+
+            // Nombre del local
             $table->string('nombre');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+
+            // Relación con el usuario propietario
+            // Si se elimina el usuario, el local también se elimina
+            $table->foreignId('user_id')
+                  ->constrained('users')
+                  ->onDelete('cascade');
+
+            // Correo electrónico único del local
             $table->string('email')->unique();
+
+            // Número de teléfono del local
             $table->string('telefono');
+
+            // Fechas de creación y actualización del registro
             $table->timestamps();
         });
     }
 
     /**
-     * Reverse the migrations.
+     * Revertir la migración: eliminar la tabla "local"
      */
     public function down(): void
     {

@@ -7,24 +7,37 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Ejecutar la migración: crear la tabla "proveedores"
      */
     public function up(): void
     {
-        Schema::create('estilos', function (Blueprint $table) {
+        Schema::create('proveedores', function (Blueprint $table) {
+            // ID autoincremental del proveedor
             $table->id();
-            $table->string('nombre'); 
-            $table->string('tipo_fermentacion'); 
-            $table->text('descripcion');
+
+            // Nombre de la distribuidora
+            $table->string('nombre_distribuidora');
+
+            // Contacto de la distribuidora
+            // Nota: hay un typo en "contaco", debería ser "contacto"
+            $table->string('contaco');
+
+            // Teléfono de contacto
+            $table->string('telefono');
+
+            // Plazo de entrega estimado en días (valor positivo)
+            $table->integer('plazo_entrega_estimado')->unsigned();
+
+            // Timestamps: created_at y updated_at
             $table->timestamps();
         });
     }
 
     /**
-     * Reverse the migrations.
+     * Revertir la migración: eliminar la tabla "proveedores"
      */
     public function down(): void
     {
-        Schema::dropIfExists('estilos');
+        Schema::dropIfExists('proveedores');
     }
 };

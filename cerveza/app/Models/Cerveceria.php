@@ -10,12 +10,10 @@ class Cerveceria extends Model
 {
     use HasFactory;
 
-    // Usar nombre de tabla sin acento para evitar problemas
+    // Nombre de la tabla en la base de datos
     protected $table = 'cervecerias';
 
-    /**
-     * Campos asignables masivamente
-     */
+    // Campos que se pueden llenar masivamente
     protected $fillable = [
         'nombre',
         'pais_ciudad',
@@ -26,13 +24,7 @@ class Cerveceria extends Model
         'sitio_web',
     ];
 
-    /**
-     * =========================
-     * Relaciones
-     * =========================
-     */
-
-    // 1:N → Una cervecería puede producir muchas cervezas
+    // Relación: una cervecería tiene muchas cervezas
     public function cervezas()
     {
         return $this->hasMany(Cerveza::class, 'cerveceria_id');

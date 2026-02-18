@@ -12,49 +12,62 @@ use Illuminate\View\View;
 class ProfileController extends Controller
 {
     /**
-     * Display the user's profile form.
+     * Mostrar el formulario de edición del perfil del usuario.
      */
     public function edit(Request $request): View
     {
+        $user = $request->user();
+
         return view('profile.edit', [
-            'user' => $request->user(),
+            'user' => $user,
         ]);
     }
 
     /**
-     * Update the user's profile information.
+     * Actualizar la información del perfil del usuario.
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        // Rellenamos el modelo con los datos validados
+        $user->fill($request->validated());
+
+        // Si se cambió el email, desmarcamos la verificación
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
         }
 
-        $request->user()->save();
+        // Guardamos los cambios
+        $user->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.edit')
+                       ->with('status', 'profile-updated');
     }
 
     /**
-     * Delete the user's account.
+     * Eliminar la cuenta del usuario.
      */
     public function destroy(Request $request): RedirectResponse
     {
+        // Validamos la contraseña antes de eliminar
         $request->validateWithBag('userDeletion', [
             'password' => ['required', 'current_password'],
         ]);
 
         $user = $request->user();
 
+        // Cerramos sesión
         Auth::logout();
 
+        // Eliminamos el usuario
         $user->delete();
 
+        // Limpiamos la sesión
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
+        // Redirigimos al home
         return Redirect::to('/');
     }
 }

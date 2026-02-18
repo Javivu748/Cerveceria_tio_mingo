@@ -10,6 +10,7 @@ class TelegramService
     protected $adminChatId;
     protected $baseUrl;
 
+    // Inicializamos el servicio con los datos de configuración
     public function __construct()
     {
         $this->botToken   = config('services.telegram.bot_token');
@@ -17,9 +18,7 @@ class TelegramService
         $this->baseUrl    = "https://api.telegram.org/bot{$this->botToken}";
     }
 
-    /**
-     * Método base para enviar mensajes
-     */
+    // Método base para enviar mensajes a Telegram
     public function sendMessage(string $message, ?string $chatId = null)
     {
         try {
@@ -30,6 +29,7 @@ class TelegramService
                 'parse_mode' => 'HTML'
             ];
 
+            // Inicializamos cURL
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_POST, true);
@@ -41,6 +41,7 @@ class TelegramService
             $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             curl_close($ch);
 
+            // Comprobamos si la respuesta fue correcta
             if ($httpCode == 200) {
                 $result = json_decode($response, true);
                 return isset($result['ok']) && $result['ok'] === true;
@@ -55,9 +56,7 @@ class TelegramService
         }
     }
 
-    /**
-     * Mensaje de prueba
-     */
+    // Mensaje de prueba para comprobar que el bot funciona
     public function sendTestMessage()
     {
         $message  = "━━━━━━━━━━━━━━━━━━\n";
@@ -74,9 +73,7 @@ class TelegramService
         return $this->sendMessage($message);
     }
 
-    /**
-     * Notificar nueva cerveza al admin
-     */
+    // Notifica al admin cuando se agrega una nueva cerveza
     public function notifyNewBeer($cerveza)
     {
         $message  = "🍺 <b>¡NUEVA CERVEZA AGREGADA!</b>\n\n";
@@ -88,6 +85,7 @@ class TelegramService
         if ($cerveza->cerveceria) {
             $message .= "🏭 <b>Cervecería:</b> {$cerveza->cerveceria->nombre}\n";
         }
+
         if ($cerveza->estilo) {
             $message .= "🏷️ <b>Estilo:</b> {$cerveza->estilo->nombre}\n";
         }
@@ -97,9 +95,7 @@ class TelegramService
         return $this->sendMessage($message);
     }
 
-    /**
-     * Notificar al admin que se editó una cerveza
-     */
+    // Notifica al admin cuando se edita una cerveza
     public function notifyBeerEdited($cerveza, array $cambios)
     {
         $message  = "✏️ <b>CERVEZA EDITADA</b>\n\n";
@@ -115,9 +111,7 @@ class TelegramService
         return $this->sendMessage($message);
     }
 
-    /**
-     * Notificar oferta a un usuario (precio bajó)
-     */
+    // Notifica a un usuario sobre una oferta (precio bajó)
     public function notifyOffer($user, $cerveza, $precioAnterior)
     {
         $descuento = round((($precioAnterior - $cerveza->precio_eur) / $precioAnterior) * 100);
@@ -134,9 +128,7 @@ class TelegramService
         return $this->sendMessage($message, $user->telegram_chat_id);
     }
 
-    /**
-     * Notificar a TODOS los usuarios sobre oferta
-     */
+    // Notifica a todos los usuarios sobre una oferta
     public function notifyAllUsersOffer($cerveza, $precioAnterior)
     {
         $users = \App\Models\User::whereNotNull('telegram_chat_id')
@@ -144,9 +136,11 @@ class TelegramService
                                   ->get();
 
         $count = 0;
+
         foreach ($users as $user) {
             if ($this->notifyOffer($user, $cerveza, $precioAnterior)) {
                 $count++;
+                // Pequeña pausa para no saturar la API de Telegram
                 usleep(100000);
             }
         }
@@ -154,9 +148,7 @@ class TelegramService
         return $count;
     }
 
-    /**
-     * Notificar al admin que un usuario hizo una compra
-     */
+    // Notifica al admin cuando un usuario realiza una compra
     public function notifyNewPurchase($pedido, $user)
     {
         $message  = "🛒 <b>¡NUEVA COMPRA!</b>\n\n";
@@ -184,7 +176,9 @@ class TelegramService
 
         return $this->sendMessage($message);
     }
-     public function notifyBeerDeleted($cerveza)
+
+    // Notifica al admin que una cerveza fue eliminada
+    public function notifyBeerDeleted($cerveza)
     {
         $message  = "🗑️ <b>CERVEZA ELIMINADA</b>\n\n";
         $message .= "🍺 <b>Nombre:</b> {$cerveza->name}\n";

@@ -9,10 +9,10 @@ class DetallePedido extends Model
 {
     use HasFactory;
 
-    // Nombre de la tabla (importante)
+    // Nombre de la tabla en la base de datos
     protected $table = 'detalle_pedidos';
 
-    // Campos que se pueden llenar
+    // Campos que se pueden asignar de forma masiva
     protected $fillable = [
         'pedido_id',
         'cerveza_id',
@@ -21,13 +21,13 @@ class DetallePedido extends Model
         'subtotal',
     ];
 
-    // Relación: Un detalle pertenece a un pedido
+    // Relación: cada detalle pertenece a un pedido
     public function pedido()
     {
         return $this->belongsTo(Pedido::class);
     }
 
-    // Relación: Un detalle pertenece a una cerveza
+    // Relación: cada detalle pertenece a una cerveza
     public function cerveza()
     {
         return $this->belongsTo(Cerveza::class);

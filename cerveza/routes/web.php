@@ -11,54 +11,36 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ComentarioController;
 use App\Models\Comentario;
 
+// Rutas públicas
 
-//Comentarios
+// Página de inicio con comentarios aleatorios
 Route::get('/', function () {
     $comentarios = Comentario::inRandomOrder()->get();
     return view('welcome', compact('comentarios'));
 })->name('home');
 
+// Crear un nuevo comentario
 Route::post('/comentarios', [ComentarioController::class, 'store'])->name('comentarios.store');
 
-// Dashboard
-Route::get('/dashboard', fn() => view('dashboard'))
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+// Lista pública de cervezas
+Route::get('/cervezas', [CervezaController::class, 'index'])->name('cervezas');
 
-// Perfil de usuario
+// Mostrar información de una cerveza individual
+Route::get('/cervezas/{id}', [CervezaController::class, 'show'])->name('cervezas.show');
+
+// Rutas para usuarios autenticados
 Route::middleware('auth')->group(function () {
+
+    // Perfil de usuario
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Mi perfil con información y pedidos
+    // Actualizar ubicación del usuario
+    Route::post('/perfil/ubicacion', [UserController::class, 'updateLocation'])->name('profile.location.update');
 
-});
-
-// Nosotros (solo usuarios autenticados)
-Route::middleware('auth')->get('/nosotros', [NosotrosController::class, 'index'])->name('nosotros.index');
-
-// Dashboard Admin (solo usuarios autenticados con role ADMIN)
-Route::middleware(['auth', 'verified', 'ADMIN'])->group(function () {
-    Route::get('/admin/usuarios', [UserController::class, 'dashboard'])->name('admin.usuarios');
-    Route::get('/usuario/{id}', [UserController::class, 'userProfile'])->name('user.profile');
-    Route::post('/eliminar-cuenta/{id}', [UserController::class, 'eliminar'])->name('user.eliminar');
-
-    //Route de cerveza
-    Route::get('/admin/cervezas', [CervezaController::class, 'adminIndex'])->name('admin.cervezas');
-    Route::get('/admin/cervezas/crear', [CervezaController::class, 'create'])->name('admin.cervezas.create');
-    Route::post('/admin/cervezas', [CervezaController::class, 'store'])->name('admin.cervezas.store');
-    Route::get('/admin/cervezas/{id}/editar', [CervezaController::class, 'edit'])->name('admin.cervezas.edit');
-    Route::patch('/admin/cervezas/{id}', [CervezaController::class, 'update'])->name('admin.cervezas.update');
-    Route::delete('/admin/cervezas/{id}', [CervezaController::class, 'destroy'])->name('admin.cervezas.destroy');
-});
-
-// Cervezas
-Route::get('/cervezas', [CervezaController::class, 'index'])->name('cervezas');
-Route::get('/cervezas/{id}', [CervezaController::class, 'show'])->name('cervezas.show');
-
-// Pedidos y PayPal (solo usuarios autenticados)
-Route::middleware('auth')->group(function () {
+    // Página "Nosotros"
+    Route::get('/nosotros', [NosotrosController::class, 'index'])->name('nosotros.index');
 
     // Pedidos
     Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index');
@@ -66,6 +48,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/pedidos', [PedidoController::class, 'store'])->name('pedidos.store');
     Route::get('/pedidos/{id}/detalle', [PedidoController::class, 'detalle'])->name('pedidos.detalle');
     Route::delete('/pedidos/{id}', [PedidoController::class, 'destroy'])->name('pedidos.destroy');
+
+    // Editar perfil desde usuario
     Route::get('/editar', [UserController::class, 'editar'])->name('editar.perfil');
     Route::patch('/usuario/{id}', [UserController::class, 'update'])->name('user.update');
 
@@ -74,6 +58,32 @@ Route::middleware('auth')->group(function () {
     Route::get('/paypal/success', [PayPalController::class, 'paymentSuccess'])->name('paypal.success');
     Route::get('/paypal/cancel', [PayPalController::class, 'paymentCancel'])->name('paypal.cancel');
 });
+
+// Rutas para usuarios con rol ADMIN
+Route::middleware(['auth', 'verified', 'ADMIN'])->group(function () {
+
+    // Gestión de usuarios
+    Route::get('/admin/usuarios', [UserController::class, 'dashboard'])->name('admin.usuarios');
+    Route::get('/usuario/{id}', [UserController::class, 'userProfile'])->name('user.profile');
+    Route::post('/eliminar-cuenta/{id}', [UserController::class, 'eliminar'])->name('user.eliminar');
+
+    // Gestión de cervezas
+    Route::get('/admin/cervezas', [CervezaController::class, 'adminIndex'])->name('admin.cervezas');
+    Route::get('/admin/cervezas/crear', [CervezaController::class, 'create'])->name('admin.cervezas.create');
+    Route::post('/admin/cervezas', [CervezaController::class, 'store'])->name('admin.cervezas.store');
+    Route::get('/admin/cervezas/{id}/editar', [CervezaController::class, 'edit'])->name('admin.cervezas.edit');
+    Route::patch('/admin/cervezas/{id}', [CervezaController::class, 'update'])->name('admin.cervezas.update');
+    Route::delete('/admin/cervezas/{id}', [CervezaController::class, 'destroy'])->name('admin.cervezas.destroy');
+});
+
+// Dashboard
+Route::get('/dashboard', fn() => view('dashboard'))
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
+
+// API de Exchange / Monedas
+Route::post('/api/currency/convert', [ExchangeController::class, 'convert']);
+Route::get('/api/currency/rates', [ExchangeController::class, 'getRates']);
 
 // Test Telegram
 Route::get('/test-telegram', function () {
@@ -94,16 +104,5 @@ Route::get('/test-telegram', function () {
     }
 });
 
-
-Route::get('/cervezas', [CervezaController::class, 'index'])
-    ->name('cervezas');
-// Mostrar una cerveza individual
-Route::get('/cervezas/{id}', [CervezaController::class, 'show'])
-    ->name('cervezas.show');
+// Rutas de autenticación
 require __DIR__ . '/auth.php';
-
-
-Route::post('/api/currency/convert', [ExchangeController::class, 'convert']);
-Route::get('/api/currency/rates', [ExchangeController::class, 'getRates']);
-
-Route::post('/perfil/ubicacion', [UserController::class, 'updateLocation'])->name('profile.location.update');

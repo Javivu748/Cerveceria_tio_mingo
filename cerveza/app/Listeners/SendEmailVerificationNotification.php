@@ -9,20 +9,28 @@ use Illuminate\Queue\InteractsWithQueue;
 class SendEmailVerificationNotification
 {
     /**
-     * Create the event listener.
+     * Crear una nueva instancia del listener.
+     *
+     * Aquí normalmente se inicializan dependencias si fueran necesarias.
      */
     public function __construct()
     {
-        //
+        // No se necesita configuración adicional por ahora
     }
 
     /**
-     * Handle the event.
+     * Maneja el evento de usuario registrado.
+     *
+     * @param Registered $event
+     * @return void
      */
     public function handle(Registered $event): void
     {
-        if (! $event->user->hasVerifiedEmail()) {
-            $event->user->sendEmailVerificationNotification();
+        $user = $event->user;
+
+        // Solo enviamos notificación si el email no ha sido verificado aún
+        if (! $user->hasVerifiedEmail()) {
+            $user->sendEmailVerificationNotification();
         }
     }
 }

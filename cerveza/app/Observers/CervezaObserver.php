@@ -9,27 +9,26 @@ class CervezaObserver
 {
     protected $telegram;
 
+    // Inyectamos el servicio de Telegram
     public function __construct(TelegramService $telegram)
     {
         $this->telegram = $telegram;
     }
 
-    /**
-     * Cuando se CREA una cerveza nueva → notifica al admin
-     */
+    // Se ejecuta cuando se crea una nueva cerveza
     public function created(Cerveza $cerveza)
     {
+        // Notificamos al admin de la nueva cerveza
         $this->telegram->notifyNewBeer($cerveza);
     }
 
-    /**
-     * Cuando se EDITA una cerveza → notifica al admin con los cambios
-     */
+    // Se ejecuta cuando se actualiza una cerveza
     public function updated(Cerveza $cerveza)
     {
+        // Aquí guardamos los cambios detectados
         $cambios = [];
 
-        // Campos que vigilamos
+        // Campos que queremos vigilar
         $campos = [
             'name'       => 'Nombre',
             'precio_eur' => 'Precio',
@@ -37,11 +36,13 @@ class CervezaObserver
             'capacidad'  => 'Capacidad',
         ];
 
+        // Recorremos cada campo para ver si cambió
         foreach ($campos as $campo => $etiqueta) {
             if ($cerveza->isDirty($campo)) {
                 $antes   = $cerveza->getOriginal($campo);
                 $despues = $cerveza->$campo;
 
+                // Formateamos el precio si corresponde
                 $cambios[$etiqueta] = [
                     'antes'   => $campo === 'precio_eur'
                                     ? '€' . number_format($antes, 2)
@@ -58,7 +59,7 @@ class CervezaObserver
             $this->telegram->notifyBeerEdited($cerveza, $cambios);
         }
 
-        // Si el precio BAJÓ → notificar oferta a todos los usuarios suscritos
+        // Si el precio bajó, notificamos oferta a todos los usuarios
         if ($cerveza->isDirty('precio_eur')) {
             $precioAnterior = $cerveza->getOriginal('precio_eur');
             $precioNuevo    = $cerveza->precio_eur;
@@ -69,11 +70,10 @@ class CervezaObserver
         }
     }
 
-    /**
-     * Cuando se ELIMINA una cerveza → notifica al admin
-     */
+    // Se ejecuta cuando se elimina una cerveza
     public function deleted(Cerveza $cerveza)
     {
+        // Notificamos al admin de la eliminación
         $this->telegram->notifyBeerDeleted($cerveza);
     }
 }

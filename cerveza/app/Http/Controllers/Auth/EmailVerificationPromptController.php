@@ -10,12 +10,19 @@ use Illuminate\View\View;
 class EmailVerificationPromptController extends Controller
 {
     /**
-     * Display the email verification prompt.
+     * Muestra el aviso para verificar el email.
+     * Si el usuario ya lo verificó, lo mandamos directo al dashboard.
      */
     public function __invoke(Request $request): RedirectResponse|View
     {
-        return $request->user()->hasVerifiedEmail()
-                    ? redirect()->intended(route('dashboard', absolute: false))
-                    : view('auth.verify-email');
+        $user = $request->user();
+
+        // Si el correo ya está verificado, no mostramos esta vista
+        if ($user->hasVerifiedEmail()) {
+            return redirect()->intended(route('dashboard', absolute: false));
+        }
+
+        // Caso contrario, mostramos la pantalla para pedir la verificación
+        return view('auth.verify-email');
     }
 }

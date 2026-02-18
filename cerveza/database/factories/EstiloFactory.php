@@ -5,19 +5,21 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Estilo>
+ * Factory para crear estilos de cerveza de prueba
  */
 class EstiloFactory extends Factory
 {
     /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
+     * Define los valores por defecto para el modelo
      */
     public function definition(): array
     {
         return [
-            //
+            // Aquí puedes poner los valores falsos para un estilo de cerveza
+            // Por ejemplo:
+            // 'nombre' => $this->faker->word(),
+            // 'tipo_fermentacion' => $this->faker->randomElement(['Alta', 'Baja']),
+            // 'descripcion' => $this->faker->sentence(),
         ];
     }
 }

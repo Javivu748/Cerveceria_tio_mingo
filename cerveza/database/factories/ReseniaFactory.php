@@ -7,22 +7,34 @@ use App\Models\User;
 use App\Models\Cerveza;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * Factory para crear reseñas de cervezas
+ */
 class ReseniaFactory extends Factory
 {
-    protected $model = Resenia::class; // Modelo al que pertenece el factory
+    // Modelo al que pertenece esta factory
+    protected $model = Resenia::class;
 
+    /**
+     * Define los valores por defecto de una reseña
+     */
     public function definition(): array
     {
         return [
-            // Asigna una cerveza existente o crea una nueva
+            // Asignar una cerveza aleatoria o crear una nueva si no hay
             'cerveza_id' => Cerveza::inRandomOrder()->first()?->id ?? Cerveza::factory(),
 
-            // Asigna un usuario existente o crea uno nuevo
+            // Asignar un usuario aleatorio o crear uno nuevo si no hay
             'user_id' => User::inRandomOrder()->first()?->id ?? User::factory(),
 
-            'puntuacion' => $this->faker->numberBetween(1, 5), // Número entre 1 y 5
-            'comentario' => $this->faker->sentence(), // Comentario aleatorio
-            'fecha' => $this->faker->date(), // Fecha aleatoria
+            // Puntuación de 1 a 5
+            'puntuacion' => $this->faker->numberBetween(1, 5),
+
+            // Comentario de ejemplo
+            'comentario' => $this->faker->sentence(),
+
+            // Fecha de la reseña
+            'fecha' => $this->faker->date(),
         ];
     }
 }

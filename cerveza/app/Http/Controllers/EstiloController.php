@@ -8,58 +8,59 @@ use Illuminate\Http\Request;
 class EstiloController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra un listado de todos los estilos de cerveza.
+     * Normalmente se usaría en el panel de administración o para filtros en el front.
      */
     public function index()
     {
-        //
+        // TODO: obtener todos los estilos y enviarlos a una vista
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Muestra el formulario para crear un nuevo estilo.
      */
     public function create()
     {
-        //
+        // TODO: retornar la vista con el formulario de creación
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Guarda un nuevo estilo en la base de datos.
      */
     public function store(Request $request)
     {
-        //
+        // TODO: validar datos, crear el registro y redirigir
     }
 
     /**
-     * Display the specified resource.
+     * Muestra la información de un estilo específico.
      */
     public function show(Estilo $estilo)
     {
-        //
+        // TODO: retornar la vista con los detalles del estilo
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Muestra el formulario para editar un estilo existente.
      */
     public function edit(Estilo $estilo)
     {
-        //
+        // TODO: retornar la vista con el formulario de edición
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza un estilo en la base de datos.
      */
     public function update(Request $request, Estilo $estilo)
     {
-        //
+        // TODO: validar datos, actualizar el registro y redirigir
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Elimina un estilo de la base de datos.
      */
     public function destroy(Estilo $estilo)
     {
-        //
+        // TODO: eliminar el registro y redirigir con mensaje de éxito
     }
 }
