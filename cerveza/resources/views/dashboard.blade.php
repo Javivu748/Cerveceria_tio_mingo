@@ -1087,6 +1087,11 @@
 
             <div class="nav-container" id="navContainer">
                 <nav>
+                    @if (auth()->check() && auth()->user()->role === 'ADMIN')
+                    <a href="{{ route('admin.cervezas') }}" class="btn-profile">
+                            CervezasAdmin
+                        </a>
+                    @endif
                     <a href="{{ route('cervezas') }}">Cervezas</a>
                     <a href="/nosotros">Nosotros</a>
                     <a href="{{ route('pedidos.index') }}">Pedidos</a>

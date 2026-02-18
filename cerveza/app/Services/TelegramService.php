@@ -184,4 +184,19 @@ class TelegramService
 
         return $this->sendMessage($message);
     }
+     public function notifyBeerDeleted($cerveza)
+    {
+        $message  = "🗑️ <b>CERVEZA ELIMINADA</b>\n\n";
+        $message .= "🍺 <b>Nombre:</b> {$cerveza->name}\n";
+        $message .= "🍾 <b>Formato:</b> {$cerveza->formato} · {$cerveza->capacidad}ml\n";
+        $message .= "💰 <b>Precio:</b> €" . number_format($cerveza->precio_eur, 2) . "\n";
+
+        if ($cerveza->cerveceria) {
+            $message .= "🏭 <b>Cervecería:</b> {$cerveza->cerveceria->nombre}\n";
+        }
+
+        $message .= "\n🕒 " . now()->format('d/m/Y H:i:s');
+
+        return $this->sendMessage($message);
+    }
 }

@@ -15,7 +15,7 @@ class CervezaObserver
     }
 
     /**
-     * Cuando se CREA una cerveza nueva
+     * Cuando se CREA una cerveza nueva → notifica al admin
      */
     public function created(Cerveza $cerveza)
     {
@@ -23,7 +23,7 @@ class CervezaObserver
     }
 
     /**
-     * Cuando se EDITA una cerveza
+     * Cuando se EDITA una cerveza → notifica al admin con los cambios
      */
     public function updated(Cerveza $cerveza)
     {
@@ -58,7 +58,7 @@ class CervezaObserver
             $this->telegram->notifyBeerEdited($cerveza, $cambios);
         }
 
-        // Si el precio BAJÓ → notificar oferta a usuarios
+        // Si el precio BAJÓ → notificar oferta a todos los usuarios suscritos
         if ($cerveza->isDirty('precio_eur')) {
             $precioAnterior = $cerveza->getOriginal('precio_eur');
             $precioNuevo    = $cerveza->precio_eur;
@@ -67,5 +67,13 @@ class CervezaObserver
                 $this->telegram->notifyAllUsersOffer($cerveza, $precioAnterior);
             }
         }
+    }
+
+    /**
+     * Cuando se ELIMINA una cerveza → notifica al admin
+     */
+    public function deleted(Cerveza $cerveza)
+    {
+        $this->telegram->notifyBeerDeleted($cerveza);
     }
 }
