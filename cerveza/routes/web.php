@@ -64,6 +64,7 @@ Route::middleware(['auth', 'verified', 'ADMIN'])->group(function () {
 
     // Gestión de usuarios
     Route::get('/admin/usuarios', [UserController::class, 'dashboard'])->name('admin.usuarios');
+    Route::get('/admin/buscador', [UserController::class, 'buscarUser'])->name('admin.buscar');
     Route::get('/usuario/{id}', [UserController::class, 'userProfile'])->name('user.profile');
     Route::post('/eliminar-cuenta/{id}', [UserController::class, 'eliminar'])->name('user.eliminar');
 
