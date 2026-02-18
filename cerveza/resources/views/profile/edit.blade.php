@@ -153,9 +153,9 @@
             position: relative;
             z-index: 1;
             padding: 3rem 5% 5rem;
-            max-width: 860px;
+            max-width: 1000px;
             margin: 0 auto;
-            width: 100%;
+            width: 200%;
         }
 
         /* ── PAGE TITLE ── */
@@ -241,6 +241,24 @@
 
         .profile-card.danger-card:hover {
             border-color: rgba(231, 76, 60, 0.7);
+        }
+
+        .profile-card.location-card {
+            max-width: 1000px; /* Aquí controlas el ANCHO de la tarjeta */
+            margin-left: auto;
+            margin-right: auto;
+            padding: 2.0rem;
+}
+
+        /* Ajuste del mapa dentro de esta tarjeta */
+        .location-card #map {
+            height: 300px;     /* Altura del mapa ajustada para ordenador */
+            width: 100%;       /* Que ocupe todo el ancho de SU tarjeta escalada */
+        }
+
+        /* Si quieres que los textos también sean un poco más pequeños en esta sección */
+        .location-card .section-title {
+            font-size: 1.6rem;
         }
 
         /* ── SECCIÓN HEADER ── */
@@ -709,6 +727,25 @@
             border-color: rgba(245, 230, 211, 0.45);
             background: rgba(245, 230, 211, 0.04);
         }
+        #map {
+                height: 450px; /* Reducido de 400px a 250px para mejor escala */
+                width: 50%;
+                border: 1px solid rgba(212, 165, 116, 0.4);
+                border-radius: 12px;
+                margin-bottom: 1rem;
+                background-color: #1a1a1a;
+                box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+            }
+
+            .location-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            .profile-card.location-card {
+                padding: 1.5rem;
+            }
 
         /* ── FOOTER ── */
         footer {
@@ -775,26 +812,6 @@
             .modal .btn-danger {
                 width: 100%;
                 text-align: center;
-            }
-
-            #map {
-                height: 250px; /* Reducido de 400px a 250px para mejor escala */
-                width: 100%;
-                border: 1px solid rgba(212, 165, 116, 0.4);
-                border-radius: 12px;
-                margin-bottom: 1rem;
-                background-color: #1a1a1a;
-                box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
-            }
-
-            .location-grid {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 1rem;
-            }
-
-            .profile-card.location-card {
-                padding: 1.5rem; 
             }
         }
     </style>
@@ -982,7 +999,7 @@
              SECCIÓN 3 — Ubicación
         ════════════════════════════════════════════ --}}
 
-        <div class="profile-card">
+    <div class="profile-card location-card">
     <h2 class="section-title">📍 Mi ubicación</h2>
     <p style="color: rgba(245, 230, 211, 0.7); font-size: 0.9rem; margin-bottom: 1.5rem; font-family: 'Montserrat', sans-serif;">
         Mueve el marcador o haz clic en el mapa para fijar tu dirección exacta.
@@ -990,7 +1007,6 @@
 
     {{-- Contenedor del mapa con la misma estética --}}
     <div id="map"
-         style="height: 350px; width: 100%; border-radius: 8px; margin-bottom: 1.5rem; border: 1px solid rgba(212, 165, 116, 0.3);"
          data-lat="{{ $user->latitude ?? 36.5936 }}"
          data-lng="{{ $user->longitude ?? -6.2341 }}">
     </div>
