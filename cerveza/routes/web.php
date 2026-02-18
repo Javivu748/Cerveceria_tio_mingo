@@ -44,7 +44,7 @@ Route::middleware(['auth', 'verified', 'ADMIN'])->group(function () {
     Route::get('/usuario/{id}', [UserController::class, 'userProfile'])->name('user.profile');
     Route::post('/eliminar-cuenta/{id}', [UserController::class, 'eliminar'])->name('user.eliminar');
 
-    //Route de cerveza  
+    //Route de cerveza
     Route::get('/admin/cervezas', [CervezaController::class, 'adminIndex'])->name('admin.cervezas');
     Route::get('/admin/cervezas/crear', [CervezaController::class, 'create'])->name('admin.cervezas.create');
     Route::post('/admin/cervezas', [CervezaController::class, 'store'])->name('admin.cervezas.store');
@@ -105,3 +105,5 @@ require __DIR__ . '/auth.php';
 
 Route::post('/api/currency/convert', [ExchangeController::class, 'convert']);
 Route::get('/api/currency/rates', [ExchangeController::class, 'getRates']);
+
+Route::post('/perfil/ubicacion', [UserController::class, 'updateLocation'])->name('profile.location.update');
