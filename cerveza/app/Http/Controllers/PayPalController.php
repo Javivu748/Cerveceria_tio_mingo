@@ -7,23 +7,21 @@ use Srmklive\PayPal\Services\PayPal as PayPalClient;
 use App\Models\Pedido;
 use App\Models\DetallePedido;
 use App\Models\Cerveza;
-use App\Services\TelegramService;        // ← AGREGAR
+use App\Services\TelegramService;        
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
 class PayPalController extends Controller
 {
-    protected $telegram;                  // ← AGREGAR
+    protected $telegram;                  
 
-    public function __construct(TelegramService $telegram)  // ← AGREGAR
+    public function __construct(TelegramService $telegram)  
     {
         $this->telegram = $telegram;
     }
 
-    /**
-     * Crear el pago en PayPal
-     */
+    /*  Crear el pago en PayPal  */
     public function createPayment(Request $request)
     {
         try {
@@ -138,9 +136,7 @@ class PayPalController extends Controller
         }
     }
 
-    /**
-     * Pago exitoso - Capturar y guardar
-     */
+    /*  Pago exitoso - Capturar y guardar  */
     public function paymentSuccess(Request $request)
     {
         try {
@@ -193,7 +189,7 @@ class PayPalController extends Controller
 
                     session()->forget(['pedido_temp', 'paypal_order_id']);
 
-                    // ✅ Notificar al admin por Telegram
+                    // Notificar al admin por Telegram
                     $this->telegram->notifyNewPurchase($pedido, Auth::user());
 
                     return view('paypal.success', [
@@ -216,9 +212,7 @@ class PayPalController extends Controller
         }
     }
 
-    /**
-     * Pago cancelado
-     */
+    /*  Pago cancelado  */
     public function paymentCancel()
     {
         session()->forget(['pedido_temp', 'paypal_order_id']);

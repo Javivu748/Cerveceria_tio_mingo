@@ -45,9 +45,7 @@ body::before{
 
 .container{position:relative;z-index:2;}
 
-/* ═══════════════════════════════════════════════
-   ALERTAS
-═══════════════════════════════════════════════ */
+   /*ALERTAS*/
 .alert{
     margin:2rem 5%;
     padding:1rem 1.5rem;
@@ -79,9 +77,7 @@ body::before{
     color:#ffa94d;
 }
 
-/* ═══════════════════════════════════════════════
-   HEADER
-═══════════════════════════════════════════════ */
+/* HEADER */
 header{
     padding:1.5rem 5%;
     display:flex;
@@ -167,9 +163,7 @@ nav a:hover{color:var(--primary-gold);}
     color:#ff6b6b;
 }
 
-/* ═══════════════════════════════════════════════
-   HERO
-═══════════════════════════════════════════════ */
+/*  HERO */
 .hero{
     padding:5rem 5%;
     text-align:center;
@@ -188,9 +182,7 @@ nav a:hover{color:var(--primary-gold);}
     color:var(--warm-cream);
 }
 
-/* ═══════════════════════════════════════════════
-   PEDIDOS GRID
-═══════════════════════════════════════════════ */
+/* PEDIDOS GRID */
 .features{
     padding:4rem 5%;
 }
@@ -313,9 +305,7 @@ nav a:hover{color:var(--primary-gold);}
 
 .text-center{text-align:center;}
 
-/* ═══════════════════════════════════════════════
-   MODAL
-═══════════════════════════════════════════════ */
+/* MODAL */
 .modal-overlay{
     display:none;
     position:fixed;
@@ -444,9 +434,7 @@ nav a:hover{color:var(--primary-gold);}
     color:var(--primary-gold);
 }
 
-/* ═══════════════════════════════════════════════
-   MODAL DE CONFIRMACIÓN
-═══════════════════════════════════════════════ */
+/* MODAL DE CONFIRMACIÓN */
 .confirm-modal{
     max-width:400px;
     text-align:center;
@@ -501,9 +489,7 @@ nav a:hover{color:var(--primary-gold);}
     color:var(--dark-brown);
 }
 
-/* ═══════════════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════════════ */
+/* FOOTER */
 footer{
     padding:2rem 5%;
     border-top:1px solid rgba(212,165,116,0.3);
@@ -512,9 +498,7 @@ footer{
     color:rgba(245,230,211,0.5);
 }
 
-/* ═══════════════════════════════════════════════
-   SCROLLBAR PERSONALIZADA
-═══════════════════════════════════════════════ */
+/* SCROLLBAR PERSONALIZADA */
 .modal::-webkit-scrollbar{width:10px;}
 .modal::-webkit-scrollbar-track{background:rgba(0,0,0,0.3);}
 .modal::-webkit-scrollbar-thumb{background:var(--primary-gold);border-radius:5px;}
@@ -533,7 +517,6 @@ footer{
         <nav>
             <a href="#">Cervezas</a>
             <a href="#">Nosotros</a>
-            <a href="#">Tienda</a>
             <a href="{{ route('pedidos.index') }}" class="active">Pedidos</a>
         </nav>
 
@@ -669,9 +652,9 @@ footer{
 </div>
 
 <script>
-// ═══════════════════════════════════════════════
+
+
 // FUNCIONES DEL MODAL
-// ═══════════════════════════════════════════════
 
 function verDetalle(pedidoId) {
     // Hacer petición AJAX para obtener el detalle

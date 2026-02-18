@@ -7,9 +7,7 @@ use App\Models\Cerveza;
 
 class PedidoController extends Controller
 {
-    /**
-     * Mostrar todos los pedidos del usuario
-     */
+    /*  Mostrar todos los pedidos del usuario  */
     public function index()
     {
         $pedidos = Pedido::where('user_id', auth()->id())
@@ -19,18 +17,14 @@ class PedidoController extends Controller
         return view('pedidos.index', compact('pedidos'));
     }
 
-    /**
-     * Mostrar formulario de crear pedido
-     */
+    /*  Mostrar formulario de crear pedido  */
     public function create()
     {
         $cervezas = Cerveza::all();
         return view('pedidos.create', compact('cervezas'));
     }
 
-    /**
-     * Guardar pedido pagado vía PayPal
-     */
+    /*  Guardar pedido pagado vía PayPal  */
     public function storePayPal(array $pedidoTemp, string $orderId, array $result)
     {
         // Crear el pedido en la base de datos
@@ -57,9 +51,7 @@ class PedidoController extends Controller
         return $pedido;
     }
 
-    /**
-     * Obtener detalle de un pedido (AJAX)
-     */
+    /*  Obtener detalle de un pedido (AJAX)  */
     public function detalle($id)
     {
         $pedido = Pedido::with('detalles.cerveza')
@@ -84,9 +76,7 @@ class PedidoController extends Controller
         ]);
     }
 
-    /**
-     * Cancelar (eliminar) un pedido
-     */
+    /* Cancelar (eliminar) un pedido  */
     public function destroy($id)
     {
         $pedido = Pedido::where('id', $id)

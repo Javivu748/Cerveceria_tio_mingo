@@ -18,7 +18,7 @@
     --forest-green:#1B4332;
 }
 
-/* ─────────── Estilos generales ─────────── */
+/*  Estilos generales  */
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Montserrat',sans-serif;background:var(--dark-brown);color:var(--warm-cream);}
 .container{padding:2rem 5%;position:relative;z-index:2;}
@@ -55,7 +55,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--dark-brown);color:var(
 .alert-success{background:rgba(0,255,0,0.1);border-color:#51cf66;color:#51cf66;}
 .alert-warning{background:rgba(255,165,0,0.1);border-color:#ffa94d;color:#ffa94d;}
 
-/* ───────── HEADER y FOOTER ───────── */
+/*  HEADER y FOOTER  */
 header{
     padding:1.5rem 5%;
     display:flex;
@@ -129,7 +129,6 @@ footer{
         <nav>
             <a href="#">Cervezas</a>
             <a href="#">Nosotros</a>
-            <a href="#">Tienda</a>
             <a href="{{ route('pedidos.index') }}">Pedidos</a>
         </nav>
 

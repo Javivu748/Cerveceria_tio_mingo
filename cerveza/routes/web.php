@@ -11,6 +11,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ComentarioController;
 use App\Models\Comentario;
 
+
+//Comentarios
 Route::get('/', function () {
     $comentarios = Comentario::inRandomOrder()->get();
     return view('welcome', compact('comentarios'));

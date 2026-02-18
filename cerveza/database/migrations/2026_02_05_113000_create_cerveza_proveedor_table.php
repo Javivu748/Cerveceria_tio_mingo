@@ -9,7 +9,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('cerveza_proveedor', function (Blueprint $table) {
-            $table->id(); // Opcional, pero recomendado
+            $table->id(); 
             
             // Claves foráneas
             $table->foreignId('cerveza_id')
@@ -20,9 +20,9 @@ return new class extends Migration
                   ->constrained('proveedores')
                   ->onDelete('cascade');
             
-            $table->timestamps(); // Opcional pero útil
+            $table->timestamps();
             
-            // Índice único compuesto (evita duplicados)
+            // Evita duplicados para la misma cerveza y proveedor
             $table->unique(['cerveza_id', 'proveedor_id']);
         });
     }
