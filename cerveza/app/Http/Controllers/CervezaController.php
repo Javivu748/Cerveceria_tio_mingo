@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Cerveza;
 use App\Models\Estilo;
 use App\Models\Cerveceria;
-use App\Services\ExchangeService;
 
 class CervezaController extends Controller
 {
@@ -14,22 +13,36 @@ class CervezaController extends Controller
     //  PÚBLICO
     // ─────────────────────────────────────────
 
+    /**
+     * Muestra todas las cervezas sin paginación (para sección pública).
+     */
     public function cervezas()
     {
         $cervezas = Cerveza::with(['estilo', 'cerveceria'])->get();
+
         return view('cerveza.cervezas', compact('cervezas'));
     }
 
+    /**
+     * Muestra cervezas con paginación en la sección pública.
+     */
     public function index()
     {
         $cervezas = Cerveza::with(['estilo', 'cerveceria'])->paginate(6);
+
         return view('cerveza.cervezas', compact('cervezas'));
     }
 
+    /**
+     * Muestra la información detallada de una cerveza.
+     */
     public function show($id)
     {
         $cerveza = Cerveza::with(['estilo'])->findOrFail($id);
+
+        // Monedas disponibles para mostrar precio convertido
         $availableCurrencies = ['USD', 'GBP', 'JPY', 'MXN', 'CAD', 'AUD', 'CHF', 'CNY'];
+
         return view('cerveza.infoCerveza', compact('cerveza', 'availableCurrencies'));
     }
 
@@ -38,79 +51,83 @@ class CervezaController extends Controller
     // ─────────────────────────────────────────
 
     /**
-     * Listado paginado para el panel de admin
+     * Listado paginado para el panel de administración.
+     * Incluye búsqueda, filtros y ordenación.
      */
     public function adminIndex(Request $request)
-{
-    $query = Cerveza::with(['estilo', 'cerveceria']);
+    {
+        $query = Cerveza::with(['estilo', 'cerveceria']);
 
-    // ── Búsqueda por texto ─────────────────────────────────────
-    if ($request->filled('search')) {
-        $search = $request->search;
-        $query->where(function ($q) use ($search) {
-            $q->where('name', 'like', "%{$search}%")
-              ->orWhereHas('cerveceria', fn($q2) => $q2->where('nombre', 'like', "%{$search}%"))
-              ->orWhereHas('estilo',     fn($q2) => $q2->where('nombre', 'like', "%{$search}%"));
-        });
+        // ── Búsqueda por texto ─────────────────
+        if ($request->filled('search')) {
+            $search = $request->search;
+
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhereHas('cerveceria', fn($q2) => $q2->where('nombre', 'like', "%{$search}%"))
+                  ->orWhereHas('estilo', fn($q2) => $q2->where('nombre', 'like', "%{$search}%"));
+            });
+        }
+
+        // ── Filtros por campo exacto ───────────
+        if ($request->filled('cerveceria_id')) {
+            $query->where('cerveceria_id', $request->cerveceria_id);
+        }
+
+        if ($request->filled('estilo_id')) {
+            $query->where('estilo_id', $request->estilo_id);
+        }
+
+        if ($request->filled('formato')) {
+            $query->where('formato', $request->formato);
+        }
+
+        if ($request->filled('capacidad')) {
+            $query->where('capacidad', $request->capacidad);
+        }
+
+        // ── Rango de precio ─────────────────────
+        if ($request->filled('precio_min')) {
+            $query->where('precio_eur', '>=', $request->precio_min);
+        }
+
+        if ($request->filled('precio_max')) {
+            $query->where('precio_eur', '<=', $request->precio_max);
+        }
+
+        // ── Ordenación ─────────────────────────
+        $allowedSorts = ['id', 'name', 'precio_eur', 'capacidad'];
+        $sortBy       = in_array($request->sort_by, $allowedSorts) ? $request->sort_by : 'id';
+        $sortOrder    = $request->sort_order === 'desc' ? 'desc' : 'asc';
+
+        $query->orderBy($sortBy, $sortOrder);
+
+        // ── Paginación (mantener filtros en la URL) ──
+        $cervezas = $query->paginate(10)->withQueryString();
+
+        // ── Datos para filtros select en la vista ──
+        $cervecerias = Cerveceria::orderBy('nombre')->get();
+        $estilos     = Estilo::orderBy('nombre')->get();
+        $capacidades = Cerveza::distinct()->orderBy('capacidad')->pluck('capacidad');
+
+        return view('admin.cervezas.index', compact(
+            'cervezas', 'cervecerias', 'estilos', 'capacidades'
+        ));
     }
-
-    // ── Filtros por campo exacto ───────────────────────────────
-    if ($request->filled('cerveceria_id')) {
-        $query->where('cerveceria_id', $request->cerveceria_id);
-    }
-
-    if ($request->filled('estilo_id')) {
-        $query->where('estilo_id', $request->estilo_id);
-    }
-
-    if ($request->filled('formato')) {
-        $query->where('formato', $request->formato);
-    }
-
-    if ($request->filled('capacidad')) {
-        $query->where('capacidad', $request->capacidad);
-    }
-
-    // ── Rango de precio ────────────────────────────────────────
-    if ($request->filled('precio_min')) {
-        $query->where('precio_eur', '>=', $request->precio_min);
-    }
-
-    if ($request->filled('precio_max')) {
-        $query->where('precio_eur', '<=', $request->precio_max);
-    }
-
-    // ── Ordenación ─────────────────────────────────────────────
-    $allowedSorts = ['id', 'name', 'precio_eur', 'capacidad'];
-    $sortBy       = in_array($request->sort_by, $allowedSorts) ? $request->sort_by : 'id';
-    $sortOrder    = $request->sort_order === 'desc' ? 'desc' : 'asc';
-    $query->orderBy($sortBy, $sortOrder);
-
-    // ── Paginación (withQueryString mantiene los filtros en los links de página) ──
-    $cervezas    = $query->paginate(10)->withQueryString();
-
-    // ── Datos para los selectores de filtro ───────────────────
-    $cervecerias = Cerveceria::orderBy('nombre')->get();
-    $estilos     = Estilo::orderBy('nombre')->get();
-    $capacidades = Cerveza::distinct()->orderBy('capacidad')->pluck('capacidad');
-
-    return view('admin.cervezas.index', compact(
-        'cervezas', 'cervecerias', 'estilos', 'capacidades'
-    ));
-}
 
     /**
-     * Formulario para crear una nueva cerveza
+     * Formulario para crear una nueva cerveza.
      */
     public function create()
     {
         $estilos     = Estilo::orderBy('nombre')->get();
         $cervecerias = Cerveceria::orderBy('nombre')->get();
+
         return view('admin.cervezas.create', compact('estilos', 'cervecerias'));
     }
 
     /**
-     * Guardar nueva cerveza en base de datos
+     * Guardar una nueva cerveza en la base de datos.
      */
     public function store(Request $request)
     {
@@ -125,26 +142,27 @@ class CervezaController extends Controller
             'imagen_url'    => 'nullable|url|max:500',
         ]);
 
-        Cerveza::create($validated);
+        $cerveza = Cerveza::create($validated);
 
         return redirect()
             ->route('admin.cervezas')
-            ->with('success', "Cerveza \"{$validated['name']}\" creada correctamente.");
+            ->with('success', "Cerveza \"{$cerveza->name}\" creada correctamente.");
     }
 
     /**
-     * Formulario para editar una cerveza existente
+     * Formulario para editar una cerveza existente.
      */
     public function edit($id)
     {
         $cerveza     = Cerveza::findOrFail($id);
         $estilos     = Estilo::orderBy('nombre')->get();
         $cervecerias = Cerveceria::orderBy('nombre')->get();
+
         return view('admin.cervezas.edit', compact('cerveza', 'estilos', 'cervecerias'));
     }
 
     /**
-     * Actualizar cerveza en base de datos
+     * Actualizar una cerveza en la base de datos.
      */
     public function update(Request $request, $id)
     {
@@ -169,12 +187,13 @@ class CervezaController extends Controller
     }
 
     /**
-     * Eliminar cerveza de la base de datos
+     * Eliminar una cerveza de la base de datos.
      */
     public function destroy($id)
     {
         $cerveza = Cerveza::findOrFail($id);
         $nombre  = $cerveza->name;
+
         $cerveza->delete();
 
         return redirect()

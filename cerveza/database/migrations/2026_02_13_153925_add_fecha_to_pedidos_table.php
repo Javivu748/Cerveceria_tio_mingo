@@ -7,23 +7,25 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Agregar la columna "fecha" a la tabla "pedidos"
      */
     public function up(): void
     {
-         Schema::table('pedidos', function (Blueprint $table) {
-        $table->timestamp('fecha')->after('user_id')->default(now());
-    });
+        Schema::table('pedidos', function (Blueprint $table) {
+            // Creamos un campo timestamp llamado "fecha" justo después de "user_id"
+            // Se inicializa con la fecha y hora actual por defecto
+            $table->timestamp('fecha')->after('user_id')->default(now());
+        });
     }
 
     /**
-     * Reverse the migrations.
+     * Revertir los cambios realizados en la tabla "pedidos"
      */
     public function down(): void
     {
         Schema::table('pedidos', function (Blueprint $table) {
-            //
+            // Eliminamos la columna "fecha" si hacemos rollback
+            $table->dropColumn('fecha');
         });
     }
-
 };

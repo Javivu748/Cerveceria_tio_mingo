@@ -10,13 +10,16 @@ use Illuminate\Support\Facades\View;
 
 class VerifyEmail extends Notification
 {
+    // Definir por dónde se enviará la notificación
     public function via($notifiable)
     {
         return ['mail'];
     }
 
+    // Construye el correo de verificación de email
     public function toMail($notifiable)
     {
+        // Generamos una URL firmada temporal para verificar el email
         $verificationUrl = URL::temporarySignedRoute(
             'verification.verify',
             Carbon::now()->addMinutes(60),
@@ -26,8 +29,9 @@ class VerifyEmail extends Notification
             ]
         );
 
+        // Devolvemos el mensaje de correo con asunto y vista personalizada
         return (new MailMessage)
-            ->subject('Verifica Que eres un borracho real')
+            ->subject('Verifica que eres un usuario real')
             ->view('emails.verify', [
                 'notifiable' => $notifiable,
                 'verificationUrl' => $verificationUrl,

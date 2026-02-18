@@ -12,7 +12,9 @@ use Illuminate\View\View;
 class ConfirmablePasswordController extends Controller
 {
     /**
-     * Show the confirm password view.
+     * Muestra la vista para confirmar la contraseña.
+     * Se usa cuando el usuario quiere hacer algo sensible
+     * (por ejemplo, cambiar datos importantes).
      */
     public function show(): View
     {
@@ -20,21 +22,28 @@ class ConfirmablePasswordController extends Controller
     }
 
     /**
-     * Confirm the user's password.
+     * Valida que la contraseña ingresada sea correcta.
+     * Si no coincide con la del usuario autenticado, se devuelve un error.
      */
     public function store(Request $request): RedirectResponse
     {
-        if (! Auth::guard('web')->validate([
+        // Comprobamos que la contraseña ingresada coincida con la del usuario actual
+        $isValidPassword = Auth::guard('web')->validate([
             'email' => $request->user()->email,
             'password' => $request->password,
-        ])) {
+        ]);
+
+        if (! $isValidPassword) {
             throw ValidationException::withMessages([
                 'password' => __('auth.password'),
             ]);
         }
 
+        // Guardamos el momento en que se confirmó la contraseña
+        // para no pedirla de nuevo inmediatamente
         $request->session()->put('auth.password_confirmed_at', time());
 
+        // Redirigimos al usuario a la ruta que estaba intentando acceder
         return redirect()->intended(route('dashboard', absolute: false));
     }
 }

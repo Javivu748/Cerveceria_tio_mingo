@@ -7,35 +7,44 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ * Factory para crear usuarios de prueba
  */
 class UserFactory extends Factory
 {
-    /**
-     * The current password being used by the factory.
-     */
+    // Contraseña que se reutiliza para todos los usuarios creados
     protected static ?string $password;
 
     /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
+     * Define los valores por defecto de un usuario
      */
     public function definition(): array
     {
         return [
+            // Nombre del usuario
             'nombre' => fake()->firstName(),
+
+            // Apellido del usuario
             'apellido' => fake()->lastName(),
+
+            // Teléfono de contacto
             'telefono' => fake()->phoneNumber(),
+
+            // Email único
             'email' => fake()->unique()->safeEmail(),
+
+            // Fecha de verificación del email (por defecto ahora)
             'email_verified_at' => now(),
+
+            // Contraseña hasheada
             'password' => static::$password ??= Hash::make('password'),
+
+            // Token para recordar sesión
             'remember_token' => Str::random(10),
         ];
     }
 
     /**
-     * Indicate that the model's email address should be unverified.
+     * Marcar al usuario como no verificado
      */
     public function unverified(): static
     {

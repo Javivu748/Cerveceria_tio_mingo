@@ -6,21 +6,26 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\User;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Local>
+ * Factory para crear locales de prueba
  */
 class LocalFactory extends Factory
 {
     /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
+     * Define los valores por defecto para el modelo
      */
     public function definition(): array
     {
         return [
+            // Nombre del local
             'nombre' => fake()->firstName(),
-            'user_Id' => User::factory()->create()->id,
+
+            // Asociamos el local a un usuario creado con su factory
+            'user_id' => User::factory()->create()->id,
+
+            // Teléfono de contacto del local
             'telefono' => fake()->phoneNumber(),
+
+            // Email del local
             'email' => fake()->unique()->safeEmail(),
         ];
     }

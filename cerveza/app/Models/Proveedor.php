@@ -1,4 +1,3 @@
-
 <?php
 
 namespace App\Models;
@@ -11,11 +10,10 @@ class Proveedor extends Model
 {
     use HasFactory;
 
+    // Nombre de la tabla
     protected $table = 'proveedores';
 
-    /**
-     * Campos asignables masivamente
-     */
+    // Campos que se pueden llenar de forma masiva
     protected $fillable = [
         'nombre_distribuidora',
         'contacto',
@@ -23,13 +21,7 @@ class Proveedor extends Model
         'plazo_entrega_estimado'
     ];
 
-    /**
-     * =========================
-     * Relaciones
-     * =========================
-     */
-
-    // N:M → Un proveedor puede distribuir muchas cervezas
+    // Relación: un proveedor puede distribuir muchas cervezas (muchos a muchos)
     public function cervezas()
     {
         return $this->belongsToMany(
@@ -38,6 +30,5 @@ class Proveedor extends Model
             'proveedor_id',
             'cerveza_id'
         );
-       
     }
 }
