@@ -155,7 +155,6 @@
             transition: all 0.3s ease;
         }
 
-        /* ── CONTENT ── */
         .admin-content {
             max-width: 1400px;
             margin: 0 auto;
@@ -208,6 +207,245 @@
             box-shadow: 0 10px 25px rgba(212, 165, 116, 0.4);
         }
 
+        /* ─── FILTROS ─────────────────────────────────────── */
+        .filter-panel {
+            margin-bottom: 1.5rem;
+            background: rgba(212, 165, 116, 0.05);
+            border: 2px solid var(--primary-gold);
+            animation: fadeInUp 0.8s ease-out 0.1s both;
+        }
+
+        .filter-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 1.5rem;
+            cursor: pointer;
+            user-select: none;
+            border-bottom: 1px solid rgba(212,165,116,0.2);
+            transition: background 0.2s;
+        }
+
+        .filter-panel-header:hover {
+            background: rgba(212,165,116,0.08);
+        }
+
+        .filter-panel-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            color: var(--primary-gold);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .filter-toggle-icon {
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+            color: rgba(245,230,211,0.5);
+        }
+
+        .filter-toggle-icon.open { transform: rotate(180deg); }
+
+        .active-filters-count {
+            background: var(--primary-gold);
+            color: var(--dark-brown);
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+        }
+
+        .filter-body {
+            padding: 1.5rem;
+            display: none;
+        }
+
+        .filter-body.open { display: block; }
+
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .filter-group { display: flex; flex-direction: column; gap: 0.4rem; }
+
+        .filter-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--primary-gold);
+        }
+
+        .filter-input,
+        .filter-select {
+            padding: 0.75rem 1rem;
+            background: rgba(44, 24, 16, 0.6);
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            color: var(--warm-cream);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        .filter-input:focus,
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+            background: rgba(44, 24, 16, 0.8);
+        }
+
+        .filter-select option {
+            background: #2C1810;
+            color: var(--warm-cream);
+        }
+
+        /* Selector de rango de precio */
+        .price-range { display: flex; gap: 0.5rem; align-items: center; }
+        .price-range .filter-input { min-width: 0; }
+        .price-range span { color: rgba(245,230,211,0.4); font-size: 0.8rem; white-space: nowrap; }
+
+        .filter-actions {
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-apply-filters {
+            padding: 0.75rem 2rem;
+            background: linear-gradient(135deg, var(--primary-gold), var(--deep-amber));
+            color: var(--dark-brown);
+            border: none;
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn-apply-filters:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(212, 165, 116, 0.4);
+        }
+
+        .btn-clear-filters {
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            color: rgba(245, 230, 211, 0.6);
+            border: 2px solid rgba(245, 230, 211, 0.3);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer;
+        }
+
+        .btn-clear-filters:hover {
+            border-color: var(--danger);
+            color: var(--danger);
+        }
+
+        /* Barra de búsqueda de texto */
+        .search-bar {
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out 0.05s both;
+        }
+
+        .search-form {
+            display: flex;
+            gap: 0;
+            background: rgba(212, 165, 116, 0.05);
+            border: 2px solid var(--primary-gold);
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 1rem 1.4rem;
+            background: transparent;
+            border: none;
+            color: var(--warm-cream);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .search-input:focus { outline: none; }
+        .search-input::placeholder { color: rgba(245, 230, 211, 0.35); }
+
+        .btn-search {
+            padding: 1rem 1.8rem;
+            background: linear-gradient(135deg, var(--primary-gold), var(--deep-amber));
+            color: var(--dark-brown);
+            border: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn-search:hover { opacity: 0.9; }
+
+        /* Chips de filtros activos */
+        .active-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.35rem 0.8rem;
+            background: rgba(212,165,116,0.15);
+            border: 1px solid var(--primary-gold);
+            color: var(--primary-gold);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .chip-remove {
+            cursor: pointer;
+            opacity: 0.6;
+            font-size: 0.9rem;
+            line-height: 1;
+            transition: opacity 0.2s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .chip-remove:hover { opacity: 1; }
+
+        /* Info de resultados */
+        .results-info {
+            color: rgba(245, 230, 211, 0.5);
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .results-info strong { color: var(--primary-gold); }
+
         /* Alertas */
         .alert-success {
             background: rgba(81, 207, 102, 0.1);
@@ -231,11 +469,13 @@
 
         .table-header {
             background: linear-gradient(135deg, rgba(212, 165, 116, 0.2), rgba(184, 134, 11, 0.1));
-            padding: 1.5rem 2rem;
+            padding: 1.2rem 2rem;
             border-bottom: 2px solid var(--primary-gold);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
 
         .table-header h2 {
@@ -245,6 +485,12 @@
             letter-spacing: 2px;
         }
 
+        .table-header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
         .count-badge {
             background: var(--primary-gold);
             color: var(--dark-brown);
@@ -252,10 +498,24 @@
             font-weight: 700;
             font-size: 0.85rem;
             border-radius: 50px;
+            white-space: nowrap;
         }
 
-        table { width: 100%; border-collapse: collapse; }
+        /* Ordenación inline */
+        .sort-select {
+            padding: 0.5rem 0.8rem;
+            background: rgba(44, 24, 16, 0.6);
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            color: var(--warm-cream);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
 
+        .sort-select:focus { outline: none; border-color: var(--primary-gold); }
+        .sort-select option { background: #2C1810; }
+
+        table { width: 100%; border-collapse: collapse; }
         thead { background: rgba(184, 134, 11, 0.15); }
 
         th {
@@ -267,7 +527,13 @@
             font-size: 0.8rem;
             text-transform: uppercase;
             border-bottom: 1px solid rgba(212, 165, 116, 0.3);
+            white-space: nowrap;
         }
+
+        th.sortable { cursor: pointer; user-select: none; }
+        th.sortable:hover { color: #fff; }
+        th .sort-icon { margin-left: 0.3rem; opacity: 0.4; }
+        th.sort-active .sort-icon { opacity: 1; }
 
         td {
             padding: 1.1rem 1.5rem;
@@ -280,7 +546,6 @@
         tbody tr:hover { background: rgba(212, 165, 116, 0.08); }
         tbody tr:last-child td { border-bottom: none; }
 
-        /* Imagen miniatura */
         .beer-thumb {
             width: 50px;
             height: 50px;
@@ -290,7 +555,6 @@
             padding: 4px;
         }
 
-        /* Badge formato */
         .formato-badge {
             display: inline-block;
             padding: 0.3rem 0.8rem;
@@ -310,7 +574,6 @@
             letter-spacing: 1px;
         }
 
-        /* Botones acción */
         .action-buttons {
             display: flex;
             gap: 0.5rem;
@@ -358,7 +621,6 @@
             box-shadow: 0 4px 12px rgba(255, 107, 107, 0.2);
         }
 
-        /* Paginación */
         .pagination-wrapper {
             display: flex;
             justify-content: center;
@@ -413,7 +675,6 @@
             font-size: 0.8rem;
         }
 
-        /* Empty state */
         .empty-state {
             text-align: center;
             padding: 4rem 2rem;
@@ -422,7 +683,6 @@
 
         .empty-state-icon { font-size: 3.5rem; margin-bottom: 1rem; }
 
-        /* Footer */
         footer {
             margin-top: 5rem;
             padding: 2.5rem 5%;
@@ -451,6 +711,10 @@
             to   { opacity: 1; transform: translateY(0); }
         }
 
+        @media (max-width: 900px) {
+            .filter-grid { grid-template-columns: 1fr 1fr; }
+        }
+
         @media (max-width: 768px) {
             .menu-toggle { display: flex; }
             .nav-container {
@@ -469,6 +733,8 @@
             .page-header { flex-direction: column; align-items: flex-start; }
             th, td { padding: 0.8rem 1rem; font-size: 0.8rem; }
             .action-buttons { flex-direction: column; }
+            .filter-grid { grid-template-columns: 1fr; }
+            .table-header { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
@@ -500,7 +766,6 @@
 
     <div class="admin-content">
 
-        {{-- Header de página --}}
         <div class="page-header">
             <div>
                 <h1>🍺 Gestión de Cervezas</h1>
@@ -511,16 +776,187 @@
             </a>
         </div>
 
-        {{-- Alerta de éxito --}}
         @if(session('success'))
             <div class="alert-success">{{ session('success') }}</div>
         @endif
+
+        {{-- Formulario unificado con búsqueda + filtros --}}
+        <form method="GET" action="{{ route('admin.cervezas') }}" id="filterForm">
+
+            {{-- Barra de búsqueda de texto --}}
+            <div class="search-bar">
+                <div class="search-form">
+                    <input
+                        type="text"
+                        name="search"
+                        class="search-input"
+                        placeholder="🔍 Buscar por nombre, cervecería o estilo..."
+                        value="{{ request('search') }}"
+                    >
+                    <button type="submit" class="btn-search">Buscar</button>
+                </div>
+            </div>
+
+            {{-- Panel de filtros avanzados --}}
+            <div class="filter-panel">
+                <div class="filter-panel-header" onclick="toggleFilters()">
+                    <div class="filter-panel-title">
+                        🎛️ Filtros avanzados
+                        @php
+                            $activeCount = collect(['cerveceria_id','estilo_id','formato','capacidad','precio_min','precio_max','sort_by'])
+                                ->filter(fn($k) => request()->filled($k))
+                                ->count();
+                        @endphp
+                        @if($activeCount > 0)
+                            <span class="active-filters-count">{{ $activeCount }} activos</span>
+                        @endif
+                    </div>
+                    <span class="filter-toggle-icon" id="filterIcon">▼</span>
+                </div>
+
+                <div class="filter-body" id="filterBody">
+                    <div class="filter-grid">
+
+                        {{-- Cervecería --}}
+                        <div class="filter-group">
+                            <label class="filter-label">Cervecería</label>
+                            <select name="cerveceria_id" class="filter-select">
+                                <option value="">Todas</option>
+                                @foreach($cervecerias as $c)
+                                    <option value="{{ $c->id }}" {{ request('cerveceria_id') == $c->id ? 'selected' : '' }}>
+                                        {{ $c->nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        {{-- Estilo --}}
+                        <div class="filter-group">
+                            <label class="filter-label">Estilo</label>
+                            <select name="estilo_id" class="filter-select">
+                                <option value="">Todos</option>
+                                @foreach($estilos as $e)
+                                    <option value="{{ $e->id }}" {{ request('estilo_id') == $e->id ? 'selected' : '' }}>
+                                        {{ $e->nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        {{-- Formato --}}
+                        <div class="filter-group">
+                            <label class="filter-label">Formato</label>
+                            <select name="formato" class="filter-select">
+                                <option value="">Todos</option>
+                                <option value="Lata"    {{ request('formato') === 'Lata'    ? 'selected' : '' }}>🥫 Lata</option>
+                                <option value="Botella" {{ request('formato') === 'Botella' ? 'selected' : '' }}>🍾 Botella</option>
+                            </select>
+                        </div>
+
+                        {{-- Capacidad --}}
+                        <div class="filter-group">
+                            <label class="filter-label">Capacidad</label>
+                            <select name="capacidad" class="filter-select">
+                                <option value="">Todas</option>
+                                @foreach($capacidades as $cap)
+                                    <option value="{{ $cap }}" {{ request('capacidad') == $cap ? 'selected' : '' }}>
+                                        {{ $cap }} ml
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        {{-- Precio mín/máx --}}
+                        <div class="filter-group">
+                            <label class="filter-label">Precio (€)</label>
+                            <div class="price-range">
+                                <input type="number" name="precio_min" class="filter-input"
+                                    placeholder="Mín" step="0.01" min="0"
+                                    value="{{ request('precio_min') }}">
+                                <span>—</span>
+                                <input type="number" name="precio_max" class="filter-input"
+                                    placeholder="Máx" step="0.01" min="0"
+                                    value="{{ request('precio_max') }}">
+                            </div>
+                        </div>
+
+                        {{-- Ordenar por --}}
+                        <div class="filter-group">
+                            <label class="filter-label">Ordenar por</label>
+                            <select name="sort_by" class="filter-select">
+                                <option value="id"        {{ request('sort_by','id') === 'id'        ? 'selected' : '' }}>ID</option>
+                                <option value="name"      {{ request('sort_by') === 'name'           ? 'selected' : '' }}>Nombre A-Z</option>
+                                <option value="precio_eur" {{ request('sort_by') === 'precio_eur'   ? 'selected' : '' }}>Precio</option>
+                                <option value="capacidad" {{ request('sort_by') === 'capacidad'     ? 'selected' : '' }}>Capacidad</option>
+                            </select>
+                        </div>
+
+                        {{-- Orden --}}
+                        <div class="filter-group">
+                            <label class="filter-label">Orden</label>
+                            <select name="sort_order" class="filter-select">
+                                <option value="asc"  {{ request('sort_order','asc') === 'asc'  ? 'selected' : '' }}>↑ Ascendente</option>
+                                <option value="desc" {{ request('sort_order') === 'desc' ? 'selected' : '' }}>↓ Descendente</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="filter-actions">
+                        <button type="submit" class="btn-apply-filters">✅ Aplicar filtros</button>
+                        <a href="{{ route('admin.cervezas') }}" class="btn-clear-filters">✖ Limpiar todo</a>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+        {{-- Chips de filtros activos (fuera del form para no duplicar en submit) --}}
+        @php
+            $filterLabels = [
+                'search'        => ['label' => 'Búsqueda', 'value' => request('search')],
+                'cerveceria_id' => ['label' => 'Cervecería', 'value' => $cervecerias->find(request('cerveceria_id'))?->nombre ?? null],
+                'estilo_id'     => ['label' => 'Estilo', 'value' => $estilos->find(request('estilo_id'))?->nombre ?? null],
+                'formato'       => ['label' => 'Formato', 'value' => request('formato')],
+                'capacidad'     => ['label' => 'Capacidad', 'value' => request('capacidad') ? request('capacidad').' ml' : null],
+                'precio_min'    => ['label' => 'Precio mín', 'value' => request('precio_min') ? '€'.request('precio_min') : null],
+                'precio_max'    => ['label' => 'Precio máx', 'value' => request('precio_max') ? '€'.request('precio_max') : null],
+            ];
+            $hasActiveFilters = collect($filterLabels)->filter(fn($f) => $f['value'])->count() > 0;
+        @endphp
+
+        @if($hasActiveFilters)
+        <div class="active-chips">
+            @foreach($filterLabels as $key => $filter)
+                @if($filter['value'])
+                    @php
+                        $removeParams = request()->except($key);
+                    @endphp
+                    <span class="chip">
+                        {{ $filter['label'] }}: <strong>{{ $filter['value'] }}</strong>
+                        <a href="{{ route('admin.cervezas', $removeParams) }}" class="chip-remove" title="Quitar filtro">✕</a>
+                    </span>
+                @endif
+            @endforeach
+        </div>
+        @endif
+
+        {{-- Info de resultados --}}
+        <div class="results-info">
+            📊 Mostrando <strong>{{ $cervezas->firstItem() }}–{{ $cervezas->lastItem() }}</strong>
+            de <strong>{{ $cervezas->total() }}</strong> {{ $cervezas->total() == 1 ? 'cerveza' : 'cervezas' }}
+            @if(request('search'))
+                para <strong>"{{ request('search') }}"</strong>
+            @endif
+        </div>
 
         {{-- Tabla --}}
         <div class="table-wrapper">
             <div class="table-header">
                 <h2>Catálogo de Cervezas</h2>
-                <span class="count-badge">{{ $cervezas->total() }} cervezas</span>
+                <div class="table-header-right">
+                    <span class="count-badge">{{ $cervezas->total() }} cervezas</span>
+                </div>
             </div>
 
             @if($cervezas->count() > 0)
@@ -585,18 +1021,24 @@
                 </tbody>
             </table>
 
-            {{-- Paginación --}}
             @if($cervezas->hasPages())
             <div class="pagination-wrapper">
-                {{ $cervezas->links() }}
+                {{ $cervezas->appends(request()->query())->links() }}
             </div>
             @endif
 
             @else
             <div class="empty-state">
                 <div class="empty-state-icon">🍺</div>
-                <h3>No hay cervezas</h3>
-                <p>Crea la primera cerveza del catálogo.</p>
+                <h3>No se encontraron cervezas</h3>
+                @if($hasActiveFilters || request('search'))
+                    <p style="margin-top:0.5rem;">Prueba a ajustar los filtros.</p>
+                    <p style="margin-top:0.5rem;">
+                        <a href="{{ route('admin.cervezas') }}" style="color: var(--primary-gold);">Ver todas las cervezas</a>
+                    </p>
+                @else
+                    <p>Crea la primera cerveza del catálogo.</p>
+                @endif
             </div>
             @endif
         </div>
@@ -612,8 +1054,33 @@
 <script>
     function toggleMenu() {
         document.getElementById('navContainer').classList.toggle('active');
-        document.querySelector('.menu-toggle').classList.toggle('active');
     }
+
+    // ── Filtros: abrir/cerrar panel ──────────────────────────────
+    const filterBody = document.getElementById('filterBody');
+    const filterIcon = document.getElementById('filterIcon');
+
+    // Si hay filtros activos, abrir panel automáticamente
+    const hasActive = {{ $activeCount > 0 ? 'true' : 'false' }};
+    if (hasActive) {
+        filterBody.classList.add('open');
+        filterIcon.classList.add('open');
+    }
+
+    function toggleFilters() {
+        filterBody.classList.toggle('open');
+        filterIcon.classList.toggle('open');
+    }
+
+    // Guardar posición de scroll al enviar form
+    document.getElementById('filterForm').addEventListener('submit', function () {
+        sessionStorage.setItem('scrollY', window.scrollY);
+    });
+
+    window.addEventListener('load', function () {
+        const y = sessionStorage.getItem('scrollY');
+        if (y) { window.scrollTo(0, parseInt(y)); sessionStorage.removeItem('scrollY'); }
+    });
 </script>
 </body>
 </html>

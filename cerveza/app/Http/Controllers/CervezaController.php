@@ -40,11 +40,64 @@ class CervezaController extends Controller
     /**
      * Listado paginado para el panel de admin
      */
-    public function adminIndex()
-    {
-        $cervezas = Cerveza::with(['estilo', 'cerveceria'])->paginate(10);
-        return view('admin.cervezas.index', compact('cervezas'));
+    public function adminIndex(Request $request)
+{
+    $query = Cerveza::with(['estilo', 'cerveceria']);
+
+    // ── Búsqueda por texto ─────────────────────────────────────
+    if ($request->filled('search')) {
+        $search = $request->search;
+        $query->where(function ($q) use ($search) {
+            $q->where('name', 'like', "%{$search}%")
+              ->orWhereHas('cerveceria', fn($q2) => $q2->where('nombre', 'like', "%{$search}%"))
+              ->orWhereHas('estilo',     fn($q2) => $q2->where('nombre', 'like', "%{$search}%"));
+        });
     }
+
+    // ── Filtros por campo exacto ───────────────────────────────
+    if ($request->filled('cerveceria_id')) {
+        $query->where('cerveceria_id', $request->cerveceria_id);
+    }
+
+    if ($request->filled('estilo_id')) {
+        $query->where('estilo_id', $request->estilo_id);
+    }
+
+    if ($request->filled('formato')) {
+        $query->where('formato', $request->formato);
+    }
+
+    if ($request->filled('capacidad')) {
+        $query->where('capacidad', $request->capacidad);
+    }
+
+    // ── Rango de precio ────────────────────────────────────────
+    if ($request->filled('precio_min')) {
+        $query->where('precio_eur', '>=', $request->precio_min);
+    }
+
+    if ($request->filled('precio_max')) {
+        $query->where('precio_eur', '<=', $request->precio_max);
+    }
+
+    // ── Ordenación ─────────────────────────────────────────────
+    $allowedSorts = ['id', 'name', 'precio_eur', 'capacidad'];
+    $sortBy       = in_array($request->sort_by, $allowedSorts) ? $request->sort_by : 'id';
+    $sortOrder    = $request->sort_order === 'desc' ? 'desc' : 'asc';
+    $query->orderBy($sortBy, $sortOrder);
+
+    // ── Paginación (withQueryString mantiene los filtros en los links de página) ──
+    $cervezas    = $query->paginate(10)->withQueryString();
+
+    // ── Datos para los selectores de filtro ───────────────────
+    $cervecerias = Cerveceria::orderBy('nombre')->get();
+    $estilos     = Estilo::orderBy('nombre')->get();
+    $capacidades = Cerveza::distinct()->orderBy('capacidad')->pluck('capacidad');
+
+    return view('admin.cervezas.index', compact(
+        'cervezas', 'cervecerias', 'estilos', 'capacidades'
+    ));
+}
 
     /**
      * Formulario para crear una nueva cerveza
