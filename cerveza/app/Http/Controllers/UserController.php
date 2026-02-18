@@ -16,6 +16,11 @@ class UserController extends Controller
         $users = User::all();
         return view('admin.dashboardAdmin', compact('users'));
     }
+    public function buscarUser(Request $request)
+    {
+        $users = User::where('nombre', 'like', "%{$request->search}%")->get();
+        return view('admin.dashboardAdmin', compact('users'));
+    }
 
     public function userProfile($id)
     {
@@ -27,7 +32,8 @@ class UserController extends Controller
         return view('admin.pedidoUser', compact('user', 'pedidos'));
     }
 
-    public function eliminar($id){
+    public function eliminar($id)
+    {
 
         $user = User::findOrFail($id);
         $user->delete();
@@ -63,23 +69,23 @@ class UserController extends Controller
         $user->update($validated);
 
         return redirect()->route('dashboard', $user->id)
-                       ->with('success', 'Perfil actualizado correctamente.');
+            ->with('success', 'Perfil actualizado correctamente.');
     }
 
     public function updateLocation(Request $request)
-{
-    $user = auth()->user();
+    {
+        $user = auth()->user();
 
-    $validated = $request->validate([
-        'latitude' => 'required|numeric',
-        'longitude' => 'required|numeric',
-        'address' => 'nullable|string|max:500',
-    ]);
+        $validated = $request->validate([
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
+            'address' => 'nullable|string|max:500',
+        ]);
 
-    $user->update($validated);
+        $user->update($validated);
 
-    return back()->with('success', 'Ubicación actualizada correctamente.');
-}
+        return back()->with('success', 'Ubicación actualizada correctamente.');
+    }
 
 }
 

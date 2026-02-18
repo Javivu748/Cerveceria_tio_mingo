@@ -96,7 +96,6 @@
         }
 
         .logo::after {
-            content: '👨‍💼';
             position: absolute;
             right: -40px;
             top: -5px;
@@ -384,6 +383,104 @@
             color: var(--dark-brown);
         }
 
+        /* ── BUSCADOR ── */
+        .search-wrapper {
+            background: rgba(212, 165, 116, 0.05);
+            border: 2px solid var(--primary-gold);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            animation: fadeInUp 0.8s ease-out 0.1s both;
+        }
+
+        .search-wrapper input[type="text"] {
+            flex: 1;
+            padding: 0.8rem 1.2rem;
+            background: rgba(44, 24, 16, 0.8);
+            border: 1px solid rgba(212, 165, 116, 0.4);
+            border-radius: 4px;
+            color: var(--warm-cream);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+            outline: none;
+        }
+
+        .search-wrapper input[type="text"]::placeholder {
+            color: rgba(245, 230, 211, 0.4);
+        }
+
+        .search-wrapper input[type="text"]:focus {
+            border-color: var(--primary-gold);
+            box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.15);
+        }
+
+        .btn-search {
+            padding: 0.8rem 2rem;
+            background: var(--primary-gold);
+            color: var(--dark-brown);
+            border: none;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .btn-search:hover {
+            background: var(--deep-amber);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(212, 165, 116, 0.3);
+        }
+
+        .btn-clear {
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            color: rgba(245, 230, 211, 0.6);
+            border: 1px solid rgba(245, 230, 211, 0.3);
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            display: inline-block;
+        }
+
+        .btn-clear:hover {
+            background: rgba(255, 60, 60, 0.1);
+            color: #ff6b6b;
+            border-color: #ff6b6b;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .search-wrapper {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .search-wrapper input[type="text"] {
+                width: 100%;
+            }
+
+            .btn-search,
+            .btn-clear {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
         .btn-view:hover {
             background: var(--deep-amber);
             transform: translateY(-2px);
@@ -629,9 +726,16 @@
         {{-- MAIN CONTENT --}}
         <section class="admin-content">
             <div class="page-header">
-                <h1>Gestión de Usuarios 👥</h1>
+                <h1>Gestión de Usuarios </h1>
                 <p>Administra todos los usuarios del sistema</p>
             </div>
+
+            <form method="GET" class="search-wrapper" action="{{ route('admin.buscar') }}">
+                <input type="text" name="search" placeholder="Buscar por nombre..."
+                    value="{{ request('search') }}">
+                <button type="submit" class="btn-search">Buscar</button>
+                <a href="{{ route('admin.usuarios') }}" class="btn-clear">Limpiar</a>
+            </form>
 
             {{-- TABLA DE USUARIOS --}}
             <div class="users-table-wrapper">
@@ -678,11 +782,13 @@
                                     <td>{{ $user->created_at->format('d/m/Y') }}</td>
                                     <td>
                                         <div class="action-buttons">
-                                            <a href="{{ route('user.profile', $user->id) }}" class="btn-action btn-view">
+                                            <a href="{{ route('user.profile', $user->id) }}"
+                                                class="btn-action btn-view">
                                                 👁️ Ver
                                             </a>
-                            
-                                            <form method="POST" action="/eliminar-cuenta/{{ $user->id }}" style="display: inline;">
+
+                                            <form method="POST" action="/eliminar-cuenta/{{ $user->id }}"
+                                                style="display: inline;">
                                                 @csrf
                                                 <button type="submit" class="btn-action btn-delete">
                                                     🗑️ Eliminar

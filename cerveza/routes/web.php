@@ -41,6 +41,7 @@ Route::middleware('auth')->get('/nosotros', [NosotrosController::class, 'index']
 // Dashboard Admin (solo usuarios autenticados con role ADMIN)
 Route::middleware(['auth', 'verified', 'ADMIN'])->group(function () {
     Route::get('/admin/usuarios', [UserController::class, 'dashboard'])->name('admin.usuarios');
+    Route::get('/admin/busqueda', [UserController::class, 'buscarUser'])->name('admin.buscar');
     Route::get('/usuario/{id}', [UserController::class, 'userProfile'])->name('user.profile');
     Route::post('/eliminar-cuenta/{id}', [UserController::class, 'eliminar'])->name('user.eliminar');
 
