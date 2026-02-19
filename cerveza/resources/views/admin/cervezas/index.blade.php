@@ -752,7 +752,7 @@
             <nav>
                 <a href="{{ route('admin.usuarios') }}">Usuarios</a>
                 <a href="{{ route('admin.cervezas') }}" class="active">Cervezas</a>
-                <a href="{{ route('dashboard') }}">Dashboard</a>
+                <a href="{{ route('admin.usuarios') }}">Dashboard</a>
             </nav>
             <div class="auth-buttons">
                 <span class="user-greeting">{{ Auth::user()->nombre }}</span>

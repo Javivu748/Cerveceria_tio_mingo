@@ -68,6 +68,7 @@
             top: 0;
             z-index: 100;
             animation: slideDown 0.8s ease-out;
+            gap: 3rem;
         }
 
         @keyframes slideDown {
@@ -84,7 +85,8 @@
 
         .logo {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 2rem;
+            font-size: 1.6rem;
+            flex-shrink: 0;
             letter-spacing: 3px;
             color: var(--primary-gold);
             text-shadow: 3px 3px 0 var(--deep-amber);
@@ -96,7 +98,8 @@
         .logo::after {
             content: '🍺';
             position: absolute;
-            right: -40px;
+            right: -36px;
+            font-size: 1.5rem;
             top: -5px;
             font-size: 1.8rem;
         }
@@ -104,8 +107,10 @@
         /* Navegación */
         .nav-container {
             display: flex;
+            flex: 1;
+            justify-content: flex-end;
             align-items: center;
-            gap: 2rem;
+            gap: 3rem;
         }
 
         nav {
@@ -915,12 +920,13 @@
 
         @media (max-width: 640px) {
             header {
-                padding: 1rem 4%;
+                padding: 2rem 4%;
             }
 
             .logo {
                 font-size: 1.5rem;
-                letter-spacing: 2px;
+                letter-spacing: 1px;
+                padding-right: 1rem;
             }
 
             .logo::after {
@@ -1072,10 +1078,7 @@
 <body>
     <div class="container">
 
-        {{-- ═══════════════════════════════════════════
-         HEADER — mismo estilo que welcome,
-         pero con enlaces desbloqueados + menú de usuario
-    ════════════════════════════════════════════ --}}
+
         <header>
             <a href="{{ url('/') }}" class="logo">CERVECERÍA TÍO MINGO</a>
 
@@ -1088,11 +1091,12 @@
             <div class="nav-container" id="navContainer">
                 <nav>
                     @if (auth()->check() && auth()->user()->role === 'ADMIN')
-                    <a href="{{ route('admin.cervezas') }}" class="btn-profile">
-                            CervezasAdmin
+                    <a href="{{ route('admin.cervezas') }}">
+                            Cervezas
                         </a>
-                    @endif
+                    @else
                     <a href="{{ route('cervezas') }}">Cervezas</a>
+                    @endif
                     <a href="/nosotros">Nosotros</a>
                     <a href="{{ route('pedidos.index') }}">Pedidos</a>
                 </nav>

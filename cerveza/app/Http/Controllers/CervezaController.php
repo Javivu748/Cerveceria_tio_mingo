@@ -23,15 +23,40 @@ class CervezaController extends Controller
         return view('cerveza.cervezas', compact('cervezas'));
     }
 
-    /**
-     * Muestra cervezas con paginación en la sección pública.
-     */
-    public function index()
-    {
-        $cervezas = Cerveza::with(['estilo', 'cerveceria'])->paginate(6);
+       public function index(Request $request)
+{
+    $query = Cerveza::with(['estilo', 'cerveceria']);
 
-        return view('cerveza.cervezas', compact('cervezas'));
+    if ($request->filled('search')) {
+        $s = $request->search;
+        $query->where(function($q) use ($s) {
+            $q->where('name', 'like', "%{$s}%")
+              ->orWhereHas('cerveceria', fn($q2) => $q2->where('nombre', 'like', "%{$s}%"))
+              ->orWhereHas('estilo',     fn($q2) => $q2->where('nombre', 'like', "%{$s}%"));
+        });
     }
+
+    if ($request->filled('cerveceria_id')) $query->where('cerveceria_id', $request->cerveceria_id);
+    if ($request->filled('estilo_id'))     $query->where('estilo_id',     $request->estilo_id);
+    if ($request->filled('formato'))       $query->where('formato',       $request->formato);
+    if ($request->filled('capacidad'))     $query->where('capacidad',     $request->capacidad);
+    if ($request->filled('precio_min'))    $query->where('precio_eur', '>=', $request->precio_min);
+    if ($request->filled('precio_max'))    $query->where('precio_eur', '<=', $request->precio_max);
+
+    $allowed = ['id', 'name', 'precio_eur', 'capacidad'];
+    $sort    = in_array($request->sort_by, $allowed) ? $request->sort_by : 'id';
+    $order   = $request->sort_order === 'desc' ? 'desc' : 'asc';
+    $query->orderBy($sort, $order);
+
+    $cervezas    = $query->paginate(6)->withQueryString();
+    $cervecerias = Cerveceria::orderBy('nombre')->get();
+    $estilos     = Estilo::orderBy('nombre')->get();
+    $capacidades = Cerveza::distinct()->orderBy('capacidad')->pluck('capacidad');
+
+    return view('cerveza.cervezas', compact(
+        'cervezas', 'cervecerias', 'estilos', 'capacidades'
+    ));
+}
 
     /**
      * Muestra la información detallada de una cerveza.

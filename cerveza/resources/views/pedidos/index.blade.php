@@ -515,8 +515,14 @@ footer{
 
     <div class="nav-container">
         <nav>
-            <a href="#">Cervezas</a>
-            <a href="#">Nosotros</a>
+            @if (auth()->check() && auth()->user()->role === 'ADMIN')
+                    <a href="{{ route('admin.cervezas') }}">
+                            Cervezas
+                        </a>
+                    @else
+                    <a href="{{ route('cervezas') }}">Cervezas</a>
+            @endif
+            <a href="{{ route('nosotros.index') }}">Nosotros</a>
             <a href="{{ route('pedidos.index') }}" class="active">Pedidos</a>
         </nav>
 
