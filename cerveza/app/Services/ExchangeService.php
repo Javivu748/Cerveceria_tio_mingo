@@ -111,7 +111,7 @@ class ExchangeService
             'EUR' => '€',
             'GBP' => '£',
             'JPY' => '¥',
-            'CNY' => '¥',
+            'C NY' => '¥',
             'MXN' => '$',
             'CAD' => 'C$',
             'AUD' => 'A$',
