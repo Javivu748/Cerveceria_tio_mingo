@@ -10,8 +10,6 @@ class ExchangeService
 {
     private $apiKey;
     private $apiUrl;
-
-    // Inicializa la clase con la URL y la API key desde config
     public function __construct()
     {
         $this->apiKey = config('services.exchange_rate.key');
